@@ -287,12 +287,25 @@ public class CorpusTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see de.hu_berlin.german.korpling.tiger2.Corpus#findFeature(java.lang.String, de.hu_berlin.german.korpling.tiger2.DOMAIN, java.lang.String)
-	 * @generated
 	 */
-	public void testFindFeature__String_DOMAIN_String() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+	public void testFindFeature__String_DOMAIN_String() 
+	{
+		Feature feat1= Tiger2Factory.eINSTANCE.createFeature();
+		feat1.setName("feat1");
+		feat1.setDomain(DOMAIN.T);
+		feat1.setType("type1");
+		this.getFixture().getFeatures().add(feat1);
+		
+		assertEquals(feat1, this.getFixture().findFeature(feat1.getName(), feat1.getDomain(), feat1.getType()));
+		
+		Feature feat2= Tiger2Factory.eINSTANCE.createFeature();
+		feat2.setName("feat2");
+		feat2.setDomain(DOMAIN.NT);
+		feat2.setType("type1");
+		this.getFixture().getFeatures().add(feat2);
+		
+		assertEquals(feat1, this.getFixture().findFeature(feat1.getName(), feat1.getDomain(), feat1.getType()));
+		assertEquals(feat2, this.getFixture().findFeature(feat2.getName(), feat2.getDomain(), feat2.getType()));
 	}
 
 	/**
@@ -300,12 +313,34 @@ public class CorpusTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see de.hu_berlin.german.korpling.tiger2.Corpus#createAnnotation(java.lang.String, de.hu_berlin.german.korpling.tiger2.DOMAIN, java.lang.String, java.lang.String)
-	 * @generated
 	 */
-	public void testCreateAnnotation__String_DOMAIN_String_String() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+	public void testCreateAnnotation__String_DOMAIN_String_String() 
+	{
+		Feature feat1= Tiger2Factory.eINSTANCE.createFeature();
+		feat1.setName("feat1");
+		feat1.setDomain(DOMAIN.T);
+		feat1.setType("type1");
+		this.getFixture().getFeatures().add(feat1);
+		
+		FeatureValue featVal1= Tiger2Factory.eINSTANCE.createFeatureValue();
+		featVal1.setValue("value1");
+		feat1.getFeatureValues().add(featVal1);
+		
+		FeatureValue featVal2= Tiger2Factory.eINSTANCE.createFeatureValue();
+		featVal2.setValue("value2");
+		feat1.getFeatureValues().add(featVal2);
+		
+		Annotation anno1= this.getFixture().createAnnotation(feat1.getName(), feat1.getDomain(), feat1.getType(), featVal1.getValue());
+		assertEquals(feat1.getName(), anno1.getName());
+		assertEquals(feat1, anno1.getFeatureRef());
+		assertEquals(featVal1.getValue(), anno1.getValue());
+		assertEquals(featVal1, anno1.getFeatureValueRef());
+		
+		Annotation anno2= this.getFixture().createAnnotation(feat1.getName(), feat1.getDomain(), feat1.getType(), featVal2.getValue());
+		assertEquals(feat1.getName(), anno2.getName());
+		assertEquals(feat1, anno2.getFeatureRef());
+		assertEquals(featVal2.getValue(), anno2.getValue());
+		assertEquals(featVal2, anno2.getFeatureValueRef());
 	}
 
 	/**
@@ -313,12 +348,27 @@ public class CorpusTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see de.hu_berlin.german.korpling.tiger2.Corpus#findFeatureValue(java.lang.String, de.hu_berlin.german.korpling.tiger2.DOMAIN, java.lang.String, java.lang.String)
-	 * @generated
 	 */
-	public void testFindFeatureValue__String_DOMAIN_String_String() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+	public void testFindFeatureValue__String_DOMAIN_String_String() 
+	{
+		Feature feat1= Tiger2Factory.eINSTANCE.createFeature();
+		feat1.setName("feat1");
+		feat1.setDomain(DOMAIN.T);
+		feat1.setType("type1");
+		this.getFixture().getFeatures().add(feat1);
+		
+		FeatureValue featVal1= Tiger2Factory.eINSTANCE.createFeatureValue();
+		featVal1.setValue("value1");
+		feat1.getFeatureValues().add(featVal1);
+		
+		assertEquals(featVal1, this.getFixture().findFeatureValue(feat1.getName(), feat1.getDomain(), feat1.getType(), featVal1.getValue()));
+		
+		FeatureValue featVal2= Tiger2Factory.eINSTANCE.createFeatureValue();
+		featVal2.setValue("value2");
+		feat1.getFeatureValues().add(featVal2);
+		
+		assertEquals(featVal1, this.getFixture().findFeatureValue(feat1.getName(), feat1.getDomain(), feat1.getType(), featVal1.getValue()));
+		assertEquals(featVal2, this.getFixture().findFeatureValue(feat1.getName(), feat1.getDomain(), feat1.getType(), featVal2.getValue()));
 	}
 
 } //CorpusTest

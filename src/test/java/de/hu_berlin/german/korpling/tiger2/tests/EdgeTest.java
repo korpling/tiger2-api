@@ -6,7 +6,11 @@
  */
 package de.hu_berlin.german.korpling.tiger2.tests;
 
+import org.junit.Test;
+
+import de.hu_berlin.german.korpling.tiger2.Annotation;
 import de.hu_berlin.german.korpling.tiger2.Edge;
+import de.hu_berlin.german.korpling.tiger2.Feature;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
 
 import junit.framework.TestCase;
@@ -103,15 +107,49 @@ public class EdgeTest extends TestCase {
 	 * @see de.hu_berlin.german.korpling.tiger2.AnnotatableElement#findAnnotation(java.lang.String)
 	 * @generated
 	 */
-	public void testFindAnnotation__String() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-	}
-
 	/**
-	 * This test is just an alibib, until some tests were added.
+	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.AnnotatableElement#findAnnotation(java.lang.String) <em>Find Annotation</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hu_berlin.german.korpling.tiger2.AnnotatableElement#findAnnotation(java.lang.String)
 	 */
-	public void testAlibi()
-	{}
+	@Test
+	public void testFindAnnotation__String() 
+	{
+		Feature feat1= Tiger2Factory.eINSTANCE.createFeature();
+		feat1.setName("feat1");
+		Feature feat2= Tiger2Factory.eINSTANCE.createFeature();
+		feat2.setName("feat2");
+		Feature feat3= Tiger2Factory.eINSTANCE.createFeature();
+		feat3.setName("feat3");
+		
+		Annotation anno1= Tiger2Factory.eINSTANCE.createAnnotation();
+		anno1.setFeatureRef(feat1);
+		anno1.setValue("value1");
+		this.getFixture().getAnnotations().add(anno1);
+		assertEquals(anno1, this.getFixture().findAnnotation(feat1.getName()));
+		
+		Annotation anno2= Tiger2Factory.eINSTANCE.createAnnotation();
+		anno2.setFeatureRef(feat2);
+		anno2.setValue("value2");
+		this.getFixture().getAnnotations().add(anno2);
+		assertEquals(anno2, this.getFixture().findAnnotation(feat2.getName()));
+		
+		Annotation anno3= Tiger2Factory.eINSTANCE.createAnnotation();
+		anno3.setFeatureRef(feat3);
+		anno3.setValue("value1");
+		this.getFixture().getAnnotations().add(anno3);
+		assertEquals(anno3, this.getFixture().findAnnotation(feat3.getName()));
+		
+//		try
+//		{
+//			Annotation anno4= Tiger2Factory.eINSTANCE.createAnnotation();
+//			anno4.setFeatureRef(feat1);
+//			anno4.setValue("value1");
+//			this.getFixture().getAnnotations().add(anno4);
+//			fail("shall not the same annotation twice.");
+//		}
+//		catch (Exception e) {
+//		}
+	}
 } //EdgeTest

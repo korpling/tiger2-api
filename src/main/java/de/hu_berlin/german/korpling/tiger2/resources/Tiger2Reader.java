@@ -262,6 +262,11 @@ public class Tiger2Reader extends DefaultHandler2
 				else if (	(Tiger2XML.ATTRIBUTE_WORD.equals(attName))&&
 							(attributes.getURI(i).equals(Tiger2XML.NAMESPACE_TIGER2_205)))
 					terminal.setWord(attValue);
+				else if (	(Tiger2XML.ATTRIBUTE_CORRESP.equals(attName))&&
+							(attributes.getURI(i).equals(Tiger2XML.NAMESPACE_TIGER2_205)))
+				{// start: //t/@corresp
+					;//TODO implement that
+				}// end: //t/@corresp
 				else if (	(Tiger2XML.ATTRIBUTE_TYPE.equals(attName))&&
 							(attributes.getURI(i).equals(Tiger2XML.NAMESPACE_TIGER2_205)))
 				{

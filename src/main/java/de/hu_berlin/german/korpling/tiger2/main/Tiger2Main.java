@@ -45,7 +45,39 @@ public class Tiger2Main {
 		return(buf.toString());
 	}
 	
+	private static Corpus loadTiger2(File tig2File) throws IOException
+	{
+		System.out.println("resourceSet: "+ resourceSet);
+		System.out.println("tig2File: "+ tig2File);
+		if(tig2File.toString().endsWith(".tiger2"))
+		{
+			System.out.println("HERE");
+			URI inputURI= URI.createFileURI(tig2File.toString());
+			System.out.println("reading uri '"+inputURI+"'... ");
+			Resource resource = resourceSet.createResource(inputURI);
+			if (resource== null)
+				throw new NullPointerException("No resource found for file '"+tig2File.getAbsolutePath()+"'.");
+			resource.load(null);
+			if (resource.getContents()== null)
+				throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"'.");
+			if (resource.getContents().size()== 0)
+				throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"'.");
+			Object corpObj=resource.getContents().get(0);
+			if (!(corpObj instanceof Corpus))
+				throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"', beacuse the file does not contain a <tiger2/> conform 'Corpus' object.");
+			Corpus corpus= (Corpus) corpObj;
+			return(corpus);
+		}
+		return(null);
+	}
+	
+	
 	enum PARAMETERS {i, o, t2_t, t_t2, t_t, t2_t2};
+	
+	
+	// create resource set and resource 
+	protected static ResourceSet resourceSet = new ResourceSetImpl();
+	
 	
 	/**
 	 * @param args
@@ -54,6 +86,9 @@ public class Tiger2Main {
 	public static void main(String[] args) throws IOException 
 	{
 		System.out.println(sayHello());
+		
+		// Register XML resource factory
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(TigerResourceFactory.FILE_ENDING_TIGER2, new TigerResourceFactory());
 		
 		if (	(args== null)||
 				(args.length== 0))
@@ -118,50 +153,39 @@ public class Tiger2Main {
 		}
 		else if (convertDirection.equals(PARAMETERS.t2_t2))
 		{
-			// create resource set and resource 
-			ResourceSet resourceSet = new ResourceSetImpl();
-			// Register XML resource factory
-			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(TigerResourceFactory.FILE_ENDING_TIGER2, new TigerResourceFactory());
-			System.out.println("resourceSet: "+ resourceSet);
-			
 			if (inputFile.isDirectory())
 			{
 				if (!outputFolder.exists())
 					outputFolder.mkdirs();
 				for (File tig2File: inputFile.listFiles())
 				{
+					System.out.println("loading model from <tiger2/> file '"+tig2File.getAbsolutePath()+"' ");
+					Corpus corpus= loadTiger2(tig2File);
+					
 					File outputFile= null;
-					if(tig2File.toString().endsWith(".tiger2"))
-					{
-						URI inputURI= URI.createFileURI(tig2File.toString());
-						System.out.println("reading uri '"+inputURI+"'... ");
-						Resource resource = resourceSet.createResource(inputURI);
-						if (resource== null)
-							throw new NullPointerException("No resource found for file '"+tig2File.getAbsolutePath()+"'.");
-						resource.load(null);
-						if (resource.getContents()== null)
-							throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"'.");
-						if (resource.getContents().size()== 0)
-							throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"'.");
-						Object corpObj=resource.getContents().get(0);
-						if (!(corpObj instanceof Corpus))
-							throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"', beacuse the file does not contain a <tiger2/> conform 'Corpus' object.");
-						Corpus corpus= (Corpus) corpObj;
-						
-						outputFile= new File(outputFolder.getAbsolutePath()+"/"+tig2File.getName());
-						resource = resourceSet.createResource(URI.createURI(outputFile.toURI().toString()));
-						resource.getContents().add(corpus);
-						resource.save(null);
-					}
+					outputFile= new File(outputFolder.getAbsolutePath()+"/"+tig2File.getName());
+					System.out.println("storing model to <tiger2/> file '"+outputFile.getAbsolutePath()+"' ");
+					Resource resource = resourceSet.createResource(URI.createURI(outputFile.toURI().toString()));
+					resource.getContents().add(corpus);
+					resource.save(null);
 				}
 			}
-			
-			
+			else
+			{
+				System.out.println("loading model from <tiger2/> file '"+inputFile.getAbsolutePath()+"' ");
+				Corpus corpus= loadTiger2(inputFile);
+				if (corpus== null)
+					throw new NullPointerException("Could not map file '"+inputFile.getAbsolutePath()+"' to a <tiger2/> model.");
+				
+				File outputFile= null;
+				outputFile= new File(outputFolder.getAbsolutePath()+"/"+inputFile.getName());
+				System.out.println("storing model to <tiger2/> file '"+outputFile.getAbsolutePath()+"' ");
+				Resource resource = resourceSet.createResource(URI.createURI(outputFile.toURI().toString()));
+				resource.getContents().add(corpus);
+				resource.save(null);
+			}
 		}
-		else throw new UnsupportedOperationException("This has not been implemented yet."); 
-		
-
-		
+		else throw new UnsupportedOperationException("This has not been implemented yet.");
 
 //		
 //		if (resource== null)

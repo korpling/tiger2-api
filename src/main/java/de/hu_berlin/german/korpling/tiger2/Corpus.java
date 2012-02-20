@@ -185,6 +185,23 @@ public interface Corpus extends EObject {
 	Annotation createAnnotation(String name, DOMAIN domain, String value);
 
 	/**
+	 * Creates and returns a new {@link Annotation} object and refers it to the corresponding {@link Feature} and {@link FeatureValue} object
+	 * matching the parameters <code>name</code> and <code>domain</code> or <code>value</code>. 
+	 * If the parameters <code>name</code> and <code>domain</code> are empty, null will be returned.
+	 * If no {@link Feature} or {@link FeatureValue} having the given coordinates was found, the search will be done again without
+	 * the <code>type</code>.  
+	 * @param featureName name to identify the {@link Feature} object
+	 * @param domain domain to identify the {@link Feature} object
+	 * @param type type of the annotation corresponding to a {@link Feature}
+	 * @param featureValue value to identify the {@link FeatureValue} object
+	 * @return the created {@link Annotation} object
+	 * @exception throws an {@link TigerInvalidModelException}, if no {@link Feature} object matching the parameters was found,
+	 * @model
+	 * @generated
+	 */
+	Annotation createAnnotation(String featureName, DOMAIN domain, String type, String featureValue);
+	
+	/**
 	 * Searches a {@link Feature} object matching to the given <em>featureName</em> and <em>featureDomain</em>.
 	 * @param featureName
 	 * @param domain
@@ -213,21 +230,6 @@ public interface Corpus extends EObject {
 	 * @generated
 	 */
 	Feature findFeature(String featureName, DOMAIN domain, String type);
-
-	/**
-	 * Creates and returns a new {@link Annotation} object and refers it to the corresponding {@link Feature} and {@link FeatureValue} object
-	 * matching the parameters <code>name</code> and <code>domain</code> or <code>value</code>. 
-	 * If the parameters <code>name</code> and <code>domain</code> are null will be returned.
-	 * @param featureName name to identify the {@link Feature} object
-	 * @param domain domain to identify the {@link Feature} object
-	 * @param type type of the annotation corresponding to a {@link Feature}
-	 * @param featureValue value to identify the {@link FeatureValue} object
-	 * @return the created {@link Annotation} object
-	 * @exception throws an {@link TigerInvalidModelException}, if no {@link Feature} object matching the parameters was found,
-	 * @model
-	 * @generated
-	 */
-	Annotation createAnnotation(String featureName, DOMAIN domain, String type, String featureValue);
 
 	/**
 	 * <!-- begin-user-doc -->

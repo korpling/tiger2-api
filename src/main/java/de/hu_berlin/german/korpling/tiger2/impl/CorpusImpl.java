@@ -371,12 +371,20 @@ public class CorpusImpl extends EObjectImpl implements Corpus {
 				(domain!= null))
 		{
 			Feature feature= this.findFeature(featureName, domain, type);
+			if (feature== null)
+			{//generalized search 
+				feature= this.findFeature(featureName, domain);
+			}//generalized search
 			if (feature!= null)
 			{
 				retVal= Tiger2Factory.eINSTANCE.createAnnotation();
 				retVal.setFeatureRef(feature);
 				
 				FeatureValue featureValue1= this.findFeatureValue(featureName, domain, type, featureValue);
+				if (featureValue1== null)
+				{//generalized search 
+					featureValue1= this.findFeatureValue(featureName, domain, featureValue);
+				}//generalized search
 				if (featureValue1!= null)
 				{
 					retVal.setFeatureValueRef(featureValue1);
@@ -394,7 +402,7 @@ public class CorpusImpl extends EObjectImpl implements Corpus {
 					throw new TigerInvalidModelException("Cannot create an annotation for feature '"+featureName+"' in domain '"+domain+"' with value '"+featureValue+"', because there is no featureValue defined for such an annotation value. Known values are: "+ features);
 				}
 			}
-			else throw new TigerInvalidModelException("Cannot create an annotation for feature '"+featureName+"' in domain '"+domain+"' with value '"+featureValue+"', because there is no matching feature defined.");
+			else throw new TigerInvalidModelException("Cannot create an annotation for feature '"+featureName+"' in domain '"+domain+"' with value '"+featureValue+"', because there is no matching feature defined. Supported features are: "+ this.featureNameDomain2FeatureMap);
 		}
 		return(retVal);
 	}
@@ -420,8 +428,9 @@ public class CorpusImpl extends EObjectImpl implements Corpus {
 		{
 			return(feature.findFeatureValue(featureValueValue));
 		}
-		else
-			throw new TigerInvalidModelException("Cannot create an Annotation object, because no Feature object matching to featureName '"+featureName+"' and featureDomain '"+featureDomain+"' was found.");
+		return(null);
+//		else
+//			throw new TigerInvalidModelException("Cannot find a feature-value object for featureName='"+featureName+"', featureDomain='"+featureDomain+"' and type='"+type+"', because no feature having these coordinates exist.");
 		
 	}
 
@@ -440,6 +449,7 @@ public class CorpusImpl extends EObjectImpl implements Corpus {
 		String key= featureName+FEATURE_SEPARATOR+domain;
 		if (type!= null)
 			key= key + FEATURE_SEPARATOR+ type;
+		System.out.println("key: "+ key);
 		return(this.featureNameDomain2FeatureMap.get(key));
 	}
 

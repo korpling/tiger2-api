@@ -285,15 +285,6 @@ public class AnnotationImpl extends EObjectImpl implements Annotation {
 	}
 
 	/**
-	 * {@inheritDoc Annotation#setName(String)}
-	 */
-	public void setName(String newName) {
-		// TODO: implement this method to set the 'Name' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -368,9 +359,6 @@ public class AnnotationImpl extends EObjectImpl implements Annotation {
 			case Tiger2Package.ANNOTATION__FEATURE_VALUE_REF:
 				setFeatureValueRef((FeatureValue)newValue);
 				return;
-			case Tiger2Package.ANNOTATION__NAME:
-				setName((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -394,9 +382,6 @@ public class AnnotationImpl extends EObjectImpl implements Annotation {
 				return;
 			case Tiger2Package.ANNOTATION__FEATURE_VALUE_REF:
 				setFeatureValueRef((FeatureValue)null);
-				return;
-			case Tiger2Package.ANNOTATION__NAME:
-				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);

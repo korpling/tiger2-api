@@ -142,14 +142,4 @@ public interface Annotation extends EObject {
 	 */
 	String getName();
 
-	/**
-	 * Sets the value of the '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
 } // Annotation
