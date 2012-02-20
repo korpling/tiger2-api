@@ -29,6 +29,8 @@ import junit.textui.TestRunner;
  * <ul>
  *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getIncomingEdges(java.lang.String) <em>Get Incoming Edges</em>}</li>
  *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getOutgoingEdges(java.lang.String) <em>Get Outgoing Edges</em>}</li>
+ *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findNode(java.lang.String) <em>Find Node</em>}</li>
+ *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findEdge(java.lang.String) <em>Find Edge</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -152,6 +154,32 @@ public class GraphTest extends TestCase {
 	 * @generated
 	 */
 	public void testGetOutgoingEdges__String() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Graph#findNode(java.lang.String) <em>Find Node</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hu_berlin.german.korpling.tiger2.Graph#findNode(java.lang.String)
+	 * @generated
+	 */
+	public void testFindNode__String() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Graph#findEdge(java.lang.String) <em>Find Edge</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hu_berlin.german.korpling.tiger2.Graph#findEdge(java.lang.String)
+	 * @generated
+	 */
+	public void testFindEdge__String() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();
