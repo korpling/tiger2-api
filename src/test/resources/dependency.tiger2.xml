@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xslt/xmlverbatimwrapper.xsl"?>
+<feature name="label" type="dep" domain="edge">
+    <value name="atr">Attribute </value>
+    <value name="det">Determiner </value>
+    <value name="obj-d">Direct Object </value>
+    <value name="obj-inf">Infinitive Object </value>
+    <value name="pvp">Phrasal Verb Particle </value>
+    <value name="sbj">Subject </value>
+</feature>

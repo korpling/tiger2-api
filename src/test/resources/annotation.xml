@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xslt/xmlverbatimwrapper.xsl"?>
+<annotation>
+    <!-- the 'word' feature is used to specify the raw text-->
+    <feature name="word" domain="T"/>
+    <feature name="lemma" domain="T"/> <!-- domain is ucase 'T' -->
+    <feature name="pos" domain="T">
+        
+        <value name="JJ">Adjective </value>
+        
+        <value name="NN">Noun, singular or mass </value>
+        ...
+    </feature>
+    <feature name="cat" domain="NT"> <!-- domain is ucase 'NT' -->
+        <value name="NP">Nominal Phrase </value>
+        <value name="S">Sentence or Clause </value>
+        <value name="VP">Verbal Phrase </value>
+        <value name="ROOT">Graph Root </value>
+    </feature>
+    <!-- TigerXML has two types of edges with one attribute -->
+    <!-- 'label'. Labels are defined for 'edgelabel' or -->
+    <!-- 'secedgelabel'. -->
+    <edgelabel>
+        <value name="AT">Attribute </value>
+        <value name="DO">Direct Object </value>
+        <value name="HD">Head </value>
+        <value name="IO">Infinitive Object </value>
+        <value name="SB">Subject </value>
+    </edgelabel>
+    <!-- Separate labels for secedge. -->
+    <!-- No other edge types or attributes can be defined -->
+    <secedgelabel>
+        <value name="SB">Subject </value>
+    </secedgelabel>
+</annotation>

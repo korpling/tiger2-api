@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<corpus xml:id="example_inline_coref_pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/ http://korpling.german.hu-berlin.de/tiger2/V2.0.5/Tiger2.xsd"
+    xmlns:tiger2="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/"
+    xmlns="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/">
+    <head>
+        <meta>
+            <name>terminals</name>
+        </meta>
+        <annotation>
+            <!-- the 'word' feature is used in inline documents -->
+            <feature name="word" domain="t"/>
+            <feature name="lemma" domain="t"/>
+            <!--domain is lcase 't' for terminal-->
+            <feature name="pos" domain="t" datcat="http://www.isocat.org/datcat/DC-396">
+                <value name=".">Punctuation</value>
+                <value name="JJ" datcat="http://www.isocat.org/datcat/DC-1230">Adjective </value>
+                <value name="NN">Noun, singular or mass</value>
+                <value name="PP">Personal pronoun</value>
+                <value name="RP">Particle</value>
+                <value name="VB">Verb, base form</value>
+                <value name="VBP">Verb, non-3rd person singular present</value>
+            </feature>
+            <!-- Additional terminal type 'PRO' for PRO-forms -->
+            <feature name="function" type="PRO" domain="t">
+                <value name="OC">Object Control </value>
+                <value name="SC">Subject Control </value>
+            </feature>
+        </annotation>
+    </head>
+
+    <body>
+        <s xml:id="s1">
+            <graph root="s1_ROOT" discontinuous="true">
+                <terminals>
+                    <t xml:id="s1_t1" tiger2:word="I" lemma="I" pos="PP"/>
+                    <t xml:id="s1_t2" tiger2:word="wanna" lemma="wanna" pos="VBP"/>
+                    <t xml:id="s1_t3" tiger2:word="put" lemma="put" pos="VB"/>
+                    <t xml:id="s1_t4" tiger2:word="up" lemma="up" pos="RP"/>
+                    <t xml:id="s1_t5" tiger2:word="new" lemma="new" pos="JJ"/>
+                    <t xml:id="s1_t6" tiger2:word="wallpaper" lemma="wallpaper" pos="NN"/>
+                    <t xml:id="s1_t7" tiger2:word="." lemma="." pos="."/>
+                </terminals>
+            </graph>
+        </s>
+    </body>
+</corpus>

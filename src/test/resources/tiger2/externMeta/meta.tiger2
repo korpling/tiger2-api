@@ -1,0 +1,10 @@
+<meta xmlns="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/
+http://korpling.german.hu-berlin.de/tiger2/V2.0.5/Tiger2.xsd">
+<author>author</author>
+<date>date</date>
+<description>description of the corpus</description>
+<format>original format, if the corpus was not born as tiger-2-corpus</format>
+<history>version of the corpus</history>
+</meta>

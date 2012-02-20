@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xslt/xmlverbatimwrapper.xsl"?>
+<body xmlns:tiger2="http://korpling.german.hu-berlin.de/tiger2/V2.0.4/">
+    <s xml:id="s1">
+        <graph root="s1_ROOT" discontinuous="true">
+            <terminals>
+                <t xml:id="s1_t1" tiger2:corresp="example.standoff.maf.xml#tiger2:wordForm1"/> <!-- I -->
+                <t xml:id="s1_t2" tiger2:corresp="example.standoff.maf.xml#tiger2:wordForm2"/> <!-- want -->
+                <t xml:id="s1_t3" tiger2:corresp="example.standoff.maf.xml#tiger2:wordForm3"/> <!-- to -->
+                <t xml:id="s1_t4" tiger2:corresp="example.standoff.maf.xml#tiger2:wordForm5"/> <!-- put -->
+                <t xml:id="s1_t5" tiger2:corresp="example.standoff.maf.xml#tiger2:wordForm6"/> <!-- up -->
+                <t xml:id="s1_t6" tiger2:corresp="example.standoff.maf.xml#tiger2:wordForm8"/> <!-- new -->
+                <t xml:id="s1_t7" tiger2:corresp="example.standoff.maf.xml#tiger2:wordForm9"/> <!-- wallpaper -->
+                <t xml:id="s1_t8" tiger2:corresp="example.standoff.maf.xml#tiger2:wordForm10"/> <!-- . -->
+            </terminals>
+            <nonterminals>
+                <nt xml:id="s1_nt1" cat="NP">
+                    <edge tiger2:type="prim" label="HD" tiger2:target="#s1_t1"/> <!-- I -->
+                </nt>
+                <nt xml:id="s1_nt2" cat="VP">
+                    <edge tiger2:type="prim" label="HD" tiger2:target="#s1_t2"/> <!-- want -->
+                    <edge tiger2:type="prim" tiger2:target="#s1_nt5"/> <!-- S -->
+                </nt>
+                <nt xml:id="s1_nt3" cat="VP">
+                    <edge tiger2:type="prim" tiger2:target="#s1_t3"/> <!-- to -->
+                    <edge tiger2:type="prim" label="HD" tiger2:target="#s1_t4"/> <!-- put -->
+                    <edge tiger2:type="prim" tiger2:target="#s1_t5"/> <!-- up -->
+                    <edge tiger2:type="prim" label="DO" tiger2:target="#s1_nt4"/> <!-- NP -->
+                </nt>
+                <nt xml:id="s1_nt4" cat="NP">
+                    <edge tiger2:type="prim" label="AT" tiger2:target="#s1_t6"/> <!-- new -->
+                    <edge tiger2:type="prim" label="HD" tiger2:target="#s1_t7"/> <!-- wallpaper -->
+                </nt>
+                <nt xml:id="s1_nt5" cat="S">
+                    <edge tiger2:type="sec" label="SB" tiger2:target="#s1_t1"/> <!-- I -->
+                    <edge tiger2:type="prim" tiger2:target="#s1_nt3"/> <!-- VP -->
+                </nt>
+                <nt xml:id="s1_nt6" cat="S">
+                    <edge tiger2:type="prim" label="SB" tiger2:target="#s1_t1"/> <!-- I -->
+                    <edge tiger2:type="prim" tiger2:target="#s1_nt2"/> <!-- VP -->
+                </nt>
+                <nt xml:id="s1_ROOT" cat="ROOT">
+                    <edge tiger2:type="prim" tiger2:target="#s1_nt2"/> <!-- VP -->
+                    <edge tiger2:type="prim" tiger2:target="#s1_t8"/> <!-- . -->
+                </nt>
+                
+            </nonterminals>
+        </graph>
+    </s>
+    
+</body>

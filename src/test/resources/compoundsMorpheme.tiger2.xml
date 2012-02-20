@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xslt/xmlverbatimwrapper.xsl"?>
+<!-- declaration of type domain -->
+<annotation>
+    <feature name="type" domain="t">
+        <value name="morpheme"/>
+    </feature>
+    <feature name="type" domain="nt">
+        <value name="compound"/>
+    </feature>
+    <!-- Only terminals of the default type 't' are given a lemma -->
+    <!-- 'morpheme' terminals have 'stem' instead -->
+    <feature name="lemma" type="t" domain="t"/>
+    <feature name="stem" type="morpheme" domain="t"/>
+    <feature name="pos" domain="t">
+        <value name=".">Punctuation </value>
+        <value name="JJ">Adjective </value>
+        <value name="NN">Noun, singular or mass </value>
+    </feature>
+    <!-- only non-terminals of the type 'nt' get 'cat' -->
+    <feature name="cat" type="nt" domain="nt">
+        <value name="NP">Nominal Phrase </value>
+        <value name="S">Sentence or Clause </value>
+        <value name="VP">Verbal Phrase </value>
+        <value name="ROOT">Graph Root </value>
+    </feature>
+    <feature name="lemma" type="compound" domain="nt"/>
+    <!-- only for compounds -->
+</annotation>

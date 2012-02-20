@@ -1,0 +1,35 @@
+<annotation xmlns="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/
+    http://korpling.german.hu-berlin.de/tiger2/V2.0.5/Tiger2.xsd">
+    <!-- the 'word' feature is used in inline documents -->
+    <feature name="word" domain="t"/>
+    <feature name="lemma" domain="t"/>
+    <!--domain is lcase 't' for terminal-->
+    <feature name="pos" domain="t" datcat="http://www.isocat.org/datcat/DC-396">
+        <value name="JJ" datcat="http://www.isocat.org/datcat/DC-1230">Adjective</value>
+        <value name="NN">Noun, singular or mass</value>
+    </feature>
+    <feature name="cat" domain="nt">
+        <!-- domain is lcase 'nt' -->
+        <value name="NP">Nominal Phrase</value>
+        <value name="S">Sentence or Clause</value>
+        <value name="VP">Verbal Phrase</value>
+        <value name="ROOT">Graph Root</value>
+    </feature>
+    <!-- Edge features are given the domain 'edge'. The edge type -->
+    <!-- determines a subtype for which these annotations apply -->
+    <!-- Any number of features can be defined, here only 'label' -->
+    <feature name="label" type="prim" domain="edge">
+        <value name="AT">Attribute </value>
+        <value name="DO">Direct Object </value>
+        <value name="HD">Head </value>
+        <value name="IO">Infinitive Object </value>
+        <value name="SB">Subject </value>
+    </feature>
+    <!-- Secondary edges are just another type of edge. They -->
+    <!-- can have a separate set of possible annotations. -->
+    <feature name="label" type="sec" domain="edge">
+        <value name="SB">Subject </value>
+    </feature>
+</annotation>

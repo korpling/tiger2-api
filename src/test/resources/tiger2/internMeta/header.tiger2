@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<corpus xml:id="example_inline" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/ http://korpling.german.hu-berlin.de/tiger2/V2.0.5/Tiger2.xsd"
+    xmlns:tiger2="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/"
+    xmlns="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/">
+    <head>
+        <meta>
+            <name>example.inline.tiger2</name>
+            <author>Amir Zeldes</author>
+            <date>24 June 2010</date>
+            <description>tiger2 XML with inline terminals</description>
+            <format>Modified PTB tagset</format>
+            <history>First version</history>
+        </meta>
+    </head>
+    <body></body>
+</corpus>

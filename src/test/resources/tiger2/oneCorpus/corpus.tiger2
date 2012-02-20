@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xslt/xmlverbatimwrapper.xsl"?>
+<corpus xml:id="example_inline_coref_pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/ http://korpling.german.hu-berlin.de/tiger2/V2.0.5/Tiger2.xsd"
+    xmlns:tiger2="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/"
+    xmlns="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/">
+    <head>
+        <meta>
+            <name>corpus</name>
+        </meta>
+        <annotation>
+            <!-- declaration of type domain -->
+            <feature name="type" domain="t">
+                <value name="PRO"/>
+            </feature>
+            <feature name="type" domain="edge">
+                <value name="coref"/>
+            </feature>
+            <!-- the 'word' feature is used in inline documents -->
+            <feature name="word" domain="t"/>
+            <feature name="lemma" domain="t"/>
+            <!--domain is lcase 't' for terminal-->
+            <feature name="pos" domain="t" datcat="http://www.isocat.org/datcat/DC-396">
+                <value name=".">Punctuation</value>
+                <value name="JJ" datcat="http://www.isocat.org/datcat/DC-1230">Adjective</value>
+                <value name="NN">Noun, singular or mass</value>
+                <value name="PP">Personal pronoun</value>
+                <value name="RP">Particle</value>
+                <value name="VB">Verb, base form</value>
+                <value name="VBP">Verb, non-3rd person singular present</value>
+            </feature>
+            <!-- Additional terminal type 'PRO' for PRO-forms -->
+            <feature name="function" type="PRO" domain="t">
+                <value name="OC">Object Control</value>
+                <value name="SC">Subject Control</value>
+            </feature>
+            <feature name="cat" domain="nt">
+                <!-- domain is lcase 'nt' -->
+                <value name="NP">Nominal Phrase</value>
+                <value name="S">Sentence or Clause</value>
+                <value name="VP">Verbal Phrase</value>
+                <value name="ROOT">Graph Root</value>
+            </feature>
+            <!-- Edge features are given the domain 'edge'. The edge type -->
+            <!-- determines a subtype for which these annotations apply -->
+            <!-- Any number of features can be defined, here only 'label' -->
+            <feature name="label" type="prim" domain="edge">
+                <value name="AT">Attribute</value>
+                <value name="DO">Direct Object</value>
+                <value name="HD">Head</value>
+                <value name="IO">Infinitive Object</value>
+                <value name="SB">Subject</value>
+            </feature>
+            <!-- can have a separate set of possible annotations. -->
+            <feature name="label" type="coref" domain="edge">
+                <value name="anaphoric">Anaphoric Link</value>
+            </feature>
+        </annotation>
+    </head>
+
+    <body>
+        <s xml:id="s1">
+            <graph root="s1_ROOT" discontinuous="true">
+                <terminals>
+                    <t xml:id="s1_t1" tiger2:word="I" lemma="I" pos="PP"/>
+                    <t xml:id="s1_t2" tiger2:word="wanna" lemma="wanna" pos="VBP"/>
+                    <t xml:id="s1_t3" tiger2:word="put" lemma="put" pos="VB"/>
+                    <t xml:id="s1_t4" tiger2:word="up" lemma="up" pos="RP"/>
+                    <t xml:id="s1_t5" tiger2:word="new" lemma="new" pos="JJ"/>
+                    <t xml:id="s1_t6" tiger2:word="wallpaper" lemma="wallpaper" pos="NN"/>
+                    <t xml:id="s1_t7" tiger2:word="." lemma="." pos="."/>
+                </terminals>
+                <nonterminals>
+                    <nt xml:id="s1_nt1" cat="NP">
+                        <edge xml:id="s1_e1" tiger2:type="prim" label="HD" tiger2:target="#s1_t1"/>
+                        <!-- I -->
+                    </nt>
+                    <nt xml:id="s1_nt2" cat="VP">
+                        <edge xml:id="s1_e2" tiger2:type="prim" label="HD" tiger2:target="#s1_t2"/>
+                        <!-- wanna -->
+                        <!-- labels can be ommited as in the next edge -->
+                        <edge xml:id="s1_e2a" tiger2:type="prim" tiger2:target="#s1_nt5"/>
+                        <!-- S -->
+                    </nt>
+                    <nt xml:id="s1_nt3" cat="VP">
+                        <edge xml:id="s1_e3" tiger2:type="prim" label="HD" tiger2:target="#s1_t3"/>
+                        <!-- put -->
+                        <edge xml:id="s1_e4" tiger2:type="prim" tiger2:target="#s1_t4"/>
+                        <!-- up -->
+                        <edge xml:id="s1_e5" tiger2:type="prim" label="DO" tiger2:target="#s1_nt4"/>
+                        <!-- NP -->
+                    </nt>
+                    <nt xml:id="s1_nt4" cat="NP">
+                        <edge xml:id="s1_e6" tiger2:type="prim" label="AT" tiger2:target="#s1_t5"/>
+                        <!-- new -->
+                        <edge xml:id="s1_e7" tiger2:type="prim" label="HD" tiger2:target="#s1_t6"/>
+                        <!-- wallpaper -->
+                    </nt>
+                    <nt xml:id="s1_nt5" cat="S">
+                        <edge xml:id="s1_e8" tiger2:type="prim" label="SB" tiger2:target="#s1_t3"/>
+                        <!-- PRO -->
+                        <edge xml:id="s1_e9" tiger2:type="prim" tiger2:target="#s1_nt3"/>
+                        <!-- VP -->
+                    </nt>
+                    <nt xml:id="s1_nt6" cat="S">
+                        <edge xml:id="s1_e10" tiger2:type="prim" label="SB" tiger2:target="#s1_t1"/>
+                        <!-- I -->
+                        <edge xml:id="s1_e11" tiger2:type="prim" tiger2:target="#s1_nt2"/>
+                        <!-- VP -->
+                    </nt>
+                    <nt xml:id="s1_ROOT" cat="ROOT">
+                        <edge xml:id="s1_e12" tiger2:type="prim" tiger2:target="#s1_nt2"/>
+                        <!-- VP -->
+                        <edge xml:id="s1_e13" tiger2:type="prim" tiger2:target="#s1_t7"/>
+                        <!-- . -->
+                    </nt>
+
+                </nonterminals>
+            </graph>
+        </s>
+
+    </body>
+
+</corpus>

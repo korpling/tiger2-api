@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xslt/xmlverbatimwrapper.xsl"?>
+<maf>
+    <token xml:id="t1">I </token>
+    <token xml:id="t2">wan </token>
+    <token xml:id="t3">na </token>
+    <token xml:id="t4">put </token>
+    <token xml:id="t5">up </token>
+    <token xml:id="t6">new </token>
+    <token xml:id="t7">wall </token>
+    <token xml:id="t8">paper </token>
+    <token xml:id="t9">. </token>
+    
+    <wordForm xml:id="wordForm1" lemma="I" tokens="t1">
+        <fs>
+            <f name="pos"> <symbol value="PP"/> </f>
+        </fs>
+    </wordForm>
+    <wordForm xml:id="wordForm2" lemma="want" tokens="t2">
+        <fs>
+            <f name="pos"> <symbol value="VBP"/> </f>
+        </fs>
+    </wordForm>
+    <wordForm xml:id="wordForm3" lemma="to" tokens="t3">
+        <fs>
+            <f name="pos"> <symbol value="TO"/> </f>
+        </fs>
+    </wordForm>
+    
+    <!-- wordForm for "wanna" with no lemma -->
+    <wordForm xml:id="wordForm4" tokens="t2 t3"/>
+    
+    <!-- wordForms for "put" and "up" -->
+    <wordForm xml:id="wordForm5" lemma="put" tokens="t4"/>
+    <wordForm xml:id="wordForm6" lemma="up" tokens="t5"/>
+    
+    <!-- wordForm defining the lemma "put_up" -->
+    <wordForm xml:id="wordForm7" lemma="put_up" tokens="t4 t5">
+        <fs>
+            <f name="pos"> <symbol value="VB"/> </f>
+        </fs>
+    </wordForm>
+    <wordForm xml:id="wordForm8" lemma="new" tokens="t6">
+        <fs>
+            <f name="pos"> <symbol value="JJ"/> </f>
+        </fs>
+    </wordForm>
+    
+    <!-- compound wordForm from "wall" and "paper" -->
+    <wordForm xml:id="wordForm9" lemma="wallpaper" tokens="t7 t8">
+        <fs>
+            <f name="pos"> <symbol value="NN"/> </f>
+        </fs>
+    </wordForm>
+    <wordForm xml:id="wordForm10" lemma="." tokens="t9">
+        <fs>
+            <f name="pos"> <symbol value="."/> </f>
+        </fs>
+    </wordForm>
+    
+</maf>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://korpling.german.hu-berlin.de/tiger2/"
+            class="de.hu_berlin.german.korpling.tiger2.Tiger2Package"
+            genModel="src/main/resources/model/tiger2.genmodel"/>
+   </extension>
+
+</plugin>

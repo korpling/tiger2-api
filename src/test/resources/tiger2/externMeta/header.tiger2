@@ -1,0 +1,11 @@
+<corpus xmlns="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/
+http://korpling.german.hu-berlin.de/tiger2/V2.0.5/Tiger2.xsd">
+<head>
+<meta>
+<name>My Corpus</name>
+<external corresp="meta.tiger2"/>
+</meta>
+</head>
+</corpus>
