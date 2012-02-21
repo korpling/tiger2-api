@@ -4,11 +4,11 @@
 package de.hu_berlin.german.korpling.tiger2.loading.tests;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import java.io.File;
 import java.io.IOException;
+
+import junit.framework.TestCase;
+import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -33,8 +33,17 @@ import de.hu_berlin.german.korpling.tiger2.resources.TigerResourceFactory;
  * @author Florian Zipser
  *
  */
-public class LoadingTests {
+public class LoadingTest extends TestCase{
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static void main(String[] args) {
+		TestRunner.run(LoadingTest.class);
+	}
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -454,5 +463,173 @@ public class LoadingTests {
 			assertEquals(graph.findNode("s1_nt3"), edge.getSource());
 			assertEquals(graph.findNode("s1_nt4"), edge.getTarget());
 		//end: check edges
+	}
+	
+	/**
+	 * Checks if all edges are read correctly in sense of relating a source and a target node.
+	 * @throws IOException
+	 */
+	@Test
+	public void testCorrectNumberOfEdges() throws IOException
+	{
+		File inputFile= new File(TEST_FOLDER+ "edges/corpus.tiger2");
+		
+		//load resource 
+		Resource resource = resourceSet.createResource(URI.createFileURI(inputFile.getAbsolutePath()));
+		
+		if (resource== null)
+			throw new NullPointerException("The resource is null.");
+		resource.load(null);
+		
+		Corpus corpus= (Corpus) resource.getContents().get(0);
+		assertNotNull(corpus);
+		assertEquals(1, corpus.getSegments().size());
+		Segment segment= corpus.getSegments().get(0);
+		assertNotNull(segment);
+		assertEquals(1, segment.getGraphs().size());
+		Graph graph= segment.getGraphs().get(0);
+		assertNotNull(graph);
+		
+		assertEquals(41, graph.getEdges().size());
+		//start: check edges for terminals
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t2").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t10").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t12").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t14").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t16").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t18").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t22").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t24").size());
+		//end: check edges for terminals
+			
+		//start: check edges for non-terminals (outgoing edges)
+			assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt28").size());
+			assertEquals(8, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt43").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt41").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt33").size());
+			assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt29").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt42").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt34").size());
+			assertEquals(3, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt30").size());
+			assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt38").size());
+			assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt35").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt31").size());
+			assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt39").size());
+			assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt36").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt32").size());
+			assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt40").size());
+			assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt37").size());
+		//end: check edges non-for terminals (outgoing edges)
+	}
+	
+	/**
+	 * Checks interferences between two graphs contained in one file.
+	 * @throws IOException
+	 */
+	@Test
+	public void testInterferences() throws IOException
+	{
+		File inputFile= new File(TEST_FOLDER+ "moreGraphs/twoGraphs.tiger2");
+		
+		//load resource 
+		Resource resource = resourceSet.createResource(URI.createFileURI(inputFile.getAbsolutePath()));
+		
+		if (resource== null)
+			throw new NullPointerException("The resource is null.");
+		resource.load(null);
+		
+		Corpus corpus= (Corpus) resource.getContents().get(0);
+		assertNotNull(corpus);
+		assertEquals(2, corpus.getSegments().size());
+		
+		System.out.println("--------> segments: "+ corpus.getSegments());
+		System.out.println("--------> graphs(0): "+ corpus.getSegments().get(0).getGraphs());
+		System.out.println("--------> graphs(0): "+ corpus.getSegments().get(0).getGraphs().get(0).getEdges().size());
+		System.out.println("--------> graphs(0): "+ corpus.getSegments().get(0).getGraphs().get(0).getEdges());
+		System.out.println("--------> graphs(1): "+ corpus.getSegments().get(1).getGraphs());
+		System.out.println("--------> graphs(1): "+ corpus.getSegments().get(1).getGraphs().get(0).getEdges().size());
+		System.out.println("--------> graphs(1): "+ corpus.getSegments().get(1).getGraphs().get(0).getEdges());
+		
+		//start: check segment 1
+			Segment segment= corpus.getSegments().get(0);
+			assertEquals("WPD.AAA.00001_s1", segment.getId());
+			assertNotNull(segment);
+			assertEquals(1, segment.getGraphs().size());
+			Graph graph= segment.getGraphs().get(0);
+			assertNotNull(graph);
+			
+			assertEquals(41, graph.getEdges().size());
+			//start: check edges for terminals
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t2").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t10").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t12").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t14").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t16").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t18").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t22").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_t24").size());
+			//end: check edges for terminals
+				
+			//start: check edges for non-terminals (outgoing edges)
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt28").size());
+				assertEquals(8, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt43").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt41").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt33").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt29").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt42").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt34").size());
+				assertEquals(3, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt30").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt38").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt35").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt31").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt39").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt36").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt32").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt40").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s1_nt37").size());
+			//end: check edges non-for terminals (outgoing edges)
+		//end: check segment 1
+				
+		//start: check segment 2
+			segment= corpus.getSegments().get(1);
+			assertEquals("WPD.AAA.00001_s2", segment.getId());
+			assertNotNull(segment);
+			assertEquals(1, segment.getGraphs().size());
+			graph= segment.getGraphs().get(0);
+			assertNotNull(graph);
+			
+			assertEquals(42, graph.getEdges().size());
+			//start: check edges for terminals
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_t0").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_t2").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_t10").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_t14").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_t16").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_t18").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_t22").size());
+			//end: check edges for terminals
+				
+			//start: check edges for non-terminals (outgoing edges)
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt28").size());
+				assertEquals(6, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt46").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt39").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt34").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt41").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt35").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt29").size());
+				assertEquals(3, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt44").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt42").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt36").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt31").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt40").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt37").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt32").size());
+				assertEquals(3, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt45").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt43").size());
+				assertEquals(2, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt38").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt33").size());
+				assertEquals(1, graph.getOutgoingEdges("WPD.AAA.00001_s2_nt30").size());
+			//end: check edges non-for terminals (outgoing edges)
+		//end: check segment 2
 	}
 }

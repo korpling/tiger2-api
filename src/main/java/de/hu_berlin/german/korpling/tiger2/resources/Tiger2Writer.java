@@ -96,6 +96,7 @@ public class Tiger2Writer
 		{
 			//start: open stream for writing
 				File tiger2out= new File(this.getOutputURI().toFileString());
+				tiger2out.getParentFile().mkdirs();
 				
 				try {
 					output= new PrintWriter( 
@@ -128,6 +129,11 @@ public class Tiger2Writer
 	}
 	
 	/**
+	 * The alias used for namespace {@link Tiger2XML#NAMESPACE_TIGER2}
+	 */
+	public static final String NS_ALIAS_TIGER2="tiger2";
+	
+	/**
 	 * Stores the given {@link Corpus} object as super corpus (see {@link Tiger2XML#ELEMENT_CORPUS}).
 	 * @param corpus corpus to store as super corpus 
 	 */
@@ -135,10 +141,10 @@ public class Tiger2Writer
 	{
 		this.output.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
 		this.output.println("<"+Tiger2XML.ELEMENT_CORPUS+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+corpus.getId()+"\""+
-							" xmlns=\"http://korpling.german.hu-berlin.de/tiger2/V2.0.4/\""+
-							" xmlns:tiger2=\"http://korpling.german.hu-berlin.de/tiger2/V2.0.4/\""+
+							" xmlns=\""+Tiger2XML.NAMESPACE_TIGER2+"\""+
+							" xmlns:"+NS_ALIAS_TIGER2+"=\""+Tiger2XML.NAMESPACE_TIGER2+"\""+
 							" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""+
-							" xsi:schemaLocation=\"http://korpling.german.hu-berlin.de/tiger2/V2.0.4/ http://korpling.german.hu-berlin.de/tiger2/V2.0.4/Tiger2.xsd\">");
+							" xsi:schemaLocation=\""+Tiger2XML.NAMESPACE_TIGER2+" "+Tiger2XML.XSD_LOCATION_TIGER2+"\">");
 		//start: print head
 			this.output.println("<"+Tiger2XML.ELEMENT_HEAD+">");
 			if (corpus.getMeta()!= null)
@@ -196,23 +202,23 @@ public class Tiger2Writer
 	{
 		this.output.println("<"+Tiger2XML.ELEMENT_META+">");
 		if (	(meta.getName()!= null)&&
-				(!meta.getName().equals("")))
+				(!meta.getName().isEmpty()))
 			this.output.println("<"+Tiger2XML.ELEMENT_NAME+">"+meta.getName()+"</"+Tiger2XML.ELEMENT_NAME+">");
 		if (	(meta.getAuthor()!= null)&&
-				(!meta.getAuthor().equals("")))
-			this.output.println("<"+Tiger2XML.ELEMENT_AUTHOR+">"+meta.getName()+"</"+Tiger2XML.ELEMENT_AUTHOR+">");
+				(!meta.getAuthor().isEmpty()))
+			this.output.println("<"+Tiger2XML.ELEMENT_AUTHOR+">"+meta.getAuthor()+"</"+Tiger2XML.ELEMENT_AUTHOR+">");
 		if (	(meta.getDate()!= null)&&
-				(!meta.getDate().equals("")))
-			this.output.println("<"+Tiger2XML.ELEMENT_DATE+">"+meta.getName()+"</"+Tiger2XML.ELEMENT_DATE+">");
+				(!meta.getDate().isEmpty()))
+			this.output.println("<"+Tiger2XML.ELEMENT_DATE+">"+meta.getDate()+"</"+Tiger2XML.ELEMENT_DATE+">");
 		if (	(meta.getDescription()!= null)&&
-				(!meta.getDescription().equals("")))
-			this.output.println("<"+Tiger2XML.ELEMENT_DESCRIPTION+">"+meta.getName()+"</"+Tiger2XML.ELEMENT_DESCRIPTION+">");
+				(!meta.getDescription().isEmpty()))
+			this.output.println("<"+Tiger2XML.ELEMENT_DESCRIPTION+">"+meta.getDescription()+"</"+Tiger2XML.ELEMENT_DESCRIPTION+">");
 		if (	(meta.getFormat()!= null)&&
-				(!meta.getFormat().equals("")))
-			this.output.println("<"+Tiger2XML.ELEMENT_FORMAT+">"+meta.getName()+"</"+Tiger2XML.ELEMENT_FORMAT+">");
+				(!meta.getFormat().isEmpty()))
+			this.output.println("<"+Tiger2XML.ELEMENT_FORMAT+">"+meta.getFormat()+"</"+Tiger2XML.ELEMENT_FORMAT+">");
 		if (	(meta.getHistory()!= null)&&
-				(!meta.getHistory().equals("")))
-			this.output.println("<"+Tiger2XML.ELEMENT_HISTORY+">"+meta.getName()+"</"+Tiger2XML.ELEMENT_HISTORY+">");
+				(!meta.getHistory().isEmpty()))
+			this.output.println("<"+Tiger2XML.ELEMENT_HISTORY+">"+meta.getHistory()+"</"+Tiger2XML.ELEMENT_HISTORY+">");
 		this.output.println("</"+Tiger2XML.ELEMENT_META+">");
 	}
 	
@@ -348,11 +354,24 @@ public class Tiger2Writer
 	 */
 	protected void saveTerminal(Terminal terminal)
 	{
-		this.output.print("<"+Tiger2XML.ELEMENT_TERMINAL+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+terminal.getId());
-		this.output.print(" "+Tiger2XML.ATTRIBUTE_WORD+"=\""+terminal.getWord()+"\"");
-		this.output.print(" "+Tiger2XML.ATTRIBUTE_TYPE+"=\""+terminal.getType()+"\"");
-		this.saveAnnotations(terminal.getAnnotations());
-		this.output.println("/>");
+		if (terminal!= null)
+		{
+			this.output.print("<"+Tiger2XML.ELEMENT_TERMINAL+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+terminal.getId()+"\"");
+			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_WORD+"=\""+terminal.getWord()+"\"");
+			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+terminal.getType()+"\"");
+			
+			this.saveAnnotations(terminal.getAnnotations());
+			if (terminal.getGraph().getOutgoingEdges(terminal.getId())!= null)
+			{
+				this.output.println(">");
+				for (Edge edge: terminal.getGraph().getOutgoingEdges(terminal.getId()))
+				{
+					this.saveEdge(edge);
+				}
+				this.output.println("</"+Tiger2XML.ELEMENT_TERMINAL+">");
+			}
+			else this.output.println("/>");
+		}
 	}
 	
 	/**
@@ -364,20 +383,21 @@ public class Tiger2Writer
 	{
 		if (nonTerminal!= null)
 		{
-			this.output.print("<"+Tiger2XML.ELEMENT_NONTERMINAL+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+nonTerminal.getId());
-			this.output.print(" "+Tiger2XML.ATTRIBUTE_TYPE+"=\""+nonTerminal.getType()+"\"");
+			this.output.print("<"+Tiger2XML.ELEMENT_NONTERMINAL+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+nonTerminal.getId()+"\"");
+			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+nonTerminal.getType()+"\"");
 			
 			this.saveAnnotations(nonTerminal.getAnnotations());
 			if (nonTerminal.getGraph().getOutgoingEdges(nonTerminal.getId())!= null)
 			{
-				this.output.println("\">");
+				System.out.println("node '"+nonTerminal.getId()+"' has '"+nonTerminal.getGraph().getOutgoingEdges(nonTerminal.getId()).size()+"' edges: "+ nonTerminal.getGraph().getOutgoingEdges(nonTerminal.getId()));
+				this.output.println(">");
 				for (Edge edge: nonTerminal.getGraph().getOutgoingEdges(nonTerminal.getId()))
 				{
 					this.saveEdge(edge);
 				}
 				this.output.println("</"+Tiger2XML.ELEMENT_NONTERMINAL+">");
 			}
-			else this.output.println("\">");
+			else this.output.println("/>");
 		}
 	}
 	
@@ -410,11 +430,11 @@ public class Tiger2Writer
 			throw new TigerInvalidModelException("Cannot save edge '"+edge+"', because its source is empty.");
 		if (edge.getTarget()== null)
 			throw new TigerInvalidModelException("Cannot save edge '"+edge+"', because its target is empty.");
-		this.output.print("<"+Tiger2XML.ELEMENT_EDGE+" "+Tiger2XML.ATTRIBUTE_ID+"\""+edge.getId());
-		this.output.print(" "+Tiger2XML.ATTRIBUTE_TYPE+"=\""+edge.getType()+"\"");
-		this.output.print(" "+Tiger2XML.ATTRIBUTE_TARGET+"=\""+edge.getTarget().getId()+"\"");
+		this.output.print("<"+Tiger2XML.ELEMENT_EDGE+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+edge.getId()+"\"");
+		this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+edge.getType()+"\"");
+		this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TARGET+"=\"#"+edge.getTarget().getId()+"\"");
 		
 		this.saveAnnotations(edge.getAnnotations());
-		this.output.println("\">");
+		this.output.println("/>");
 	}
 }

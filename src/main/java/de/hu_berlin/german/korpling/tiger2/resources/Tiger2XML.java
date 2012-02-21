@@ -3,9 +3,19 @@ package de.hu_berlin.german.korpling.tiger2.resources;
 public interface Tiger2XML 
 {
 	/**
-	 * URI of the &lt;tiger2/&gt; namespace of schema version 2.04.
+	 * Name of the version of the here implemented format specification.
 	 */
-	public static String NAMESPACE_TIGER2_205="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/";
+	public static String VERSION_TIGER2="2.0.5";
+	
+	/**
+	 * URI of the &lt;tiger2/&gt; namespace of the schema.
+	 */
+	public static String NAMESPACE_TIGER2="http://korpling.german.hu-berlin.de/tiger2/V"+VERSION_TIGER2+"/";
+	
+	/**
+	 * location of the xsd to validate a &lt;tiger2/&gt; file
+	 */
+	public static String XSD_LOCATION_TIGER2=NAMESPACE_TIGER2+ "Tiger2.xsd";
 	
 	/**
 	 * Name of the element 'corpus' in the xml serialization of the &lt;tiger2/&gt; api.
@@ -89,7 +99,7 @@ public interface Tiger2XML
 	/**
 	 * Name of the attribute 'xml:id' in the xml serialization of the &lt;tiger2/&gt; api.
 	 */
-	public static String ATTRIBUTE_ID="id";
+	public static String ATTRIBUTE_ID="xml:id";
 	/**
 	 * Name of the element 'graph' in the xml serialization of the &lt;tiger2/&gt; api.
 	 */

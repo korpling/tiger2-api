@@ -38,12 +38,12 @@ public interface Edge extends AnnotatableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(NonTerminal)
+	 * @see #setSource(SyntacticNode)
 	 * @see de.hu_berlin.german.korpling.tiger2.Tiger2Package#getEdge_Source()
 	 * @model
 	 * @generated
 	 */
-	NonTerminal getSource();
+	SyntacticNode getSource();
 
 	/**
 	 * Sets the value of the '{@link de.hu_berlin.german.korpling.tiger2.Edge#getSource <em>Source</em>}' reference.
@@ -53,7 +53,7 @@ public interface Edge extends AnnotatableElement {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(NonTerminal value);
+	void setSource(SyntacticNode value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<corpus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tiger2="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/" xmlns="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/" xsi:schemaLocation="http://korpling.german.hu-berlin.de/tiger2/V2.0.5/ http://korpling.german.hu-berlin.de/tiger2/V2.0.5/Tiger2.xsd" xml:id="WPD.AAA.00001">
+  <head>
+    <meta>
+      <name>WPD.AAA.00001-xip-syntax</name>
+    </meta>
+    <annotation>
+      <feature name="word" domain="t"/>
+      <feature name="pos" domain="t"/>
+      <feature name="lemma" domain="t"/>
+      <feature name="cat" domain="nt"/>
+      <feature name="label" domain="edge"/>
+    </annotation>
+  </head>
+  <body>
+    <s xml:id="WPD.AAA.00001_s1">
+      <graph root="WPD.AAA.00001_s1_nt28">
+        <terminals>
+          <t xml:id="WPD.AAA.00001_s1_t0" word="A" pos="SYMBOL" lemma="A" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 0, 1))"/>
+          <t xml:id="WPD.AAA.00001_s1_t2" word="bzw." pos="CONJ" lemma="beziehungsweise" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 2, 6))">
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_nt29" label="COORD"/>
+          </t>
+          <t xml:id="WPD.AAA.00001_s1_t4" word="a" pos="SYMBOL" lemma="a" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 7, 8))"/>
+          <t xml:id="WPD.AAA.00001_s1_t6" word="ist" pos="VERB" lemma="sein" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 9, 12))"/>
+          <t xml:id="WPD.AAA.00001_s1_t8" word="der" pos="DET" lemma="der" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 13, 16))">
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_t12" label="DETERM"/>
+          </t>
+          <t xml:id="WPD.AAA.00001_s1_t10" word="erste" pos="ADJ" lemma="ein" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 17, 22))">
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_t12" label="NMOD"/>
+          </t>
+          <t xml:id="WPD.AAA.00001_s1_t12" word="Buchstabe" pos="NOUN" lemma="Buchstabe" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 23, 32))">
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_t6" label="PRED"/>
+          </t>
+          <t xml:id="WPD.AAA.00001_s1_t14" word="des" pos="DET" lemma="der" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 33, 36))">
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_t18" label="DETERM"/>
+          </t>
+          <t xml:id="WPD.AAA.00001_s1_t16" word="lateinischen" pos="ADJ" lemma="lateinisch" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 37, 49))">
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_t18" label="NMOD"/>
+          </t>
+          <t xml:id="WPD.AAA.00001_s1_t18" word="Alphabets" pos="NOUN" lemma="Alphabet" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 50, 59))">
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_t12" label="NMOD"/>
+          </t>
+          <t xml:id="WPD.AAA.00001_s1_t20" word="und" pos="CONJ" lemma="und" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 60, 63))"/>
+          <t xml:id="WPD.AAA.00001_s1_t22" word="ein" pos="DET" lemma="ein" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 64, 67))">
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_t24" label="DETERM"/>
+          </t>
+          <t xml:id="WPD.AAA.00001_s1_t24" word="Vokal" pos="NOUN" lemma="Vokal" tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 68, 73))">
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_t6" label="PRED"/>
+          </t>
+          <t xml:id="WPD.AAA.00001_s1_t26" word="." pos="PUNCT" lemma="." tiger2:corresp="../text.xml#xpointer(string-range(//text,'', 73, 74))"/>
+        </terminals>
+        <nonterminals>
+          <nt xml:id="WPD.AAA.00001_s1_nt28" cat="TOP">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt43"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t26"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt43" cat="MC">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt41"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t2"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt42"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t6"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt38"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt39"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t20"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt40"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt41" cat="NP">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt33"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt33" cat="NPA">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt29"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt29" cat="NOUN">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t0"/>
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_t6" label="SUBJ"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt42" cat="NP">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt34"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt34" cat="NPA">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt30"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt30" cat="NOUN">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t4"/>
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_t2" label="COORD"/>
+            <edge tiger2:type="dep" tiger2:target="WPD.AAA.00001_s1_t6" label="SUBJ"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt38" cat="NP">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t8"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt35"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt35" cat="NPA">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt31"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t12"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt31" cat="AP">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t10"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt39" cat="NP">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t14"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt36"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt36" cat="NPA">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt32"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t18"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt32" cat="AP">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t16"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt40" cat="NP">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t22"/>
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_nt37"/>
+          </nt>
+          <nt xml:id="WPD.AAA.00001_s1_nt37" cat="NPA">
+            <edge tiger2:type="prim" tiger2:target="WPD.AAA.00001_s1_t24"/>
+          </nt>
+        </nonterminals>
+      </graph>
+    </s>
+  </body>
+</corpus>

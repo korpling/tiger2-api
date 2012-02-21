@@ -399,7 +399,7 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sDQCwwn9EeG-vpezEvXI3A" points="[67, -26, -90, 37]$[158, -33, 1, 30]"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sDTGEAn9EeG-vpezEvXI3A" id="(0.09009009009009009,0.5774647887323944)"/>
   </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_trd9wAn9EeG-vpezEvXI3A" type="3002" source="_q1P-kAn9EeG-vpezEvXI3A" target="_ilvmgAn9EeG-vpezEvXI3A">
+  <edges xmi:type="notation:Edge" xmi:id="_trd9wAn9EeG-vpezEvXI3A" type="3002" source="_q1P-kAn9EeG-vpezEvXI3A" target="_gLGwEAn9EeG-vpezEvXI3A">
     <children xmi:type="notation:Node" xmi:id="_trfy8An9EeG-vpezEvXI3A" type="4011">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_trfy8Qn9EeG-vpezEvXI3A" x="-10" y="-10"/>
     </children>
@@ -410,7 +410,7 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_trd9wgn9EeG-vpezEvXI3A" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="tiger2.ecore#//Edge/source"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_trd9wwn9EeG-vpezEvXI3A" points="[-34, 30, 116, -105]$[-132, 101, 18, -34]"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_DQdJcQvQEeG8iugMV8vwdA" id="(0.8760330578512396,0.42424242424242425)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_DQdJcQvQEeG8iugMV8vwdA" id="(0.6126126126126126,0.15492957746478872)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_ufteIAn9EeG-vpezEvXI3A" type="3002" source="_q1P-kAn9EeG-vpezEvXI3A" target="_gLGwEAn9EeG-vpezEvXI3A">
     <children xmi:type="notation:Node" xmi:id="_ufusQAn9EeG-vpezEvXI3A" type="4011">

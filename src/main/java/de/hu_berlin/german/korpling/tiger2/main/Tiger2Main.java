@@ -47,11 +47,8 @@ public class Tiger2Main {
 	
 	private static Corpus loadTiger2(File tig2File) throws IOException
 	{
-		System.out.println("resourceSet: "+ resourceSet);
-		System.out.println("tig2File: "+ tig2File);
 		if(tig2File.toString().endsWith(".tiger2"))
 		{
-			System.out.println("HERE");
 			URI inputURI= URI.createFileURI(tig2File.toString());
 			System.out.println("reading uri '"+inputURI+"'... ");
 			Resource resource = resourceSet.createResource(inputURI);
@@ -163,7 +160,7 @@ public class Tiger2Main {
 					Corpus corpus= loadTiger2(tig2File);
 					
 					File outputFile= null;
-					outputFile= new File(outputFolder.getAbsolutePath()+"/"+tig2File.getName());
+					outputFile= new File(outputFolder.getAbsolutePath()+"/"+corpus.getId()+".tiger2");
 					System.out.println("storing model to <tiger2/> file '"+outputFile.getAbsolutePath()+"' ");
 					Resource resource = resourceSet.createResource(URI.createURI(outputFile.toURI().toString()));
 					resource.getContents().add(corpus);
@@ -178,7 +175,7 @@ public class Tiger2Main {
 					throw new NullPointerException("Could not map file '"+inputFile.getAbsolutePath()+"' to a <tiger2/> model.");
 				
 				File outputFile= null;
-				outputFile= new File(outputFolder.getAbsolutePath()+"/"+inputFile.getName());
+				outputFile= new File(outputFolder.getAbsolutePath()+"/"+corpus.getId()+".tiger2");
 				System.out.println("storing model to <tiger2/> file '"+outputFile.getAbsolutePath()+"' ");
 				Resource resource = resourceSet.createResource(URI.createURI(outputFile.toURI().toString()));
 				resource.getContents().add(corpus);

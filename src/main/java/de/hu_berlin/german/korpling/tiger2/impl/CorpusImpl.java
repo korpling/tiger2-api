@@ -149,6 +149,7 @@ public class CorpusImpl extends EObjectImpl implements Corpus {
 	/**
 	 * Specifies the separator to be used to separate the single items of a key of the internal hash table for finding
 	 * {@link Feature} objects.
+	 * Generates an identifier for {@link Segment} objects if they do not already have one.
 	 */
 	protected static final String FEATURE_SEPARATOR= "#";
 	
@@ -163,7 +164,8 @@ public class CorpusImpl extends EObjectImpl implements Corpus {
 		
 		if (notification.getFeature() instanceof EReference) {
 			EReference ref = (EReference) notification.getFeature();
-			if(ref.equals(Tiger2Package.Literals.CORPUS__FEATURES)) {
+			if(ref.equals(Tiger2Package.Literals.CORPUS__FEATURES)) 
+			{
 				Object newValue= notification.getNewValue();
 				switch (notification.getEventType()) {
 				case Notification.ADD:
@@ -196,6 +198,21 @@ public class CorpusImpl extends EObjectImpl implements Corpus {
 //					break;
 				default:
 					break;
+				}
+			}
+			else if(ref.equals(Tiger2Package.Literals.CORPUS__SEGMENTS)) {
+				Object newValue= notification.getNewValue();
+				switch (notification.getEventType()) 
+				{
+					case Notification.ADD:
+					{
+						if (newValue instanceof Segment)
+						{
+							Segment segment= (Segment) newValue;
+							if (segment.getId()== null)
+								segment.setId("seg_"+ (this.getSegments().size()+ 1));
+						}
+					}
 				}
 			}
 		}		
@@ -449,7 +466,6 @@ public class CorpusImpl extends EObjectImpl implements Corpus {
 		String key= featureName+FEATURE_SEPARATOR+domain;
 		if (type!= null)
 			key= key + FEATURE_SEPARATOR+ type;
-		System.out.println("key: "+ key);
 		return(this.featureNameDomain2FeatureMap.get(key));
 	}
 

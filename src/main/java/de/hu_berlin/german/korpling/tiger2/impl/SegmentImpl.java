@@ -7,6 +7,7 @@
 package de.hu_berlin.german.korpling.tiger2.impl;
 
 import de.hu_berlin.german.korpling.tiger2.Corpus;
+import de.hu_berlin.german.korpling.tiger2.Feature;
 import de.hu_berlin.german.korpling.tiger2.Graph;
 import de.hu_berlin.german.korpling.tiger2.Segment;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
@@ -19,6 +20,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -92,6 +94,50 @@ public class SegmentImpl extends EObjectImpl implements Segment {
 		return Tiger2Package.Literals.SEGMENT;
 	}
 
+	/**
+	 * This method must be implemented and return true, if this object shall be notified, when adding objects into contained
+	 * lists (Containment relation).
+	 * @return returns always <code>true</code>
+	 */
+	@Override
+	public boolean eNotificationRequired() {
+		return true;
+	}
+	
+	/**
+	 * This method is invoked by the EMF framework, when something has changed in a list being contained by
+	 * this object. To activate this method, don't forget to set the flag {@link #eNotificationRequired()} to true.
+	 * <ul>
+	 * 	<li>If a {@link Graph} object is added and has no id an id will be computed and set</li>
+	 * </ul>
+	 */
+	@Override
+	public void eNotify(Notification notification) 
+	{
+		super.eNotify(notification);		
+		
+		if (notification.getFeature() instanceof EReference) {
+			EReference ref = (EReference) notification.getFeature();
+			if(ref.equals(Tiger2Package.Literals.SEGMENT__GRAPHS)) 
+			{
+				Object newValue= notification.getNewValue();
+				switch (notification.getEventType()) 
+				{
+					case Notification.ADD:
+					{
+						if (newValue instanceof Graph)
+						{
+							Graph graph= (Graph) newValue;
+							if (graph.getId()== null)
+								graph.setId("g"+(this.getGraphs().size()+ 1));
+						}
+						break;
+					}
+				}
+			}
+		}
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -65,7 +65,7 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * @generated
 	 * @ordered
 	 */
-	protected NonTerminal source;
+	protected SyntacticNode source;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -153,10 +153,10 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NonTerminal getSource() {
+	public SyntacticNode getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
-			source = (NonTerminal)eResolveProxy(oldSource);
+			source = (SyntacticNode)eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Tiger2Package.EDGE__SOURCE, oldSource, source));
@@ -170,7 +170,7 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NonTerminal basicGetSource() {
+	public SyntacticNode basicGetSource() {
 		return source;
 	}
 
@@ -179,8 +179,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(NonTerminal newSource) {
-		NonTerminal oldSource = source;
+	public void setSource(SyntacticNode newSource) {
+		SyntacticNode oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Tiger2Package.EDGE__SOURCE, oldSource, source));
@@ -417,7 +417,7 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 				getAnnotations().addAll((Collection<? extends Annotation>)newValue);
 				return;
 			case Tiger2Package.EDGE__SOURCE:
-				setSource((NonTerminal)newValue);
+				setSource((SyntacticNode)newValue);
 				return;
 			case Tiger2Package.EDGE__TARGET:
 				setTarget((SyntacticNode)newValue);
@@ -447,7 +447,7 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 				getAnnotations().clear();
 				return;
 			case Tiger2Package.EDGE__SOURCE:
-				setSource((NonTerminal)null);
+				setSource((SyntacticNode)null);
 				return;
 			case Tiger2Package.EDGE__TARGET:
 				setTarget((SyntacticNode)null);

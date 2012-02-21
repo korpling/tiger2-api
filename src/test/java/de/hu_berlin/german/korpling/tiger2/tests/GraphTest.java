@@ -244,7 +244,6 @@ public class GraphTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see de.hu_berlin.german.korpling.tiger2.Graph#findNode(java.lang.String)
-	 * @generated
 	 */
 	public void testFindNode__String() 
 	{
