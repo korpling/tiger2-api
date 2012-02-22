@@ -1,3 +1,20 @@
+/**
+ * Copyright 2009 Humboldt University of Berlin, INRIA.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *
+ */
 package de.hu_berlin.german.korpling.tiger2.resources;
 
 import java.io.BufferedWriter;
@@ -8,6 +25,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 
@@ -357,8 +375,9 @@ public class Tiger2Writer
 		if (terminal!= null)
 		{
 			this.output.print("<"+Tiger2XML.ELEMENT_TERMINAL+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+terminal.getId()+"\"");
-			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_WORD+"=\""+terminal.getWord()+"\"");
-			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+terminal.getType()+"\"");
+			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_WORD+"=\""+StringEscapeUtils.escapeXml(terminal.getWord())+"\"");
+			if (terminal.getType()!= null)
+				this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+terminal.getType()+"\"");
 			
 			this.saveAnnotations(terminal.getAnnotations());
 			if (terminal.getGraph().getOutgoingEdges(terminal.getId())!= null)
@@ -384,12 +403,12 @@ public class Tiger2Writer
 		if (nonTerminal!= null)
 		{
 			this.output.print("<"+Tiger2XML.ELEMENT_NONTERMINAL+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+nonTerminal.getId()+"\"");
-			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+nonTerminal.getType()+"\"");
+			if (nonTerminal.getType()!= null)
+				this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+nonTerminal.getType()+"\"");
 			
 			this.saveAnnotations(nonTerminal.getAnnotations());
 			if (nonTerminal.getGraph().getOutgoingEdges(nonTerminal.getId())!= null)
 			{
-				System.out.println("node '"+nonTerminal.getId()+"' has '"+nonTerminal.getGraph().getOutgoingEdges(nonTerminal.getId()).size()+"' edges: "+ nonTerminal.getGraph().getOutgoingEdges(nonTerminal.getId()));
 				this.output.println(">");
 				for (Edge edge: nonTerminal.getGraph().getOutgoingEdges(nonTerminal.getId()))
 				{
@@ -413,7 +432,7 @@ public class Tiger2Writer
 		{
 			for (Annotation annotation: annotations)
 			{
-				this.output.print(" "+annotation.getName()+"=\""+annotation.getValue()+"\"");
+				this.output.print(" "+annotation.getName()+"=\""+StringEscapeUtils.escapeXml(annotation.getValue())+"\"");
 			}
 		}
 	}
@@ -431,7 +450,8 @@ public class Tiger2Writer
 		if (edge.getTarget()== null)
 			throw new TigerInvalidModelException("Cannot save edge '"+edge+"', because its target is empty.");
 		this.output.print("<"+Tiger2XML.ELEMENT_EDGE+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+edge.getId()+"\"");
-		this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+edge.getType()+"\"");
+		if (edge.getType()!= null)
+			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+edge.getType()+"\"");
 		this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TARGET+"=\"#"+edge.getTarget().getId()+"\"");
 		
 		this.saveAnnotations(edge.getAnnotations());

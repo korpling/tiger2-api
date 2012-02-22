@@ -1,3 +1,20 @@
+/**
+ * Copyright 2009 Humboldt University of Berlin, INRIA.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *
+ */
 package de.hu_berlin.german.korpling.tiger2.resources;
 
 import java.util.Collections;
@@ -168,7 +185,13 @@ public class Tiger2Reader extends DefaultHandler2
 	 * determines if an element shall be pushed onto the stack. this shall not happen, when delegating content
 	 * to another reader.
 	 */
-	boolean pushElement= true;
+	private boolean pushElement= true;
+	
+	/**
+	 * This counter is only necessary to count the current number of {@link Edge} objects, to give them an artificial id. 
+	 * This is necessary, because of edges are sometimes added to the graph first, when all nodes are read.
+	 */
+	private int edgeCounter= 0;
 	
 	/**
 	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
@@ -352,12 +375,16 @@ public class Tiger2Reader extends DefaultHandler2
 				if (id== null)
 				{
 					this.log.warn("One '"+Tiger2XML.ELEMENT_EDGE+"' element has no id.");
-					id= "edge_"+ this.currentGraph.getSyntacticNodes().size()+1;
+					id= "edge_"+ edgeCounter;
+					this.edgeCounter++;
 				}
 				else
 				{
 					if (this.currentGraph.findEdge(id)!= null)
-						id= id+"_"+ this.currentGraph.getSyntacticNodes().size()+1;
+					{	
+						id= id+"_"+ edgeCounter;
+						this.edgeCounter++;
+					}
 				}
 				edge.setId(id);
 			//end: @xml:id
@@ -459,18 +486,9 @@ public class Tiger2Reader extends DefaultHandler2
 		boolean popElement= true;
 		if (Tiger2XML.ELEMENT_GRAPH.equals(qName))
 		{
-			System.out.println("graph ends");
 			this.processNotTargetedEdges();
 			this.currentGraph= null;
 		}
-//		if (Tiger2XML.ELEMENT_CORPUS.equals(qName))
-//		{
-//			this.processNotTargetedEdges();
-//		}
-//		else if (Tiger2XML.ELEMENT_SUB_CORPUS.equals(qName))
-//		{
-//			this.processNotTargetedEdges();
-//		}
 		else if (	(this.elementStack!= null)&&
 					(Tiger2XML.ELEMENT_META.equals(this.elementStack.peek()))) 
 		{//corpus/meta/* delegating content to meta-reader

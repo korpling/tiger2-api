@@ -18,28 +18,13 @@
 package de.hu_berlin.german.korpling.tiger2.resources;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXNotRecognizedException;
-import org.xml.sax.SAXNotSupportedException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.ext.DefaultHandler2;
 
 import de.hu_berlin.german.korpling.tiger2.Corpus;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
-import de.hu_berlin.german.korpling.tiger2.exceptions.TigerInternalException;
 import de.hu_berlin.german.korpling.tiger2.exceptions.TigerResourceException;
 import de.hu_berlin.german.korpling.tiger2.resources.util.XMLHelper;
 
