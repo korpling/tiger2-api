@@ -6,8 +6,7 @@
     <artifactId>tiger-api</artifactId>
     <name>${project.groupId}.${project.artifactId}</name>
     <version>0.0.1-SNAPSHOT</version>
-    <description>This project provides an api reading and writing data from or to the
-        &lt;tiger2/&gt; format and the TigerXML format as well.</description>
+    <description>This project provides an api reading and writing data from or to the&lt;tiger2/&gt; format and the TigerXML format as well.</description>
     <url>https://korpling.german.hu-berlin.de/p/projects/tiger2/</url>
     <licenses>
         <license>
@@ -51,7 +50,6 @@
         <bundle.file>${project.groupId}.${project.artifactId}_${project.version}.jar</bundle.file>
         <license.file>${basedir}/LICENSE</license.file>
         <notice.file>${basedir}/NOTICE</notice.file>
-        <assemblies.name>src/assemble/assemblies.xml</assemblies.name>
     </properties>
     <dependencies>
         <dependency>
