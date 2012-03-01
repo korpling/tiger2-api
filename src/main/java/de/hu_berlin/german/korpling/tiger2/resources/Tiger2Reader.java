@@ -23,9 +23,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.URI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.ext.DefaultHandler2;
@@ -52,7 +52,8 @@ import de.hu_berlin.german.korpling.tiger2.exceptions.TigerInvalidModelException
  */
 public class Tiger2Reader extends DefaultHandler2
 {
-	private Log log = LogFactory.getLog(Tiger2Reader.class);
+	private static final Logger LOGGER= LoggerFactory.getLogger(Tiger2Reader.class); 
+//	private static final Log LOGGER = LogFactory.getLog(Tiger2Reader.class);
 	/**
 	 * The {@link Corpus} object, which shall be filled.
 	 */
@@ -279,7 +280,7 @@ public class Tiger2Reader extends DefaultHandler2
 				String id= attributes.getValue(Tiger2XML.ATTRIBUTE_ID);
 				if (id== null)
 				{
-					this.log.warn("One syntactic node (terminal) element has no id.");
+					this.LOGGER.warn("One syntactic node (terminal) element has no id.");
 					id= "synNode_"+ this.currentGraph.getSyntacticNodes().size()+1;
 				}
 				else
@@ -333,7 +334,7 @@ public class Tiger2Reader extends DefaultHandler2
 				String id= attributes.getValue(Tiger2XML.ATTRIBUTE_ID);
 				if (id== null)
 				{
-					this.log.warn("One syntactic node element (non-terminal) has no id.");
+					this.LOGGER.warn("One syntactic node element (non-terminal) has no id.");
 					id= "synNode_"+ this.currentGraph.getSyntacticNodes().size()+1;
 				}
 				else
@@ -374,7 +375,7 @@ public class Tiger2Reader extends DefaultHandler2
 				String id= attributes.getValue(Tiger2XML.ATTRIBUTE_ID);
 				if (id== null)
 				{
-					this.log.warn("One '"+Tiger2XML.ELEMENT_EDGE+"' element has no id.");
+					this.LOGGER.warn("One '"+Tiger2XML.ELEMENT_EDGE+"' element has no id.");
 					id= "edge_"+ edgeCounter;
 					this.edgeCounter++;
 				}

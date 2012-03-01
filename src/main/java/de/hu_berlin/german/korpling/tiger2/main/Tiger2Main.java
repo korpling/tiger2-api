@@ -64,25 +64,22 @@ public class Tiger2Main {
 	
 	private static Corpus loadTiger2(File tig2File) throws IOException
 	{
-		if(tig2File.toString().endsWith(".tiger2"))
-		{
-			URI inputURI= URI.createFileURI(tig2File.toString());
-			System.out.println("reading uri '"+inputURI+"'... ");
-			Resource resource = resourceSet.createResource(inputURI);
-			if (resource== null)
-				throw new NullPointerException("No resource found for file '"+tig2File.getAbsolutePath()+"'.");
-			resource.load(null);
-			if (resource.getContents()== null)
-				throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"'.");
-			if (resource.getContents().size()== 0)
-				throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"'.");
-			Object corpObj=resource.getContents().get(0);
-			if (!(corpObj instanceof Corpus))
-				throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"', beacuse the file does not contain a <tiger2/> conform 'Corpus' object.");
-			Corpus corpus= (Corpus) corpObj;
-			return(corpus);
-		}
-		return(null);
+		Corpus corpus= null;
+		URI inputURI= URI.createFileURI(tig2File.toString());
+		System.out.println("reading uri '"+inputURI+"'... ");
+		Resource resource = resourceSet.createResource(inputURI);
+		if (resource== null)
+			throw new NullPointerException("No resource found for file '"+tig2File.getAbsolutePath()+"'.");
+		resource.load(null);
+		if (resource.getContents()== null)
+			throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"'.");
+		if (resource.getContents().size()== 0)
+			throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"'.");
+		Object corpObj=resource.getContents().get(0);
+		if (!(corpObj instanceof Corpus))
+			throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+tig2File.getAbsolutePath()+"', beacuse the file does not contain a <tiger2/> conform 'Corpus' object.");
+		corpus= (Corpus) corpObj;
+		return(corpus);
 	}
 	
 	
@@ -145,6 +142,7 @@ public class Tiger2Main {
 			ResourceSet resourceSet = new ResourceSetImpl();
 			// Register XML resource factory
 			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(TigerResourceFactory.FILE_ENDING_TIGER2, new TigerResourceFactory());
+			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(TigerResourceFactory.FILE_ENDING_TIGERXML, new TigerResourceFactory());
 			System.out.println("resourceSet: "+ resourceSet);
 			
 			if (inputFile.isDirectory())
@@ -153,7 +151,7 @@ public class Tiger2Main {
 					outputFolder.mkdirs();
 				for (File tig2File: inputFile.listFiles())
 				{
-					if(tig2File.toString().endsWith(".tiger2"))
+					if(tig2File.toString().endsWith(TigerResourceFactory.FILE_ENDING_TIGER2))
 					{
 						URI inputURI= URI.createFileURI(tig2File.toString());
 						System.out.println("reading uri '"+inputURI+"'... ");
@@ -177,7 +175,7 @@ public class Tiger2Main {
 					Corpus corpus= loadTiger2(tig2File);
 					
 					File outputFile= null;
-					outputFile= new File(outputFolder.getAbsolutePath()+"/"+corpus.getId()+".tiger2");
+					outputFile= new File(outputFolder.getAbsolutePath()+"/"+corpus.getId()+TigerResourceFactory.FILE_ENDING_TIGER2);
 					System.out.println("storing model to <tiger2/> file '"+outputFile.getAbsolutePath()+"' ");
 					Resource resource = resourceSet.createResource(URI.createURI(outputFile.toURI().toString()));
 					resource.getContents().add(corpus);
@@ -192,7 +190,7 @@ public class Tiger2Main {
 					throw new NullPointerException("Could not map file '"+inputFile.getAbsolutePath()+"' to a <tiger2/> model.");
 				
 				File outputFile= null;
-				outputFile= new File(outputFolder.getAbsolutePath()+"/"+corpus.getId()+".tiger2");
+				outputFile= new File(outputFolder.getAbsolutePath()+"/"+corpus.getId()+TigerResourceFactory.FILE_ENDING_TIGER2);
 				System.out.println("storing model to <tiger2/> file '"+outputFile.getAbsolutePath()+"' ");
 				Resource resource = resourceSet.createResource(URI.createURI(outputFile.toURI().toString()));
 				resource.getContents().add(corpus);

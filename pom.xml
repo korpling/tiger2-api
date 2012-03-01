@@ -4,6 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.hu_berlin.german.korpling</groupId>
     <artifactId>tiger-api</artifactId>
+    <packaging>bundle</packaging>
     <name>${project.groupId}.${project.artifactId}</name>
     <version>0.0.1-SNAPSHOT</version>
     <description>This project provides an api reading and writing data from or to the&lt;tiger2/&gt; format and the TigerXML format as well.</description>
@@ -72,18 +73,20 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
+        <!-- start: logging -->
         <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.1.1</version>
-            <scope>compile</scope>
-        </dependency>
+	  		<groupId>org.slf4j</groupId>
+	  		<artifactId>slf4j-api</artifactId>
+	  		<version>1.6.4</version>
+	  		<scope>compile</scope>
+	  	</dependency>
+	  	<!-- end: logging -->
         <!-- xml escaping unescaping  -->
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.1</version>
-            <scope>compile</scope>
+        	<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+			<scope>compile</scope>
         </dependency>
         <!-- comparing xml files -->
         <dependency>
@@ -208,6 +211,7 @@
                         <Bundle-Version>${project.version}</Bundle-Version>
                         <Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
                         <Include-Resource>{maven-resources}, LICENSE, NOTICE</Include-Resource>
+                        <!-- <Import-Package>!org.custommonkey.*,*</Import-Package> -->
                     </instructions>
                 </configuration>
             </plugin>

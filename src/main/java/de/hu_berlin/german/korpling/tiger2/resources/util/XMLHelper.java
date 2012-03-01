@@ -76,8 +76,10 @@ public abstract class XMLHelper {
 			 
 			InputSource is = new InputSource(reader);
 			is.setEncoding("UTF-8");
-			 
-			xmlReader.parse(is);
+			try {
+				xmlReader.parse(is);
+			} catch (EndOfProcessingException e) 
+			{}
 	    } catch (IOException e)
 	    {
 	    	throw new TigerResourceException("Cannot load <tiger2/> files from resource '"+xmlFile.getAbsolutePath()+"'.", e);
@@ -88,7 +90,10 @@ public abstract class XMLHelper {
 				parser= factory.newSAXParser();
 		        xmlReader= parser.getXMLReader();
 		        xmlReader.setContentHandler(myReader);
-				xmlReader.parse(xmlFile.getAbsolutePath());
+		        try {
+		        	xmlReader.parse(xmlFile.getAbsolutePath());
+				} catch (EndOfProcessingException e2) 
+				{}
             }catch (Exception e1) {
             	throw new TigerResourceException("Cannot load <tiger2/> files from resource '"+xmlFile.getAbsolutePath()+"'.", e1);
 			}
