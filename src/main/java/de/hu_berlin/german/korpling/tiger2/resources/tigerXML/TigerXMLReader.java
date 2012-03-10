@@ -224,11 +224,8 @@ public class TigerXMLReader extends DefaultHandler2
     {
 		if (TigerXMLDictionary.ELEMENT_CORPUS.equals(qName))
 		{
-			System.out.println("corpus read");
 			String idVal= attributes.getValue(TigerXMLDictionary.ATTRIBUTE_ID);
 			this.currentCorpus.setId(idVal);
-			System.out.println("idVal: "+ idVal);
-			System.out.println("idVal in corpus: "+ this.currentCorpus.getId());
 		}
 		else if (TigerXMLDictionary.ELEMENT_SUB_CORPUS.equals(qName))
 		{
