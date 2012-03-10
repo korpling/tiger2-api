@@ -438,7 +438,7 @@ public class LoadingTest extends TestCase{
 			assertEquals("ROOT", synNode.findAnnotation("cat").getValue());
 		//end: check nonterminals
 		
-		//end: check edges
+		//start: check edges
 			Edge edge= null;
 			edge= graph.findEdge("s1_e1");
 			assertNotNull(edge);

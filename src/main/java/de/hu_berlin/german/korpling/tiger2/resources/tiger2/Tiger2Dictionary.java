@@ -15,9 +15,15 @@
  *
  *
  */
-package de.hu_berlin.german.korpling.tiger2.resources;
+package de.hu_berlin.german.korpling.tiger2.resources.tiger2;
 
-public interface Tiger2XML 
+/**
+ * This class defines the vocabulary, used by the TigerXML format. It includes all xml element names and xml attribute names.
+ * 
+ * @author Florian Zipser
+ *
+ */
+public interface Tiger2Dictionary 
 {
 	/**
 	 * Name of the version of the here implemented format specification.

@@ -15,7 +15,7 @@
  *
  *
  */
-package de.hu_berlin.german.korpling.tiger2.resources;
+package de.hu_berlin.german.korpling.tiger2.resources.tiger2;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -147,33 +147,33 @@ public class Tiger2Writer
 	}
 	
 	/**
-	 * The alias used for namespace {@link Tiger2XML#NAMESPACE_TIGER2}
+	 * The alias used for namespace {@link Tiger2Dictionary#NAMESPACE_TIGER2}
 	 */
 	public static final String NS_ALIAS_TIGER2="tiger2";
 	
 	/**
-	 * Stores the given {@link Corpus} object as super corpus (see {@link Tiger2XML#ELEMENT_CORPUS}).
+	 * Stores the given {@link Corpus} object as super corpus (see {@link Tiger2Dictionary#ELEMENT_CORPUS}).
 	 * @param corpus corpus to store as super corpus 
 	 */
 	protected void saveSuperCorpus(Corpus corpus)
 	{
 		this.output.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
-		this.output.println("<"+Tiger2XML.ELEMENT_CORPUS+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+corpus.getId()+"\""+
-							" xmlns=\""+Tiger2XML.NAMESPACE_TIGER2+"\""+
-							" xmlns:"+NS_ALIAS_TIGER2+"=\""+Tiger2XML.NAMESPACE_TIGER2+"\""+
+		this.output.println("<"+Tiger2Dictionary.ELEMENT_CORPUS+" "+Tiger2Dictionary.ATTRIBUTE_ID+"=\""+corpus.getId()+"\""+
+							" xmlns=\""+Tiger2Dictionary.NAMESPACE_TIGER2+"\""+
+							" xmlns:"+NS_ALIAS_TIGER2+"=\""+Tiger2Dictionary.NAMESPACE_TIGER2+"\""+
 							" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""+
-							" xsi:schemaLocation=\""+Tiger2XML.NAMESPACE_TIGER2+" "+Tiger2XML.XSD_LOCATION_TIGER2+"\">");
+							" xsi:schemaLocation=\""+Tiger2Dictionary.NAMESPACE_TIGER2+" "+Tiger2Dictionary.XSD_LOCATION_TIGER2+"\">");
 		//start: print head
-			this.output.println("<"+Tiger2XML.ELEMENT_HEAD+">");
+			this.output.println("<"+Tiger2Dictionary.ELEMENT_HEAD+">");
 			if (corpus.getMeta()!= null)
 				this.saveMeta(corpus.getMeta());
 			if (corpus.getFeatures()!= null)
 			{
-				this.output.println("<"+Tiger2XML.ELEMENT_ANNOTATION+">");
+				this.output.println("<"+Tiger2Dictionary.ELEMENT_ANNOTATION+">");
 				this.saveFeatures(corpus.getFeatures());
-				this.output.println("</"+Tiger2XML.ELEMENT_ANNOTATION+">");
+				this.output.println("</"+Tiger2Dictionary.ELEMENT_ANNOTATION+">");
 			}
-			this.output.println("</"+Tiger2XML.ELEMENT_HEAD+">");
+			this.output.println("</"+Tiger2Dictionary.ELEMENT_HEAD+">");
 		//end: print head
 		if (	(corpus.getSubCorpora()!= null)&&
 				(corpus.getSubCorpora().size()> 0))
@@ -186,16 +186,16 @@ public class Tiger2Writer
 		//start: print body
 			this.saveBody(corpus.getSegments());
 		//end: print body
-		this.output.println("</"+Tiger2XML.ELEMENT_CORPUS+">");
+		this.output.println("</"+Tiger2Dictionary.ELEMENT_CORPUS+">");
 	}
 	
 	/**
-	 * Stores the given {@link Corpus} object as sub corpus (see {@link Tiger2XML#ELEMENT_SUB_CORPUS}).
+	 * Stores the given {@link Corpus} object as sub corpus (see {@link Tiger2Dictionary#ELEMENT_SUB_CORPUS}).
 	 * @param corpus corpus to store as sub corpus
 	 */
 	protected void saveSubCorpus(Corpus corpus)
 	{
-		this.output.println("<"+Tiger2XML.ELEMENT_SUB_CORPUS+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+corpus.getId()+"\">");
+		this.output.println("<"+Tiger2Dictionary.ELEMENT_SUB_CORPUS+" "+Tiger2Dictionary.ATTRIBUTE_ID+"=\""+corpus.getId()+"\">");
 		if (corpus.getMeta()!= null)
 			this.saveMeta(corpus.getMeta());
 		if (	(corpus.getSubCorpora()!= null)&&
@@ -209,39 +209,39 @@ public class Tiger2Writer
 		//start: print body
 			this.saveBody(corpus.getSegments());
 		//end: print body
-		this.output.println("</"+Tiger2XML.ELEMENT_SUB_CORPUS+">");
+		this.output.println("</"+Tiger2Dictionary.ELEMENT_SUB_CORPUS+">");
 	}
 	
 	/**
-	 * Stores the given {@link Meta} object as {@link Tiger2XML#ELEMENT_META}.
+	 * Stores the given {@link Meta} object as {@link Tiger2Dictionary#ELEMENT_META}.
 	 * @param meta meta data object to store
 	 */
 	protected void saveMeta(Meta meta)
 	{
-		this.output.println("<"+Tiger2XML.ELEMENT_META+">");
+		this.output.println("<"+Tiger2Dictionary.ELEMENT_META+">");
 		if (	(meta.getName()!= null)&&
 				(!meta.getName().isEmpty()))
-			this.output.println("<"+Tiger2XML.ELEMENT_NAME+">"+meta.getName()+"</"+Tiger2XML.ELEMENT_NAME+">");
+			this.output.println("<"+Tiger2Dictionary.ELEMENT_NAME+">"+meta.getName()+"</"+Tiger2Dictionary.ELEMENT_NAME+">");
 		if (	(meta.getAuthor()!= null)&&
 				(!meta.getAuthor().isEmpty()))
-			this.output.println("<"+Tiger2XML.ELEMENT_AUTHOR+">"+meta.getAuthor()+"</"+Tiger2XML.ELEMENT_AUTHOR+">");
+			this.output.println("<"+Tiger2Dictionary.ELEMENT_AUTHOR+">"+meta.getAuthor()+"</"+Tiger2Dictionary.ELEMENT_AUTHOR+">");
 		if (	(meta.getDate()!= null)&&
 				(!meta.getDate().isEmpty()))
-			this.output.println("<"+Tiger2XML.ELEMENT_DATE+">"+meta.getDate()+"</"+Tiger2XML.ELEMENT_DATE+">");
+			this.output.println("<"+Tiger2Dictionary.ELEMENT_DATE+">"+meta.getDate()+"</"+Tiger2Dictionary.ELEMENT_DATE+">");
 		if (	(meta.getDescription()!= null)&&
 				(!meta.getDescription().isEmpty()))
-			this.output.println("<"+Tiger2XML.ELEMENT_DESCRIPTION+">"+meta.getDescription()+"</"+Tiger2XML.ELEMENT_DESCRIPTION+">");
+			this.output.println("<"+Tiger2Dictionary.ELEMENT_DESCRIPTION+">"+meta.getDescription()+"</"+Tiger2Dictionary.ELEMENT_DESCRIPTION+">");
 		if (	(meta.getFormat()!= null)&&
 				(!meta.getFormat().isEmpty()))
-			this.output.println("<"+Tiger2XML.ELEMENT_FORMAT+">"+meta.getFormat()+"</"+Tiger2XML.ELEMENT_FORMAT+">");
+			this.output.println("<"+Tiger2Dictionary.ELEMENT_FORMAT+">"+meta.getFormat()+"</"+Tiger2Dictionary.ELEMENT_FORMAT+">");
 		if (	(meta.getHistory()!= null)&&
 				(!meta.getHistory().isEmpty()))
-			this.output.println("<"+Tiger2XML.ELEMENT_HISTORY+">"+meta.getHistory()+"</"+Tiger2XML.ELEMENT_HISTORY+">");
-		this.output.println("</"+Tiger2XML.ELEMENT_META+">");
+			this.output.println("<"+Tiger2Dictionary.ELEMENT_HISTORY+">"+meta.getHistory()+"</"+Tiger2Dictionary.ELEMENT_HISTORY+">");
+		this.output.println("</"+Tiger2Dictionary.ELEMENT_META+">");
 	}
 	
 	/**
-	 * Stores the given list of {@link Feature} objects as (see {@link Tiger2XML#ELEMENT_FEATURE}) elements.
+	 * Stores the given list of {@link Feature} objects as (see {@link Tiger2Dictionary#ELEMENT_FEATURE}) elements.
 	 * @param corpus corpus to store as sub corpus
 	 */
 	protected void saveFeatures(EList<Feature> features)
@@ -250,22 +250,22 @@ public class Tiger2Writer
 		{
 			for (Feature feature: features)
 			{
-				this.output.print("<"+Tiger2XML.ELEMENT_FEATURE);
+				this.output.print("<"+Tiger2Dictionary.ELEMENT_FEATURE);
 				if (feature.getId()!= null)
-					this.output.print(" "+ Tiger2XML.ATTRIBUTE_ID+"=\""+feature.getId()+"\"");
+					this.output.print(" "+ Tiger2Dictionary.ATTRIBUTE_ID+"=\""+feature.getId()+"\"");
 				if (feature.getName()!= null)
-					this.output.print(" "+ Tiger2XML.ATTRIBUTE_NAME+"=\""+feature.getName()+"\"");
+					this.output.print(" "+ Tiger2Dictionary.ATTRIBUTE_NAME+"=\""+feature.getName()+"\"");
 				if (feature.getDomain()!= null)
-					this.output.print(" "+ Tiger2XML.ATTRIBUTE_DOMAIN+"=\""+feature.getDomain()+"\"");
+					this.output.print(" "+ Tiger2Dictionary.ATTRIBUTE_DOMAIN+"=\""+feature.getDomain()+"\"");
 				if (feature.getDcrReference()!= null)
-					this.output.print(" "+ Tiger2XML.ATTRIBUTE_DAT_CAT+"=\""+feature.getDcrReference()+"\"");
+					this.output.print(" "+ Tiger2Dictionary.ATTRIBUTE_DAT_CAT+"=\""+feature.getDcrReference()+"\"");
 				
 				if (	(feature.getFeatureValues()!= null)||
 						(feature.getFeatureValues().size()>0))
 				{	
 					this.output.println(">");
 					this.saveFeaturesValues(feature.getFeatureValues());
-					this.output.println("</"+Tiger2XML.ELEMENT_FEATURE+">");
+					this.output.println("</"+Tiger2Dictionary.ELEMENT_FEATURE+">");
 				}
 				else this.output.println(">");
 			}
@@ -273,7 +273,7 @@ public class Tiger2Writer
 	}
 	
 	/**
-	 * Stores the given list of {@link FeatureValue} objects as (see {@link Tiger2XML#ELEMENT_VALUE}) elements.
+	 * Stores the given list of {@link FeatureValue} objects as (see {@link Tiger2Dictionary#ELEMENT_VALUE}) elements.
 	 * @param corpus corpus to store as sub corpus
 	 */
 	protected void saveFeaturesValues(EList<FeatureValue> featureValues)
@@ -282,19 +282,19 @@ public class Tiger2Writer
 		{
 			for (FeatureValue featureValue: featureValues)
 			{
-				this.output.print("<"+Tiger2XML.ELEMENT_VALUE);
+				this.output.print("<"+Tiger2Dictionary.ELEMENT_VALUE);
 				if (featureValue.getId()!= null)
-					this.output.print(" "+ Tiger2XML.ATTRIBUTE_ID+"=\""+featureValue.getId()+"\"");
+					this.output.print(" "+ Tiger2Dictionary.ATTRIBUTE_ID+"=\""+featureValue.getId()+"\"");
 				if (featureValue.getValue()!= null)
-					this.output.print(" "+ Tiger2XML.ATTRIBUTE_NAME+"=\""+featureValue.getValue()+"\"");
+					this.output.print(" "+ Tiger2Dictionary.ATTRIBUTE_NAME+"=\""+featureValue.getValue()+"\"");
 				if (featureValue.getDcrReference()!= null)
-					this.output.print(" "+ Tiger2XML.ATTRIBUTE_DAT_CAT+"=\""+featureValue.getDcrReference()+"\"");
+					this.output.print(" "+ Tiger2Dictionary.ATTRIBUTE_DAT_CAT+"=\""+featureValue.getDcrReference()+"\"");
 				
 				if (featureValue.getDescription()!= null)
 				{
 					this.output.print(">");
 					this.output.print(featureValue.getDescription());
-					this.output.println("</"+Tiger2XML.ELEMENT_VALUE+">");
+					this.output.println("</"+Tiger2Dictionary.ELEMENT_VALUE+">");
 				}
 				else this.output.println("/>"); 
 			}
@@ -302,19 +302,19 @@ public class Tiger2Writer
 	}
 	
 	/**
-	 * Stores the given list of {@link Segment} objects as {@link Tiger2XML#ELEMENT_SEGMENT} elements inside a
-	 * {@link Tiger2XML#ELEMENT_BODY} element. 
+	 * Stores the given list of {@link Segment} objects as {@link Tiger2Dictionary#ELEMENT_SEGMENT} elements inside a
+	 * {@link Tiger2Dictionary#ELEMENT_BODY} element. 
 	 * @param segments
 	 */
 	protected void saveBody(EList<Segment> segments)
 	{
-		this.output.println("<"+Tiger2XML.ELEMENT_BODY+">");
+		this.output.println("<"+Tiger2Dictionary.ELEMENT_BODY+">");
 		if (	(segments!= null)&&
 				(segments.size()> 0))
 		{
 			for (Segment segment: segments)
 			{
-				this.output.println("<"+Tiger2XML.ELEMENT_SEGMENT+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+segment.getId()+"\">");
+				this.output.println("<"+Tiger2Dictionary.ELEMENT_SEGMENT+" "+Tiger2Dictionary.ATTRIBUTE_ID+"=\""+segment.getId()+"\">");
 				if (	(segment.getGraphs()!= null)&&
 						(segment.getGraphs().size()> 0))
 				{
@@ -324,29 +324,29 @@ public class Tiger2Writer
 							this.saveGraph(graph);
 					}
 				}
-				this.output.println("</"+Tiger2XML.ELEMENT_SEGMENT+">");
+				this.output.println("</"+Tiger2Dictionary.ELEMENT_SEGMENT+">");
 			}
 		}
-		this.output.println("</"+Tiger2XML.ELEMENT_BODY+">");
+		this.output.println("</"+Tiger2Dictionary.ELEMENT_BODY+">");
 	}
 	/**
-	 * Stores the given list of {@link Graph} objects as {@link Tiger2XML#ELEMENT_GRAPH} elements inside a
-	 * {@link Tiger2XML#ELEMENT_GRAPH} element. 
+	 * Stores the given list of {@link Graph} objects as {@link Tiger2Dictionary#ELEMENT_GRAPH} elements inside a
+	 * {@link Tiger2Dictionary#ELEMENT_GRAPH} element. 
 	 * @param graph
 	 */
 	protected void saveGraph(Graph graph)
 	{
-		this.output.println("<"+Tiger2XML.ELEMENT_GRAPH+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+graph.getId()+"\">");
+		this.output.println("<"+Tiger2Dictionary.ELEMENT_GRAPH+" "+Tiger2Dictionary.ATTRIBUTE_ID+"=\""+graph.getId()+"\">");
 		//start: store terminal nodes
 			if (	(graph.getTerminals()!= null)&&
 					(graph.getTerminals().size()> 0))
 			{
-				this.output.println("<"+Tiger2XML.ELEMENT_TERMINALS+">");
+				this.output.println("<"+Tiger2Dictionary.ELEMENT_TERMINALS+">");
 				for (Terminal terminal: graph.getTerminals())
 				{
 					this.saveTerminal(terminal);
 				}
-				this.output.println("</"+Tiger2XML.ELEMENT_TERMINALS+">");
+				this.output.println("</"+Tiger2Dictionary.ELEMENT_TERMINALS+">");
 			}
 		//end: store terminal nodes
 			
@@ -354,30 +354,30 @@ public class Tiger2Writer
 			if (	(graph.getNonTerminals()!= null)&&
 					(graph.getNonTerminals().size()> 0))
 			{
-				this.output.println("<"+Tiger2XML.ELEMENT_NONTERMINALS+">");
+				this.output.println("<"+Tiger2Dictionary.ELEMENT_NONTERMINALS+">");
 				for (NonTerminal nonTerminal: graph.getNonTerminals())
 				{
 					this.saveNonTerminal(nonTerminal);
 				}
-				this.output.println("</"+Tiger2XML.ELEMENT_NONTERMINALS+">");
+				this.output.println("</"+Tiger2Dictionary.ELEMENT_NONTERMINALS+">");
 			}
 		//end: store non-terminal nodes
-		this.output.println("</"+Tiger2XML.ELEMENT_GRAPH+">");
+		this.output.println("</"+Tiger2Dictionary.ELEMENT_GRAPH+">");
 	}
 	
 	/**
-	 * Stores the given list of {@link Terminal} objects as {@link Tiger2XML#ELEMENT_TERMINAL} elements inside a
-	 * {@link Tiger2XML#ELEMENT_TERMINAL} element. 
+	 * Stores the given list of {@link Terminal} objects as {@link Tiger2Dictionary#ELEMENT_TERMINAL} elements inside a
+	 * {@link Tiger2Dictionary#ELEMENT_TERMINAL} element. 
 	 * @param terminal
 	 */
 	protected void saveTerminal(Terminal terminal)
 	{
 		if (terminal!= null)
 		{
-			this.output.print("<"+Tiger2XML.ELEMENT_TERMINAL+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+terminal.getId()+"\"");
-			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_WORD+"=\""+StringEscapeUtils.escapeXml(terminal.getWord())+"\"");
+			this.output.print("<"+Tiger2Dictionary.ELEMENT_TERMINAL+" "+Tiger2Dictionary.ATTRIBUTE_ID+"=\""+terminal.getId()+"\"");
+			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2Dictionary.ATTRIBUTE_WORD+"=\""+StringEscapeUtils.escapeXml(terminal.getWord())+"\"");
 			if (terminal.getType()!= null)
-				this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+terminal.getType()+"\"");
+				this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2Dictionary.ATTRIBUTE_TYPE+"=\""+terminal.getType()+"\"");
 			
 			this.saveAnnotations(terminal.getAnnotations());
 			if (terminal.getGraph().getOutgoingEdges(terminal.getId())!= null)
@@ -387,24 +387,24 @@ public class Tiger2Writer
 				{
 					this.saveEdge(edge);
 				}
-				this.output.println("</"+Tiger2XML.ELEMENT_TERMINAL+">");
+				this.output.println("</"+Tiger2Dictionary.ELEMENT_TERMINAL+">");
 			}
 			else this.output.println("/>");
 		}
 	}
 	
 	/**
-	 * Stores the given list of {@link NonTerminal} objects as {@link Tiger2XML#ELEMENT_NONTERMINAL} elements inside a
-	 * {@link Tiger2XML#ELEMENT_NONTERMINALS} element. 
+	 * Stores the given list of {@link NonTerminal} objects as {@link Tiger2Dictionary#ELEMENT_NONTERMINAL} elements inside a
+	 * {@link Tiger2Dictionary#ELEMENT_NONTERMINALS} element. 
 	 * @param nonTerminal
 	 */
 	protected void saveNonTerminal(NonTerminal nonTerminal)
 	{
 		if (nonTerminal!= null)
 		{
-			this.output.print("<"+Tiger2XML.ELEMENT_NONTERMINAL+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+nonTerminal.getId()+"\"");
+			this.output.print("<"+Tiger2Dictionary.ELEMENT_NONTERMINAL+" "+Tiger2Dictionary.ATTRIBUTE_ID+"=\""+nonTerminal.getId()+"\"");
 			if (nonTerminal.getType()!= null)
-				this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+nonTerminal.getType()+"\"");
+				this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2Dictionary.ATTRIBUTE_TYPE+"=\""+nonTerminal.getType()+"\"");
 			
 			this.saveAnnotations(nonTerminal.getAnnotations());
 			if (nonTerminal.getGraph().getOutgoingEdges(nonTerminal.getId())!= null)
@@ -414,7 +414,7 @@ public class Tiger2Writer
 				{
 					this.saveEdge(edge);
 				}
-				this.output.println("</"+Tiger2XML.ELEMENT_NONTERMINAL+">");
+				this.output.println("</"+Tiger2Dictionary.ELEMENT_NONTERMINAL+">");
 			}
 			else this.output.println("/>");
 		}
@@ -438,7 +438,7 @@ public class Tiger2Writer
 	}
 	
 	/**
-	 * Stores the given list of {@link Edge} objects as {@link Tiger2XML#ELEMENT_EDGE}. 
+	 * Stores the given list of {@link Edge} objects as {@link Tiger2Dictionary#ELEMENT_EDGE}. 
 	 * @param edge
 	 */
 	protected void saveEdge(Edge edge)
@@ -449,10 +449,10 @@ public class Tiger2Writer
 			throw new TigerInvalidModelException("Cannot save edge '"+edge+"', because its source is empty.");
 		if (edge.getTarget()== null)
 			throw new TigerInvalidModelException("Cannot save edge '"+edge+"', because its target is empty.");
-		this.output.print("<"+Tiger2XML.ELEMENT_EDGE+" "+Tiger2XML.ATTRIBUTE_ID+"=\""+edge.getId()+"\"");
+		this.output.print("<"+Tiger2Dictionary.ELEMENT_EDGE+" "+Tiger2Dictionary.ATTRIBUTE_ID+"=\""+edge.getId()+"\"");
 		if (edge.getType()!= null)
-			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TYPE+"=\""+edge.getType()+"\"");
-		this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2XML.ATTRIBUTE_TARGET+"=\"#"+edge.getTarget().getId()+"\"");
+			this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2Dictionary.ATTRIBUTE_TYPE+"=\""+edge.getType()+"\"");
+		this.output.print(" "+NS_ALIAS_TIGER2+":"+Tiger2Dictionary.ATTRIBUTE_TARGET+"=\"#"+edge.getTarget().getId()+"\"");
 		
 		this.saveAnnotations(edge.getAnnotations());
 		this.output.println("/>");

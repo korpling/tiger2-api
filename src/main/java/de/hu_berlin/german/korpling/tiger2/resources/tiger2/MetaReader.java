@@ -15,7 +15,7 @@
  *
  *
  */
-package de.hu_berlin.german.korpling.tiger2.resources;
+package de.hu_berlin.german.korpling.tiger2.resources.tiger2;
 
 import java.io.File;
 import java.util.Stack;
@@ -89,7 +89,7 @@ public class MetaReader extends DefaultHandler2
 	private Stack<String> elementStack= null;
 	
 	/**
-	 * Reads the sub-elements of {@link Tiger2XML#ELEMENT_META}
+	 * Reads the sub-elements of {@link Tiger2Dictionary#ELEMENT_META}
 	 * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
 	 */
 	@Override
@@ -104,27 +104,27 @@ public class MetaReader extends DefaultHandler2
 		//end: extracting the textual content of an element
 		if (this.elementStack.size()>0)
 		{//only if this reader has seen an opening element
-			if (Tiger2XML.ELEMENT_NAME.equals(this.elementStack.peek()))
+			if (Tiger2Dictionary.ELEMENT_NAME.equals(this.elementStack.peek()))
 			{
 				this.getMeta().setName(text.toString());
 			}
-			else if (Tiger2XML.ELEMENT_AUTHOR.equals(this.elementStack.peek()))
+			else if (Tiger2Dictionary.ELEMENT_AUTHOR.equals(this.elementStack.peek()))
 			{
 				this.getMeta().setAuthor(text.toString());
 			}
-			else if (Tiger2XML.ELEMENT_DATE.equals(this.elementStack.peek()))
+			else if (Tiger2Dictionary.ELEMENT_DATE.equals(this.elementStack.peek()))
 			{
 				this.getMeta().setDate(text.toString());
 			}
-			else if (Tiger2XML.ELEMENT_DESCRIPTION.equals(this.elementStack.peek()))
+			else if (Tiger2Dictionary.ELEMENT_DESCRIPTION.equals(this.elementStack.peek()))
 			{
 				this.getMeta().setDescription(text.toString());
 			}
-			else if (Tiger2XML.ELEMENT_FORMAT.equals(this.elementStack.peek()))
+			else if (Tiger2Dictionary.ELEMENT_FORMAT.equals(this.elementStack.peek()))
 			{
 				this.getMeta().setFormat(text.toString());
 			}
-			else if (Tiger2XML.ELEMENT_HISTORY.equals(this.elementStack.peek()))
+			else if (Tiger2Dictionary.ELEMENT_HISTORY.equals(this.elementStack.peek()))
 			{
 				this.getMeta().setHistory(text.toString());
 			}			
@@ -141,12 +141,12 @@ public class MetaReader extends DefaultHandler2
             					String qName,
             					Attributes attributes) throws SAXException
     {
-		if (Tiger2XML.ELEMENT_EXTERNAL.equals(qName))
+		if (Tiger2Dictionary.ELEMENT_EXTERNAL.equals(qName))
 		{// meta-data are stored in an external file
 			String correspFileName= null;
-			correspFileName= attributes.getValue(Tiger2XML.ATTRIBUTE_CORRESP);
+			correspFileName= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_CORRESP);
 			if (correspFileName== null)
-				throw new TigerImplausibleContentException("Cannot read meta-data, because of the element '"+Tiger2XML.ELEMENT_EXTERNAL+"' is used, but its value '"+Tiger2XML.ATTRIBUTE_CORRESP+"' isn't set.");
+				throw new TigerImplausibleContentException("Cannot read meta-data, because of the element '"+Tiger2Dictionary.ELEMENT_EXTERNAL+"' is used, but its value '"+Tiger2Dictionary.ATTRIBUTE_CORRESP+"' isn't set.");
 			if (this.getInputURI()== null)
 				throw new TigerInternalException("Cannot read external meta-data file, because the input uir was not set.");
 			File correspFile= new File(new File(this.getInputURI().toFileString()).getParent()+"/"+correspFileName);

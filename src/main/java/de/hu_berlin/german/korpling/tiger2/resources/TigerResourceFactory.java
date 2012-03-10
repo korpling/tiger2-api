@@ -24,7 +24,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 
 import de.hu_berlin.german.korpling.tiger2.exceptions.TigerResourceException;
-import de.hu_berlin.german.korpling.tiger2.resources.util.EndOfProcessingException;
+import de.hu_berlin.german.korpling.tiger2.resources.tiger2.Tiger2Resource;
+import de.hu_berlin.german.korpling.tiger2.resources.tigerXML.TigerXMLResource;
 import de.hu_berlin.german.korpling.tiger2.resources.util.Tiger2ContentChecker;
 import de.hu_berlin.german.korpling.tiger2.resources.util.XMLHelper;
 

@@ -15,7 +15,7 @@
  *
  *
  */
-package de.hu_berlin.german.korpling.tiger2.resources;
+package de.hu_berlin.german.korpling.tiger2.resources.tiger2;
 
 import java.io.File;
 import java.io.IOException;

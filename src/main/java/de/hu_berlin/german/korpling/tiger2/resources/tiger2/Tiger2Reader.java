@@ -15,7 +15,7 @@
  *
  *
  */
-package de.hu_berlin.german.korpling.tiger2.resources;
+package de.hu_berlin.german.korpling.tiger2.resources.tiger2;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -120,12 +120,12 @@ public class Tiger2Reader extends DefaultHandler2
 	private Stack<String> elementStack= null;
 	
 	/**
-	 * Stores the current {@link Tiger2XML#ELEMENT_SEGMENT} object
+	 * Stores the current {@link Tiger2Dictionary#ELEMENT_SEGMENT} object
 	 */
 	private Segment currentSegment= null;
 	
 	/**
-	 * Stores the current {@link Tiger2XML#ELEMENT_GRAPH} object
+	 * Stores the current {@link Tiger2Dictionary#ELEMENT_GRAPH} object
 	 */
 	private Graph currentGraph= null;
 	
@@ -139,12 +139,12 @@ public class Tiger2Reader extends DefaultHandler2
 	private AnnotationReader annotationReader= null;
 	
 	/**
-	 * Stores the current {@link Tiger2XML#ELEMENT_TERMINAL} or {@link Tiger2XML#ELEMENT_NONTERMINAL} object
+	 * Stores the current {@link Tiger2Dictionary#ELEMENT_TERMINAL} or {@link Tiger2Dictionary#ELEMENT_NONTERMINAL} object
 	 */	
 	private SyntacticNode currentSyntacticNode= null;
 	
 	/**
-	 * Stores the current {@link Tiger2XML#ELEMENT_CORPUS} or {@link Tiger2XML#ELEMENT_SUB_CORPUS} object
+	 * Stores the current {@link Tiger2Dictionary#ELEMENT_CORPUS} or {@link Tiger2Dictionary#ELEMENT_SUB_CORPUS} object
 	 */
 	private Corpus currentCorpus= null;
 	/**
@@ -159,7 +159,7 @@ public class Tiger2Reader extends DefaultHandler2
 	private Map<Edge, String> notTargetedEdges= null;
 	
 	/**
-	 * Reads the sub-elements of {@link Tiger2XML#ELEMENT_META}
+	 * Reads the sub-elements of {@link Tiger2Dictionary#ELEMENT_META}
 	 * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
 	 */
 	public void characters(	char[] ch,
@@ -167,14 +167,14 @@ public class Tiger2Reader extends DefaultHandler2
             				int length) throws SAXException
     {
 		if (	(this.elementStack!= null)&&
-				(Tiger2XML.ELEMENT_META.equals(this.elementStack.peek())))
+				(Tiger2Dictionary.ELEMENT_META.equals(this.elementStack.peek())))
 		{//corpus/meta/*
 			if (this.metaReader== null)
 				throw new TigerInternalException("No reader for meta-data is set.");
 			this.metaReader.characters(ch, start, length);
 		}//corpus/meta/*
 		else if (	(this.elementStack!= null)&&
-				(Tiger2XML.ELEMENT_ANNOTATION.equals(this.elementStack.peek())))
+				(Tiger2Dictionary.ELEMENT_ANNOTATION.equals(this.elementStack.peek())))
 		{//corpus/annotation/* delegating content to annotation-reader
 			if (this.annotationReader== null)
 				throw new TigerInternalException("No reader for annotation-data is set.");
@@ -203,19 +203,16 @@ public class Tiger2Reader extends DefaultHandler2
             					String qName,
             					Attributes attributes) throws SAXException
     {
-		
-		if (elementStack.size()>0)
-		
-		if (Tiger2XML.ELEMENT_CORPUS.equals(qName))
+		if (Tiger2Dictionary.ELEMENT_CORPUS.equals(qName))
 		{
 		}
-		else if (Tiger2XML.ELEMENT_SUB_CORPUS.equals(qName))
+		else if (Tiger2Dictionary.ELEMENT_SUB_CORPUS.equals(qName))
 		{
 			Corpus subCorpus= Tiger2Factory.eINSTANCE.createCorpus();
 			this.currentCorpus.getSubCorpora().add(subCorpus);
 			this.currentCorpus= subCorpus;
 		}
-		else if (Tiger2XML.ELEMENT_META.equals(qName))
+		else if (Tiger2Dictionary.ELEMENT_META.equals(qName))
 		{//corpus/meta
 			Meta meta= Tiger2Factory.eINSTANCE.createMeta();
 			this.metaReader= new MetaReader();
@@ -226,13 +223,13 @@ public class Tiger2Reader extends DefaultHandler2
 			pushElement= false;
 		}//corpus/meta
 		else if (	(this.elementStack!= null)&&
-					(Tiger2XML.ELEMENT_META.equals(this.elementStack.peek())))
+					(Tiger2Dictionary.ELEMENT_META.equals(this.elementStack.peek())))
 		{//corpus/meta/* delegating content to meta-reader
 			if (this.metaReader== null)
 				throw new TigerInternalException("No reader for meta-data is set.");
 			this.metaReader.startElement(uri, localName, qName, attributes);
 		}//corpus/meta/* delegating content to meta-reader
-		else if (Tiger2XML.ELEMENT_ANNOTATION.equals(qName))
+		else if (Tiger2Dictionary.ELEMENT_ANNOTATION.equals(qName))
 		{//corpus/annotation
 			this.annotationReader= new AnnotationReader();
 			this.annotationReader.setInputURI(this.getInputURI());
@@ -242,29 +239,29 @@ public class Tiger2Reader extends DefaultHandler2
 			pushElement= false;
 		}//corpus/annotation
 		else if (	(this.elementStack!= null)&&
-					(Tiger2XML.ELEMENT_ANNOTATION.equals(this.elementStack.peek())))
+					(Tiger2Dictionary.ELEMENT_ANNOTATION.equals(this.elementStack.peek())))
 		{//corpus/annotation/* delegating content to annotation-reader
 			if (this.annotationReader== null)
 				throw new TigerInternalException("No reader for meta-data is set.");
 			this.annotationReader.startElement(uri, localName, qName, attributes);
 		}//corpus/annotation/* delegating content to annotation-reader
-		else if (Tiger2XML.ELEMENT_SEGMENT.equals(qName))
+		else if (Tiger2Dictionary.ELEMENT_SEGMENT.equals(qName))
 		{
 			Segment segment= Tiger2Factory.eINSTANCE.createSegment();
 			this.currentSegment= segment;
 			//start: @xml:id
-				String id= attributes.getValue(Tiger2XML.ATTRIBUTE_ID);
+				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
 				if (id!= null)
 					segment.setId(id);
 			//end: @xml:id
 			this.currentCorpus.getSegments().add(segment);
 		}
-		else if (Tiger2XML.ELEMENT_GRAPH.equals(qName))
+		else if (Tiger2Dictionary.ELEMENT_GRAPH.equals(qName))
 		{
 			Graph graph= Tiger2Factory.eINSTANCE.createGraph();
 			this.currentGraph= graph;
 			//start: @xml:id
-				String id= attributes.getValue(Tiger2XML.ATTRIBUTE_ID);
+				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
 				if (id!= null)
 					graph.setId(id);
 			//end: @xml:id
@@ -272,12 +269,12 @@ public class Tiger2Reader extends DefaultHandler2
 				throw new TigerInternalException("The variable 'currentSegment' of Tiger2Reader was empty when reding a graph element.");
 			this.currentSegment.getGraphs().add(graph);
 		}
-		else if (Tiger2XML.ELEMENT_TERMINAL.equals(qName))
+		else if (Tiger2Dictionary.ELEMENT_TERMINAL.equals(qName))
 		{
 			Terminal terminal= Tiger2Factory.eINSTANCE.createTerminal();
 			
 			//start: @xml:id
-				String id= attributes.getValue(Tiger2XML.ATTRIBUTE_ID);
+				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
 				if (id== null)
 				{
 					LOGGER.warn("One syntactic node (terminal) element has no id.");
@@ -292,7 +289,7 @@ public class Tiger2Reader extends DefaultHandler2
 				this.id2synNode.put(id, terminal);
 			//end: @xml:id
 			
-			String type= attributes.getValue(Tiger2XML.ATTRIBUTE_TYPE);
+			String type= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_TYPE);
 			if (type!= null)
 				terminal.setType(type);
 			for (int i= 0; i< attributes.getLength(); i++)
@@ -300,21 +297,21 @@ public class Tiger2Reader extends DefaultHandler2
 				String attName= attributes.getLocalName(i);
 				String attValue= attributes.getValue(i);
 				
-				if (Tiger2XML.ATTRIBUTE_ID.equals(attributes.getQName(i)))
+				if (Tiger2Dictionary.ATTRIBUTE_ID.equals(attributes.getQName(i)))
 					;
-				else if (	(Tiger2XML.ATTRIBUTE_WORD.equals(attName))||
-							(	(Tiger2XML.ATTRIBUTE_WORD.equals(attName))&&
-								(attributes.getURI(i).equals(Tiger2XML.NAMESPACE_TIGER2))))
+				else if (	(Tiger2Dictionary.ATTRIBUTE_WORD.equals(attName))||
+							(	(Tiger2Dictionary.ATTRIBUTE_WORD.equals(attName))&&
+								(attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2))))
 				{
 					terminal.setWord(attValue);
 				}
-				else if (	(Tiger2XML.ATTRIBUTE_CORRESP.equals(attName))&&
-							(attributes.getURI(i).equals(Tiger2XML.NAMESPACE_TIGER2)))
+				else if (	(Tiger2Dictionary.ATTRIBUTE_CORRESP.equals(attName))&&
+							(attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2)))
 				{// start: //t/@corresp
 					;//TODO implement that
 				}// end: //t/@corresp
-				else if (	(Tiger2XML.ATTRIBUTE_TYPE.equals(attName))&&
-							(attributes.getURI(i).equals(Tiger2XML.NAMESPACE_TIGER2)))
+				else if (	(Tiger2Dictionary.ATTRIBUTE_TYPE.equals(attName))&&
+							(attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2)))
 					;//ignore it
 				else
 				{
@@ -326,12 +323,12 @@ public class Tiger2Reader extends DefaultHandler2
 			this.currentGraph.getSyntacticNodes().add(terminal);
 			this.currentSyntacticNode= terminal;
 		}
-		else if (Tiger2XML.ELEMENT_NONTERMINAL.equals(qName))
+		else if (Tiger2Dictionary.ELEMENT_NONTERMINAL.equals(qName))
 		{
 			NonTerminal nonTerminal= Tiger2Factory.eINSTANCE.createNonTerminal();
 			
 			//start: @xml:id
-				String id= attributes.getValue(Tiger2XML.ATTRIBUTE_ID);
+				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
 				if (id== null)
 				{
 					LOGGER.warn("One syntactic node element (non-terminal) has no id.");
@@ -346,17 +343,17 @@ public class Tiger2Reader extends DefaultHandler2
 				this.id2synNode.put(id, nonTerminal);
 			//end: @xml:id
 			
-			String type= attributes.getValue(Tiger2XML.ATTRIBUTE_TYPE);
+			String type= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_TYPE);
 			if (type!= null)
 				nonTerminal.setType(type);
 			for (int i= 0; i< attributes.getLength(); i++)
 			{
 				String attName= attributes.getLocalName(i);
 				String attValue= attributes.getValue(i);
-				if (Tiger2XML.ATTRIBUTE_ID.equals(attributes.getQName(i)))
+				if (Tiger2Dictionary.ATTRIBUTE_ID.equals(attributes.getQName(i)))
 					;//ignore it
-				else if (	(Tiger2XML.ATTRIBUTE_TYPE.equals(attName))&&
-							(attributes.getURI(i).equals(Tiger2XML.NAMESPACE_TIGER2)))
+				else if (	(Tiger2Dictionary.ATTRIBUTE_TYPE.equals(attName))&&
+							(attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2)))
 					;//ignore it
 				else
 				{
@@ -368,14 +365,14 @@ public class Tiger2Reader extends DefaultHandler2
 			this.currentGraph.getSyntacticNodes().add(nonTerminal);
 			this.currentSyntacticNode= nonTerminal;
 		}
-		else if (Tiger2XML.ELEMENT_EDGE.equals(qName))
+		else if (Tiger2Dictionary.ELEMENT_EDGE.equals(qName))
 		{//ELEMENT_EDGE
 			Edge edge= Tiger2Factory.eINSTANCE.createEdge();
 			//start: @xml:id
-				String id= attributes.getValue(Tiger2XML.ATTRIBUTE_ID);
+				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
 				if (id== null)
 				{
-					LOGGER.warn("One '"+Tiger2XML.ELEMENT_EDGE+"' element has no id.");
+					LOGGER.warn("One '"+Tiger2Dictionary.ELEMENT_EDGE+"' element has no id.");
 					id= "edge_"+ edgeCounter;
 					this.edgeCounter++;
 				}
@@ -391,9 +388,9 @@ public class Tiger2Reader extends DefaultHandler2
 			//end: @xml:id
 				
 			//start: @type
-				String type= attributes.getValue(Tiger2XML.NAMESPACE_TIGER2, Tiger2XML.ATTRIBUTE_TYPE);
+				String type= attributes.getValue(Tiger2Dictionary.NAMESPACE_TIGER2, Tiger2Dictionary.ATTRIBUTE_TYPE);
 				if (type== null)
-					type= attributes.getValue(Tiger2XML.ATTRIBUTE_TYPE);
+					type= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_TYPE);
 				if (type != null)
 					edge.setType(type);
 			//end: @type
@@ -403,17 +400,17 @@ public class Tiger2Reader extends DefaultHandler2
 				String attName= attributes.getLocalName(i);
 				String attValue= attributes.getValue(i);
 				
-				if (Tiger2XML.ATTRIBUTE_ID.equals(attributes.getQName(i)))
+				if (Tiger2Dictionary.ATTRIBUTE_ID.equals(attributes.getQName(i)))
 				{
 					;//ignore that
 					
 				}
-				else if (	(Tiger2XML.ATTRIBUTE_TARGET.equals(attName))&&
-							(attributes.getURI(i).equals(Tiger2XML.NAMESPACE_TIGER2)))
+				else if (	(Tiger2Dictionary.ATTRIBUTE_TARGET.equals(attName))&&
+							(attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2)))
 				{
 					if (	(attName== null)||
 							(attName.isEmpty()))
-						throw new TigerImplausibleContentException("An edge was found with an empty '"+Tiger2XML.ATTRIBUTE_TARGET+"' value.");
+						throw new TigerImplausibleContentException("An edge was found with an empty '"+Tiger2Dictionary.ATTRIBUTE_TARGET+"' value.");
 					if (attValue.startsWith("#"))
 						attValue= attValue.replace("#", "");
 					SyntacticNode synNode= id2synNode.get(attValue);
@@ -425,7 +422,7 @@ public class Tiger2Reader extends DefaultHandler2
 					else
 						this.notTargetedEdges.put(edge, attValue);
 				}
-				else if (Tiger2XML.ATTRIBUTE_TYPE.equals(attName))
+				else if (Tiger2Dictionary.ATTRIBUTE_TYPE.equals(attName))
 					;//ignore it
 				else
 				{
@@ -477,7 +474,7 @@ public class Tiger2Reader extends DefaultHandler2
 //	}
 	
 	/**
-	 * If the element {@link Tiger2XML#ELEMENT_CORPUS} or {@link Tiger2XML#ELEMENT_CORPUS} ends, all not yet targeted edges will be targeted and
+	 * If the element {@link Tiger2Dictionary#ELEMENT_CORPUS} or {@link Tiger2Dictionary#ELEMENT_CORPUS} ends, all not yet targeted edges will be targeted and
 	 * stored in the graph by calling {@link #processNotTargetedEdges()}.
 	 */
 	@Override
@@ -485,15 +482,15 @@ public class Tiger2Reader extends DefaultHandler2
 	{
 		//determines if an xml element is to pop from stack
 		boolean popElement= true;
-		if (Tiger2XML.ELEMENT_GRAPH.equals(qName))
+		if (Tiger2Dictionary.ELEMENT_GRAPH.equals(qName))
 		{
 			this.processNotTargetedEdges();
 			this.currentGraph= null;
 		}
 		else if (	(this.elementStack!= null)&&
-					(Tiger2XML.ELEMENT_META.equals(this.elementStack.peek()))) 
+					(Tiger2Dictionary.ELEMENT_META.equals(this.elementStack.peek()))) 
 		{//corpus/meta/* delegating content to meta-reader
-			if (Tiger2XML.ELEMENT_META.equals(qName))
+			if (Tiger2Dictionary.ELEMENT_META.equals(qName))
 			{//</meta>
 				pushElement= true;
 			}//</meta>
@@ -506,9 +503,9 @@ public class Tiger2Reader extends DefaultHandler2
 			this.metaReader.endElement(namespaceURI, localName, qName);
 		}//corpus/meta/* delegating content to meta-reader
 		else if (	(this.elementStack!= null)&&
-				(Tiger2XML.ELEMENT_ANNOTATION.equals(this.elementStack.peek())))
+				(Tiger2Dictionary.ELEMENT_ANNOTATION.equals(this.elementStack.peek())))
 		{//corpus/annotation/* delegating content to annotation-reader
-			if (Tiger2XML.ELEMENT_ANNOTATION.equals(qName))
+			if (Tiger2Dictionary.ELEMENT_ANNOTATION.equals(qName))
 			{//</meta>
 				pushElement= true;
 			}//</meta>

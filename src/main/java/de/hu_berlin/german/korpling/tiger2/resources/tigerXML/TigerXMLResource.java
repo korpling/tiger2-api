@@ -15,14 +15,19 @@
  *
  *
  */
-package de.hu_berlin.german.korpling.tiger2.resources;
+package de.hu_berlin.german.korpling.tiger2.resources.tigerXML;
 
 import java.io.File;
 import java.io.IOException;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
+import de.hu_berlin.german.korpling.tiger2.Corpus;
+import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
 import de.hu_berlin.german.korpling.tiger2.exceptions.TigerResourceException;
+import de.hu_berlin.german.korpling.tiger2.resources.tiger2.Tiger2Reader;
+import de.hu_berlin.german.korpling.tiger2.resources.util.XMLHelper;
 
 
 public class TigerXMLResource extends ResourceImpl
@@ -43,11 +48,20 @@ public class TigerXMLResource extends ResourceImpl
 		if (this.getURI()== null)
 			throw new TigerResourceException("Cannot load any resource, because no uri is given.");
 		
-		File exmaraldaFile= new File(this.getURI().toFileString());
-		if (!exmaraldaFile.exists()) 
-			throw new TigerResourceException("Cannot load resource, because the file does not exists: " + exmaraldaFile);
+		File tigerFile= new File(this.getURI().toFileString());
+		if (!tigerFile.exists()) 
+			throw new TigerResourceException("Cannot load resource, because the file does not exists: " + tigerFile);
 		
-		if (!exmaraldaFile.canRead())
-			throw new TigerResourceException("Cannot load resource, because the file can not be read: " + exmaraldaFile);
+		if (!tigerFile.canRead())
+			throw new TigerResourceException("Cannot load resource, because the file can not be read: " + tigerFile);
+		
+		Corpus corpus= null;
+		corpus= Tiger2Factory.eINSTANCE.createCorpus();
+		this.getContents().add(corpus);
+		
+        TigerXMLReader tigerXMLReader= new TigerXMLReader();
+        tigerXMLReader.setRootCorpus(corpus);
+        tigerXMLReader.setInputURI(URI.createFileURI(tigerFile.getAbsolutePath()));
+        XMLHelper.readXml(tigerFile, tigerXMLReader);
 	}
 }

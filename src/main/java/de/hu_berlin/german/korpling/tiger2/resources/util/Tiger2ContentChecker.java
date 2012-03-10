@@ -4,8 +4,8 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.ext.DefaultHandler2;
 
-import de.hu_berlin.german.korpling.tiger2.resources.Tiger2XML;
 import de.hu_berlin.german.korpling.tiger2.resources.TigerResourceFactory.TIGER2_FILE_TYPES;
+import de.hu_berlin.german.korpling.tiger2.resources.tiger2.Tiger2Dictionary;
 
 /**
  * Reads a <tiger2/> conform file and checks its type by reading its content.
@@ -36,11 +36,11 @@ public class Tiger2ContentChecker extends DefaultHandler2{
             					String qName,
             					Attributes attributes) throws SAXException
     {
-		if (Tiger2XML.ELEMENT_CORPUS.equals(qName))
+		if (Tiger2Dictionary.ELEMENT_CORPUS.equals(qName))
 			this.tiger2Type= TIGER2_FILE_TYPES.TIGER2;
-		else if (Tiger2XML.ELEMENT_ANNOTATION.equals(qName))
+		else if (Tiger2Dictionary.ELEMENT_ANNOTATION.equals(qName))
 			this.tiger2Type= TIGER2_FILE_TYPES.TIGER2_ANNOTATION;
-		else if (Tiger2XML.ELEMENT_META.equals(qName))
+		else if (Tiger2Dictionary.ELEMENT_META.equals(qName))
 			this.tiger2Type= TIGER2_FILE_TYPES.TIGER2_METADATA;
 		throw new EndOfProcessingException();
     }
