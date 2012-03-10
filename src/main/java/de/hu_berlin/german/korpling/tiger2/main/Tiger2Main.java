@@ -66,7 +66,6 @@ public class Tiger2Main {
 	{
 		Corpus corpus= null;
 		URI inputURI= URI.createFileURI(tig2File.toString());
-		System.out.println("reading uri '"+inputURI+"'... ");
 		Resource resource = resourceSet.createResource(inputURI);
 		if (resource== null)
 			throw new NullPointerException("No resource found for file '"+tig2File.getAbsolutePath()+"'.");
@@ -143,7 +142,6 @@ public class Tiger2Main {
 			// Register XML resource factory
 			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(TigerResourceFactory.FILE_ENDING_TIGER2, new TigerResourceFactory());
 			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(TigerResourceFactory.FILE_ENDING_TIGERXML, new TigerResourceFactory());
-			System.out.println("resourceSet: "+ resourceSet);
 			
 			if (inputFile.isDirectory())
 			{
@@ -154,7 +152,6 @@ public class Tiger2Main {
 					if(tig2File.toString().endsWith(TigerResourceFactory.FILE_ENDING_TIGER2))
 					{
 						URI inputURI= URI.createFileURI(tig2File.toString());
-						System.out.println("reading uri '"+inputURI+"'... ");
 						Resource resource = resourceSet.createResource(inputURI);
 						if (resource== null)
 							throw new NullPointerException("No resource found for file '"+tig2File.getAbsolutePath()+"'.");
@@ -171,12 +168,10 @@ public class Tiger2Main {
 					outputFolder.mkdirs();
 				for (File tig2File: inputFile.listFiles())
 				{
-					System.out.println("loading model from <tiger2/> file '"+tig2File.getAbsolutePath()+"' ");
 					Corpus corpus= loadTiger2(tig2File);
 					
 					File outputFile= null;
 					outputFile= new File(outputFolder.getAbsolutePath()+"/"+corpus.getId()+TigerResourceFactory.FILE_ENDING_TIGER2);
-					System.out.println("storing model to <tiger2/> file '"+outputFile.getAbsolutePath()+"' ");
 					Resource resource = resourceSet.createResource(URI.createURI(outputFile.toURI().toString()));
 					resource.getContents().add(corpus);
 					resource.save(null);
@@ -184,14 +179,12 @@ public class Tiger2Main {
 			}
 			else
 			{
-				System.out.println("loading model from <tiger2/> file '"+inputFile.getAbsolutePath()+"' ");
 				Corpus corpus= loadTiger2(inputFile);
 				if (corpus== null)
 					throw new NullPointerException("Could not map file '"+inputFile.getAbsolutePath()+"' to a <tiger2/> model.");
 				
 				File outputFile= null;
 				outputFile= new File(outputFolder.getAbsolutePath()+"/"+corpus.getId()+TigerResourceFactory.FILE_ENDING_TIGER2);
-				System.out.println("storing model to <tiger2/> file '"+outputFile.getAbsolutePath()+"' ");
 				Resource resource = resourceSet.createResource(URI.createURI(outputFile.toURI().toString()));
 				resource.getContents().add(corpus);
 				resource.save(null);

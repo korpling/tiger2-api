@@ -22,7 +22,6 @@ import java.io.IOException;
 
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
-import de.hu_berlin.german.korpling.tiger2.Corpus;
 import de.hu_berlin.german.korpling.tiger2.exceptions.TigerResourceException;
 
 
@@ -50,52 +49,5 @@ public class TigerXMLResource extends ResourceImpl
 		
 		if (!exmaraldaFile.canRead())
 			throw new TigerResourceException("Cannot load resource, because the file can not be read: " + exmaraldaFile);
-//		BasicTranscription basicTranscription= null;
-//		{//create everything a valid exmaralda needs
-//			basicTranscription= ExmaraldaBasicFactory.eINSTANCE.createBasicTranscription();
-//			this.getContents().add(basicTranscription);
-//		}
-//		
-//		SAXParser parser;
-//        XMLReader xmlReader;
-//        EXBReader exbReader= new EXBReader();
-//        exbReader.setExmaraldaFile(exmaraldaFile);
-//        exbReader.setBasicTranscription(basicTranscription);
-//        
-//        SAXParserFactory factory= SAXParserFactory.newInstance();
-//        
-//        try
-//        {
-//			parser= factory.newSAXParser();
-//	        xmlReader= parser.getXMLReader();
-//	        xmlReader.setContentHandler(exbReader);
-//        } catch (ParserConfigurationException e) {
-//        	throw new ExmaraldaException("Cannot load exmaralda from resource '"+exmaraldaFile.getAbsolutePath()+"'.", e);
-//        }catch (Exception e) {
-//	    	throw new ExmaraldaException("Cannot load exmaralda from resource '"+exmaraldaFile.getAbsolutePath()+"'.", e);
-//		}
-//        try {
-//	        InputStream inputStream= new FileInputStream(exmaraldaFile);
-//			Reader reader = new InputStreamReader(inputStream, "UTF-8");
-//			 
-//			InputSource is = new InputSource(reader);
-//			is.setEncoding("UTF-8");
-//			 
-//			xmlReader.parse(is);
-//			
-//	    
-//        } catch (SAXException e) 
-//        {
-//        	
-//            try
-//            {
-//				parser= factory.newSAXParser();
-//		        xmlReader= parser.getXMLReader();
-//		        xmlReader.setContentHandler(exbReader);
-//				xmlReader.parse(exmaraldaFile.getAbsolutePath());
-//            }catch (Exception e1) {
-//            	throw new ExmaraldaException("Cannot load exmaralda from resource '"+exmaraldaFile.getAbsolutePath()+"'.", e1);
-//			}
-//		}
 	}
 }

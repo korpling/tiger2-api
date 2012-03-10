@@ -280,7 +280,7 @@ public class Tiger2Reader extends DefaultHandler2
 				String id= attributes.getValue(Tiger2XML.ATTRIBUTE_ID);
 				if (id== null)
 				{
-					this.LOGGER.warn("One syntactic node (terminal) element has no id.");
+					LOGGER.warn("One syntactic node (terminal) element has no id.");
 					id= "synNode_"+ this.currentGraph.getSyntacticNodes().size()+1;
 				}
 				else
@@ -334,7 +334,7 @@ public class Tiger2Reader extends DefaultHandler2
 				String id= attributes.getValue(Tiger2XML.ATTRIBUTE_ID);
 				if (id== null)
 				{
-					this.LOGGER.warn("One syntactic node element (non-terminal) has no id.");
+					LOGGER.warn("One syntactic node element (non-terminal) has no id.");
 					id= "synNode_"+ this.currentGraph.getSyntacticNodes().size()+1;
 				}
 				else
@@ -375,7 +375,7 @@ public class Tiger2Reader extends DefaultHandler2
 				String id= attributes.getValue(Tiger2XML.ATTRIBUTE_ID);
 				if (id== null)
 				{
-					this.LOGGER.warn("One '"+Tiger2XML.ELEMENT_EDGE+"' element has no id.");
+					LOGGER.warn("One '"+Tiger2XML.ELEMENT_EDGE+"' element has no id.");
 					id= "edge_"+ edgeCounter;
 					this.edgeCounter++;
 				}

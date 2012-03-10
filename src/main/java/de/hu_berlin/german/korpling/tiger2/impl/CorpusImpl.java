@@ -165,6 +165,16 @@ public class CorpusImpl extends EObjectImpl implements Corpus {
 	protected static final String FEATURE_SEPARATOR= "#";
 	
 	/**
+	 * This method must be implemented and return true, if this object shall be notified, when adding objects into contained
+	 * lists (Containment relation).
+	 * @return returns always <code>true</code>
+	 */
+	@Override
+	public boolean eNotificationRequired() {
+		return true;
+	}
+	
+	/**
 	 * This method is invoked by the EMF framework, when something has changed in a list being contained by
 	 * this object.
 	 */
@@ -228,17 +238,6 @@ public class CorpusImpl extends EObjectImpl implements Corpus {
 			}
 		}		
 	}
-	
-	/**
-	 * This method must be implemented and return true, if this object shall be notified, when adding objects into contained
-	 * lists (Containment relation).
-	 * @return returns always <code>true</code>
-	 */
-	@Override
-	public boolean eNotificationRequired() {
-		return true;
-	}
-	
 	
 	/**
 	 * <!-- begin-user-doc -->

@@ -62,59 +62,9 @@ public class Tiger2Resource extends ResourceImpl
 		corpus= Tiger2Factory.eINSTANCE.createCorpus();
 		this.getContents().add(corpus);
 		
-//		SAXParser parser;
-//        XMLReader xmlReader;
         Tiger2Reader tiger2Reader= new Tiger2Reader();
         tiger2Reader.setRootCorpus(corpus);
         tiger2Reader.setInputURI(URI.createFileURI(tiger2File.getAbsolutePath()));
         XMLHelper.readXml(tiger2File, tiger2Reader);
-        
-        
-//        SAXParserFactory factory= SAXParserFactory.newInstance();
-//        factory.setNamespaceAware(true);
-//        try {
-//			factory.setFeature("http://xml.org/sax/features/namespace-prefixes",true);
-//		} catch (SAXNotRecognizedException e2) {
-//			throw new TigerInternalException("Cannot set namespace feature to SAXParserFactory, because of nested exception. ",e2);
-//		} catch (SAXNotSupportedException e2) {
-//			throw new TigerInternalException("Cannot set namespace feature to SAXParserFactory, because of nested exception. ",e2);
-//		} catch (ParserConfigurationException e2) {
-//			throw new TigerInternalException("Cannot set namespace feature to SAXParserFactory, because of nested exception. ",e2);
-//		}
-//        
-//        
-//        try
-//        {
-//			parser= factory.newSAXParser();
-//	        xmlReader= parser.getXMLReader();
-//	        xmlReader.setContentHandler(tiger2Reader);
-//        } catch (ParserConfigurationException e) {
-//        	throw new TigerResourceException("Cannot load <tiger2/> files from resource '"+tiger2File.getAbsolutePath()+"'.", e);
-//        }catch (Exception e) {
-//	    	throw new TigerResourceException("Cannot load <tiger2/> files from resource '"+tiger2File.getAbsolutePath()+"'.", e);
-//		}
-//        try {
-//	        InputStream inputStream= new FileInputStream(tiger2File);
-//			Reader reader = new InputStreamReader(inputStream, "UTF-8");
-//			 
-//			InputSource is = new InputSource(reader);
-//			is.setEncoding("UTF-8");
-//			 
-//			xmlReader.parse(is);
-//			
-//	    
-//        } catch (SAXException e) 
-//        {
-//        	
-//            try
-//            {
-//				parser= factory.newSAXParser();
-//		        xmlReader= parser.getXMLReader();
-//		        xmlReader.setContentHandler(tiger2Reader);
-//				xmlReader.parse(tiger2File.getAbsolutePath());
-//            }catch (Exception e1) {
-//            	throw new TigerResourceException("Cannot load <tiger2/> files from resource '"+tiger2File.getAbsolutePath()+"'.", e1);
-//			}
-//		}
 	}
 }
