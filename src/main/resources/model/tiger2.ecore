@@ -156,4 +156,9 @@
     <eLiterals name="NT" value="1" literal="nt"/>
     <eLiterals name="EDGE" value="2" literal="edge"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DEFAULT_TYPE">
+    <eLiterals name="EDGE" literal="edge"/>
+    <eLiterals name="SECEDGE" value="1" literal="secedge"/>
+    <eLiterals name="PRIM" value="2" literal="prim"/>
+  </eClassifiers>
 </ecore:EPackage>

@@ -145,6 +145,13 @@ public class Tiger2PackageImpl extends EPackageImpl implements Tiger2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum defaulT_TYPEEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType uriEDataType = null;
 
 	/**
@@ -789,6 +796,15 @@ public class Tiger2PackageImpl extends EPackageImpl implements Tiger2Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getDEFAULT_TYPE() {
+		return defaulT_TYPEEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getURI() {
 		return uriEDataType;
 	}
@@ -898,6 +914,7 @@ public class Tiger2PackageImpl extends EPackageImpl implements Tiger2Package {
 
 		// Create enums
 		domainEEnum = createEEnum(DOMAIN);
+		defaulT_TYPEEEnum = createEEnum(DEFAULT_TYPE);
 
 		// Create data types
 		uriEDataType = createEDataType(URI);
@@ -1066,6 +1083,11 @@ public class Tiger2PackageImpl extends EPackageImpl implements Tiger2Package {
 		addEEnumLiteral(domainEEnum, de.hu_berlin.german.korpling.tiger2.DOMAIN.T);
 		addEEnumLiteral(domainEEnum, de.hu_berlin.german.korpling.tiger2.DOMAIN.NT);
 		addEEnumLiteral(domainEEnum, de.hu_berlin.german.korpling.tiger2.DOMAIN.EDGE);
+
+		initEEnum(defaulT_TYPEEEnum, de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE.class, "DEFAULT_TYPE");
+		addEEnumLiteral(defaulT_TYPEEEnum, de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE.EDGE);
+		addEEnumLiteral(defaulT_TYPEEEnum, de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE.SECEDGE);
+		addEEnumLiteral(defaulT_TYPEEEnum, de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE.PRIM);
 
 		// Initialize data types
 		initEDataType(uriEDataType, java.net.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

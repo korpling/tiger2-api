@@ -860,6 +860,16 @@ public interface Tiger2Package extends EPackage {
 	int DOMAIN = 12;
 
 	/**
+	 * The meta object id for the '{@link de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE <em>DEFAULT TYPE</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE
+	 * @see de.hu_berlin.german.korpling.tiger2.impl.Tiger2PackageImpl#getDEFAULT_TYPE()
+	 * @generated
+	 */
+	int DEFAULT_TYPE = 13;
+
+	/**
 	 * The meta object id for the '<em>URI</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -867,7 +877,7 @@ public interface Tiger2Package extends EPackage {
 	 * @see de.hu_berlin.german.korpling.tiger2.impl.Tiger2PackageImpl#getURI()
 	 * @generated
 	 */
-	int URI = 13;
+	int URI = 14;
 
 
 	/**
@@ -1562,6 +1572,16 @@ public interface Tiger2Package extends EPackage {
 	EEnum getDOMAIN();
 
 	/**
+	 * Returns the meta object for enum '{@link de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE <em>DEFAULT TYPE</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>DEFAULT TYPE</em>'.
+	 * @see de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE
+	 * @generated
+	 */
+	EEnum getDEFAULT_TYPE();
+
+	/**
 	 * Returns the meta object for data type '{@link java.net.URI <em>URI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2131,6 +2151,16 @@ public interface Tiger2Package extends EPackage {
 		 * @generated
 		 */
 		EEnum DOMAIN = eINSTANCE.getDOMAIN();
+
+		/**
+		 * The meta object literal for the '{@link de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE <em>DEFAULT TYPE</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE
+		 * @see de.hu_berlin.german.korpling.tiger2.impl.Tiger2PackageImpl#getDEFAULT_TYPE()
+		 * @generated
+		 */
+		EEnum DEFAULT_TYPE = eINSTANCE.getDEFAULT_TYPE();
 
 		/**
 		 * The meta object literal for the '<em>URI</em>' data type.

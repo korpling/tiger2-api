@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import de.hu_berlin.german.korpling.tiger2.Corpus;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
 import de.hu_berlin.german.korpling.tiger2.exceptions.TigerResourceException;
-import de.hu_berlin.german.korpling.tiger2.resources.tiger2.Tiger2Reader;
 import de.hu_berlin.german.korpling.tiger2.resources.util.XMLHelper;
 
 
@@ -37,6 +36,10 @@ public class TigerXMLResource extends ResourceImpl
 	 */
 	public void save(java.util.Map<?,?> options) throws java.io.IOException
 	{
+		TigerXMLWriter writer= new TigerXMLWriter();
+		writer.setOutputURI(this.getURI());
+		writer.setCorpus((Corpus)this.getContents().get(0));
+		writer.save();
 	}
 	
 	

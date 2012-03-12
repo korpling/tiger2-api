@@ -21,11 +21,11 @@ public class Tiger2Sample
 	 * Containing one {@link Segment}, containing one {@link Graph}, containing {@link Terminal} objects, {@link NonTerminal} objects,
 	 * {@link Edge} objects between {@link Terminal}s (anaphoric) and between {@link NonTerminal}s and {@link Terminal}s (prim).
 	 */
-	public static Corpus createSample1()
+	public static Corpus createSampleCorpus1()
 	{
 		Corpus corpus= Tiger2Factory.eINSTANCE.createCorpus();
 		corpus.setMeta(Tiger2Factory.eINSTANCE.createMeta());
-		corpus.getMeta().setName("samplle1");
+		corpus.getMeta().setName("sampleCorpus1");
 		corpus.getMeta().setAuthor("author1");
 		corpus.getMeta().setDate("1 January 2010");
 		corpus.getMeta().setDescription("some Description");

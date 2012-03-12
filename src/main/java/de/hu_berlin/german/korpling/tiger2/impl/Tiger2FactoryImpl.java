@@ -99,6 +99,8 @@ public class Tiger2FactoryImpl extends EFactoryImpl implements Tiger2Factory {
 		switch (eDataType.getClassifierID()) {
 			case Tiger2Package.DOMAIN:
 				return createDOMAINFromString(eDataType, initialValue);
+			case Tiger2Package.DEFAULT_TYPE:
+				return createDEFAULT_TYPEFromString(eDataType, initialValue);
 			case Tiger2Package.URI:
 				return createURIFromString(eDataType, initialValue);
 			default:
@@ -116,6 +118,8 @@ public class Tiger2FactoryImpl extends EFactoryImpl implements Tiger2Factory {
 		switch (eDataType.getClassifierID()) {
 			case Tiger2Package.DOMAIN:
 				return convertDOMAINToString(eDataType, instanceValue);
+			case Tiger2Package.DEFAULT_TYPE:
+				return convertDEFAULT_TYPEToString(eDataType, instanceValue);
 			case Tiger2Package.URI:
 				return convertURIToString(eDataType, instanceValue);
 			default:
@@ -240,6 +244,26 @@ public class Tiger2FactoryImpl extends EFactoryImpl implements Tiger2Factory {
 	 * @generated
 	 */
 	public String convertDOMAINToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DEFAULT_TYPE createDEFAULT_TYPEFromString(EDataType eDataType, String initialValue) {
+		DEFAULT_TYPE result = DEFAULT_TYPE.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertDEFAULT_TYPEToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
