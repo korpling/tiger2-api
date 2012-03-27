@@ -5,7 +5,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.ext.DefaultHandler2;
 
 import de.hu_berlin.german.korpling.tiger2.resources.TigerResourceFactory.TIGER2_FILE_TYPES;
-import de.hu_berlin.german.korpling.tiger2.resources.tiger2.Tiger2Dictionary;
+import de.hu_berlin.german.korpling.tiger2.resources.tiger2.v205.Tiger2Dictionary;
 
 /**
  * Reads a <tiger2/> conform file and checks its type by reading its content.

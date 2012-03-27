@@ -962,10 +962,10 @@ public class Tiger2PackageImpl extends EPackageImpl implements Tiger2Package {
 		initEAttribute(getGraph_Id(), ecorePackage.getEString(), "id", null, 0, 1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraph_Segment(), this.getSegment(), this.getSegment_Graphs(), "segment", null, 0, 1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(graphEClass, this.getEdge(), "getIncomingEdges", 0, -1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(graphEClass, this.getEdge(), "getOutgoingEdges", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "nodeId", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(graphEClass, this.getEdge(), "getOutgoingEdges", 0, -1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(graphEClass, this.getEdge(), "getIncomingEdges", 0, -1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "nodeId", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(graphEClass, this.getSyntacticNode(), "findNode", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -973,6 +973,10 @@ public class Tiger2PackageImpl extends EPackageImpl implements Tiger2Package {
 
 		op = addEOperation(graphEClass, this.getEdge(), "findEdge", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "edgeId", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(graphEClass, this.getSyntacticNode(), "findRoots", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(graphEClass, this.getSyntacticNode(), "findRoot", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(syntacticNodeEClass, SyntacticNode.class, "SyntacticNode", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSyntacticNode_Graph(), this.getGraph(), this.getGraph_SyntacticNodes(), "graph", null, 0, 1, SyntacticNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1088,6 +1092,8 @@ public class Tiger2PackageImpl extends EPackageImpl implements Tiger2Package {
 		addEEnumLiteral(defaulT_TYPEEEnum, de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE.EDGE);
 		addEEnumLiteral(defaulT_TYPEEEnum, de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE.SECEDGE);
 		addEEnumLiteral(defaulT_TYPEEEnum, de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE.PRIM);
+		addEEnumLiteral(defaulT_TYPEEEnum, de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE.LABEL);
+		addEEnumLiteral(defaulT_TYPEEEnum, de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE.SEC);
 
 		// Initialize data types
 		initEDataType(uriEDataType, java.net.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

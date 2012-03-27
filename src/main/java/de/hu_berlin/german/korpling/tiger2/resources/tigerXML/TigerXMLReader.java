@@ -32,6 +32,7 @@ import org.xml.sax.ext.DefaultHandler2;
 
 import de.hu_berlin.german.korpling.tiger2.Annotation;
 import de.hu_berlin.german.korpling.tiger2.Corpus;
+import de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE;
 import de.hu_berlin.german.korpling.tiger2.DOMAIN;
 import de.hu_berlin.german.korpling.tiger2.Edge;
 import de.hu_berlin.german.korpling.tiger2.Feature;
@@ -269,15 +270,21 @@ public class TigerXMLReader extends DefaultHandler2
 			else throw new TigerImplausibleContentException("An element of type '"+TigerXMLDictionary.ELEMENT_FEATURE+"' was found, which is not nedted in a '"+TigerXMLDictionary.ELEMENT_ANNOTATION+"' element");
 		}//corpus/annotation/feature
 		else if (	(TigerXMLDictionary.ELEMENT_EDGELABEL.equals(qName))||
-					(TigerXMLDictionary.ELEMENT_EDGELABEL.equals(qName)))
+					(TigerXMLDictionary.ELEMENT_SECEDGELABEL.equals(qName)))
 		{//corpus/annotation/edgelabel or corpus/annotation/secedgelabel
 			if (TigerXMLDictionary.ELEMENT_ANNOTATION.toString().equals(elementStack.peek()))
 			{
 				String idValue= attributes.getValue(TigerXMLDictionary.ATTRIBUTE_ID);
 				this.currentFeature.setId(idValue);
 				this.currentFeature= Tiger2Factory.eINSTANCE.createFeature();
-				this.currentFeature.setName("label");
-				this.currentFeature.setDomain(DOMAIN.EDGE);	
+				this.currentFeature.setName(DEFAULT_TYPE.LABEL.toString());
+				this.currentFeature.setDomain(DOMAIN.EDGE);
+				
+				if ((TigerXMLDictionary.ELEMENT_EDGELABEL.equals(qName)))
+					this.currentFeature.setType(DEFAULT_TYPE.PRIM.toString());
+				else if ((TigerXMLDictionary.ELEMENT_SECEDGELABEL.equals(qName)))
+					this.currentFeature.setType(DEFAULT_TYPE.SEC.toString());
+				
 				currentCorpus.getFeatures().add(currentFeature);
 			}
 		}//corpus/annotation/edgelabel or corpus/annotation/secedgelabel
@@ -301,7 +308,6 @@ public class TigerXMLReader extends DefaultHandler2
 			}
 			else 
 			{
-				System.out.println("stack: "+ elementStack);
 				throw new TigerImplausibleContentException("An element of type '"+TigerXMLDictionary.ELEMENT_VALUE+"' was found, which is not contained in a '"+TigerXMLDictionary.ELEMENT_FEATURE+"' element."); 
 			}
 		}//corpus/annotation/feature/value
@@ -337,7 +343,8 @@ public class TigerXMLReader extends DefaultHandler2
 		{
 			importNonTerminal(attributes);
 		}
-		else if (TigerXMLDictionary.ELEMENT_EDGE.equals(qName))
+		else if (	(TigerXMLDictionary.ELEMENT_EDGE.equals(qName))||
+					(TigerXMLDictionary.ELEMENT_SECEDGE.equals(qName)))
 		{//ELEMENT_EDGE
 			importEdges(qName, attributes);
 		}//ELEMENT_EDGE
@@ -462,11 +469,11 @@ public class TigerXMLReader extends DefaultHandler2
 		//start: @type
 			String type= null;
 			if (TigerXMLDictionary.ELEMENT_EDGE.equals(qName))
-				type= "edge";
-			else type= "secedge";
+				type= DEFAULT_TYPE.PRIM.toString();
+			else type= DEFAULT_TYPE.SEC.toString();
 			edge.setType(type);
 		//end: @type
-			
+		
 		for (int i= 0; i< attributes.getLength(); i++)
 		{
 			String attName= attributes.getLocalName(i);
@@ -483,10 +490,7 @@ public class TigerXMLReader extends DefaultHandler2
 					attValue= attValue.replace("#", "");
 				SyntacticNode synNode= id2synNode.get(attValue);
 				if (synNode!= null)
-				{
 					edge.setTarget(synNode);
-					currentGraph.getEdges().add(edge);
-				}
 				else
 					this.notTargetedEdges.put(edge, attValue);
 			}
@@ -494,7 +498,7 @@ public class TigerXMLReader extends DefaultHandler2
 			{
 				Annotation annotation= null;
 				try{
-					annotation= this.currentCorpus.createAnnotation(attName, DOMAIN.EDGE, type, attValue);
+					annotation= this.currentCorpus.createAnnotation(attName, DOMAIN.EDGE, edge.getType(), attValue);
 				}catch (TigerInvalidModelException e) {
 					throw new TigerImplausibleContentException("An exception occurs in edge '"+edge.getId()+"' ", e);
 				}
@@ -503,6 +507,8 @@ public class TigerXMLReader extends DefaultHandler2
 			}
 		}
 		edge.setSource(this.currentSyntacticNode);
+		if (edge.getTarget()!= null)
+			currentGraph.getEdges().add(edge);
 	}
 	
 	/**

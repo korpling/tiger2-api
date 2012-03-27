@@ -15,7 +15,7 @@
  *
  *
  */
-package de.hu_berlin.german.korpling.tiger2.resources.tiger2;
+package de.hu_berlin.german.korpling.tiger2.resources.tiger2.v205;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -107,9 +107,6 @@ public class Tiger2Writer
 	{
 		if (this.getOutputURI()== null)
 			throw new TigerInternalException("Cannot save the 'Corpus' object, because no output uri was given.");
-		
-		
-			
 		try
 		{
 			//start: open stream for writing

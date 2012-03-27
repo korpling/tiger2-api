@@ -15,7 +15,7 @@
  *
  *
  */
-package de.hu_berlin.german.korpling.tiger2.resources.tiger2;
+package de.hu_berlin.german.korpling.tiger2.resources.tiger2.v205;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +44,7 @@ public class Tiger2Resource extends ResourceImpl
 	
 	
 	/**
-	 * Loads a resource into treetagger-model from tab-seperated file.
+	 * Loads a resource into &lt;tiger2/&gt; model.
 	 */
 	public void load(java.util.Map<?,?> options) throws IOException
 	{

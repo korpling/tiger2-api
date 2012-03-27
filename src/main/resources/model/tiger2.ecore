@@ -4,10 +4,10 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tiger2"
     nsURI="http://korpling.german.hu-berlin.de/tiger2/" nsPrefix="tiger2">
   <eClassifiers xsi:type="ecore:EClass" name="Graph">
-    <eOperations name="getIncomingEdges" upperBound="-1" eType="#//Edge">
+    <eOperations name="getOutgoingEdges" upperBound="-1" eType="#//Edge">
       <eParameters name="nodeId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eOperations name="getOutgoingEdges" upperBound="-1" eType="#//Edge">
+    <eOperations name="getIncomingEdges" upperBound="-1" eType="#//Edge">
       <eParameters name="nodeId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eOperations name="findNode" eType="#//SyntacticNode">
@@ -16,6 +16,8 @@
     <eOperations name="findEdge" eType="#//Edge">
       <eParameters name="edgeId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
+    <eOperations name="findRoots" upperBound="-1" eType="#//SyntacticNode"/>
+    <eOperations name="findRoot" eType="#//SyntacticNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
         eType="#//Edge" containment="true" eOpposite="#//Edge/graph"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="syntacticNodes" upperBound="-1"
@@ -160,5 +162,7 @@
     <eLiterals name="EDGE" literal="edge"/>
     <eLiterals name="SECEDGE" value="1" literal="secedge"/>
     <eLiterals name="PRIM" value="2" literal="prim"/>
+    <eLiterals name="LABEL" value="3" literal="label"/>
+    <eLiterals name="SEC" value="4" literal="sec"/>
   </eClassifiers>
 </ecore:EPackage>

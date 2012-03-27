@@ -18,7 +18,7 @@
 /**
  * 
  */
-package de.hu_berlin.german.korpling.tiger2.resources.tiger2.tests;
+package de.hu_berlin.german.korpling.tiger2.resources.tiger2.v205.tests;
 
 
 import java.io.File;
@@ -107,7 +107,6 @@ public class WritingTest extends XMLTestCase{
 	public void testWriteSample1() throws IOException, SAXException
 	{
 		File tmpFile= new File(TMP_FOLDER+ "sampleCorpus1.tiger2");
-		System.out.println("tmpFile: "+ tmpFile.getAbsolutePath());
 		File expectedFile= new File(TEST_FOLDER+ "sampleCorpus/sampleCorpus1.tiger2");
 		
 		Corpus sampleCorpus= Tiger2Sample.createSampleCorpus1();

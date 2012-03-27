@@ -27,14 +27,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.List;
 
-import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
-import org.custommonkey.xmlunit.DetailedDiff;
 import org.custommonkey.xmlunit.Diff;
-import org.custommonkey.xmlunit.ElementNameAndAttributeQualifier;
 import org.custommonkey.xmlunit.XMLTestCase;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.eclipse.emf.common.util.URI;
@@ -48,14 +44,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import de.hu_berlin.german.korpling.tiger2.Corpus;
-import de.hu_berlin.german.korpling.tiger2.DOMAIN;
-import de.hu_berlin.german.korpling.tiger2.Edge;
-import de.hu_berlin.german.korpling.tiger2.Feature;
-import de.hu_berlin.german.korpling.tiger2.FeatureValue;
-import de.hu_berlin.german.korpling.tiger2.Graph;
-import de.hu_berlin.german.korpling.tiger2.Segment;
-import de.hu_berlin.german.korpling.tiger2.SyntacticNode;
-import de.hu_berlin.german.korpling.tiger2.Terminal;
 import de.hu_berlin.german.korpling.tiger2.resources.TigerResourceFactory;
 import de.hu_berlin.german.korpling.tiger2.samples.Tiger2Sample;
 
@@ -107,7 +95,6 @@ public class WritingTest extends XMLTestCase{
 	public void testWriteSample1() throws IOException, SAXException
 	{
 		File tmpFile= new File(TMP_FOLDER+ "sampleCorpus1.xml");
-		System.out.println("tmpFile: "+ tmpFile.getAbsolutePath());
 		File expectedFile= new File(TEST_FOLDER+ "sampleCorpus/sampleCorpus1.xml");
 		
 		Corpus sampleCorpus= Tiger2Sample.createSampleCorpus1();

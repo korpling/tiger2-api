@@ -40,6 +40,7 @@ import de.hu_berlin.german.korpling.tiger2.Graph;
 import de.hu_berlin.german.korpling.tiger2.Meta;
 import de.hu_berlin.german.korpling.tiger2.NonTerminal;
 import de.hu_berlin.german.korpling.tiger2.Segment;
+import de.hu_berlin.german.korpling.tiger2.SyntacticNode;
 import de.hu_berlin.german.korpling.tiger2.Terminal;
 import de.hu_berlin.german.korpling.tiger2.exceptions.TigerException;
 import de.hu_berlin.german.korpling.tiger2.exceptions.TigerInternalException;
@@ -161,9 +162,13 @@ public class TigerXMLWriter
 	{
 		this.output.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
 		this.output.print("<"+TigerXMLDictionary.ELEMENT_CORPUS+" ");
+		String idVal= null;
 		if (	(corpus.getId()!= null)&&
 				(!corpus.getId().isEmpty()))
-			this.output.print(TigerXMLDictionary.ATTRIBUTE_ID+"=\""+corpus.getId()+"\"");
+			idVal= corpus.getId();
+		else
+			idVal="NOT_SET";
+		this.output.print(TigerXMLDictionary.ATTRIBUTE_ID+"=\""+idVal+"\"");
 		this.output.println(">");
 		//start: print head
 			this.output.println("<"+TigerXMLDictionary.ELEMENT_HEAD+">");
@@ -250,73 +255,112 @@ public class TigerXMLWriter
 	{
 		if (features!= null)
 		{
+			StringBuffer edgeLabel= null;
+			StringBuffer secedgeLabel= null;
 			for (Feature feature: features)
 			{
-				String featureXMLElement= null;
-				//compute String for xml element, feature in case of t or nt, edgelabel or secedgelabel in case of edge
-					featureXMLElement= TigerXMLDictionary.ELEMENT_FEATURE.toString();
-					
-					System.out.println("feature.getDomain(): "+ feature.getDomain());
-					if (DOMAIN.EDGE.equals(feature.getDomain()))
+				if (DOMAIN.EDGE.equals(feature.getDomain()))
+				{//compute String for xml element, feature in case of t or nt, edgelabel or secedgelabel in case of edge
+					String featureXMLElement= TigerXMLDictionary.ELEMENT_FEATURE.toString();
+					StringBuffer currentBuffer= null;
+					if (	(DEFAULT_TYPE.EDGE.getLiteral().equals(feature.getType()))||
+							(DEFAULT_TYPE.PRIM.getLiteral().equals(feature.getType())))
 					{
-						System.out.println("feature.feature.getType(): "+ feature.getType());
-						if (	(DEFAULT_TYPE.EDGE.getLiteral().equals(feature.getType()))||
-								(DEFAULT_TYPE.PRIM.getLiteral().equals(feature.getType())))
-						{
-							System.out.println("type is edge");
-							featureXMLElement= TigerXMLDictionary.ELEMENT_EDGELABEL.toString();
-						}
-						else if (DEFAULT_TYPE.SECEDGE.getLiteral().equals(feature.getType()))
-						{
-							System.out.println("type is secedge");
-							featureXMLElement= TigerXMLDictionary.ELEMENT_SECEDGELABEL.toString();
-						}
-						else featureXMLElement= TigerXMLDictionary.ELEMENT_SECEDGELABEL.toString();
-					}	
-				//compute String for xml element, feature in case of t or nt, edgelabel or secedgelabel in case of edge
-				this.output.print("<"+featureXMLElement);
-				if (feature.getId()!= null)
-					this.output.print(" "+ TigerXMLDictionary.ATTRIBUTE_ID+"=\""+feature.getId()+"\"");
-				if (feature.getName()!= null)
-					this.output.print(" "+ TigerXMLDictionary.ATTRIBUTE_NAME+"=\""+feature.getName()+"\"");
-				if (feature.getDomain()!= null)
-					this.output.print(" "+ TigerXMLDictionary.ATTRIBUTE_DOMAIN+"=\""+feature.getDomain()+"\"");
-				
-				if (	(feature.getFeatureValues()!= null)||
-						(feature.getFeatureValues().size()>0))
-				{	
-					this.output.println(">");
-					this.saveFeaturesValues(feature.getFeatureValues());
-					this.output.println("</"+featureXMLElement+">");
-				}
-				else this.output.println(">");
+						edgeLabel= new StringBuffer();
+						featureXMLElement= TigerXMLDictionary.ELEMENT_EDGELABEL.toString();
+						currentBuffer= edgeLabel;
+					}
+					else if (DEFAULT_TYPE.SECEDGE.getLiteral().equals(feature.getType()))
+					{
+						secedgeLabel= new StringBuffer();
+						currentBuffer= secedgeLabel;
+						featureXMLElement= TigerXMLDictionary.ELEMENT_SECEDGELABEL.toString();
+					}
+					else 
+					{
+						secedgeLabel= new StringBuffer();
+						currentBuffer= secedgeLabel;
+						featureXMLElement= TigerXMLDictionary.ELEMENT_SECEDGELABEL.toString();
+					}
+					if (	(feature.getFeatureValues()!= null)||
+							(feature.getFeatureValues().size()>0))
+					{	
+						currentBuffer.append("<"+featureXMLElement.toString());
+						currentBuffer.append(">");
+						currentBuffer.append("\n");
+						this.saveFeaturesValues(currentBuffer, feature.getFeatureValues());
+						currentBuffer.append("</"+featureXMLElement+">");
+					}
+					else this.output.println(">");
+				}//compute String for xml element, feature in case of t or nt, edgelabel or secedgelabel in case of edge
+				else
+				{//print normal feature element
+					this.output.print("<"+TigerXMLDictionary.ELEMENT_FEATURE.toString());
+					if (feature.getId()!= null)
+						this.output.print(" "+ TigerXMLDictionary.ATTRIBUTE_ID+"=\""+feature.getId()+"\"");
+					if (feature.getName()!= null)
+						this.output.print(" "+ TigerXMLDictionary.ATTRIBUTE_NAME+"=\""+feature.getName()+"\"");
+					if (feature.getDomain()!= null)
+						this.output.print(" "+ TigerXMLDictionary.ATTRIBUTE_DOMAIN+"=\""+feature.getDomain().getName()+"\"");
+					
+					if (	(feature.getFeatureValues()!= null)||
+							(feature.getFeatureValues().size()>0))
+					{	
+						this.output.println(">");
+						this.saveFeaturesValues(feature.getFeatureValues());
+						this.output.println("</"+TigerXMLDictionary.ELEMENT_FEATURE.toString()+">");
+					}
+					else this.output.println(">");
+				}//print normal feature element
 			}
+			if (edgeLabel!= null)
+				this.output.println(edgeLabel.toString());
+			if (secedgeLabel!= null)
+				this.output.println(secedgeLabel.toString());
 		}
 	}
 	
 	/**
 	 * Stores the given list of {@link FeatureValue} objects as (see {@link TigerXMLDictionary#ELEMENT_VALUE}) elements.
 	 * @param corpus corpus to store as sub corpus
+	 * @param output Stream to write the data to
 	 */
 	protected void saveFeaturesValues(EList<FeatureValue> featureValues)
+	{
+		StringBuffer buf= new StringBuffer();
+		this.saveFeaturesValues(buf, featureValues);
+		this.output.append(buf.toString());
+	}
+	
+	/**
+	 * Stores the given list of {@link FeatureValue} objects as (see {@link TigerXMLDictionary#ELEMENT_VALUE}) elements.
+	 * @param corpus corpus to store as sub corpus
+	 * @param output Stream to write the data to
+	 */
+	protected void saveFeaturesValues(StringBuffer output, EList<FeatureValue> featureValues)
 	{
 		if (featureValues!= null)
 		{
 			for (FeatureValue featureValue: featureValues)
 			{
-				this.output.print("<"+TigerXMLDictionary.ELEMENT_VALUE);
+				output.append("<"+TigerXMLDictionary.ELEMENT_VALUE);
 				if (featureValue.getId()!= null)
-					this.output.print(" "+ TigerXMLDictionary.ATTRIBUTE_ID+"=\""+featureValue.getId()+"\"");
+					output.append(" "+ TigerXMLDictionary.ATTRIBUTE_ID+"=\""+featureValue.getId()+"\"");
 				if (featureValue.getValue()!= null)
-					this.output.print(" "+ TigerXMLDictionary.ATTRIBUTE_NAME+"=\""+featureValue.getValue()+"\"");
+					output.append(" "+ TigerXMLDictionary.ATTRIBUTE_NAME+"=\""+featureValue.getValue()+"\"");
 				
 				if (featureValue.getDescription()!= null)
 				{
-					this.output.print(">");
-					this.output.print(featureValue.getDescription());
-					this.output.println("</"+TigerXMLDictionary.ELEMENT_VALUE+">");
+					output.append(">");
+					output.append(featureValue.getDescription());
+					output.append("</"+TigerXMLDictionary.ELEMENT_VALUE+">");
+					output.append("\n");
 				}
-				else this.output.println("/>"); 
+				else 
+				{
+					output.append("/>");
+					output.append("\n");
+				}
 			}
 		}
 	}
@@ -356,7 +400,11 @@ public class TigerXMLWriter
 	 */
 	protected void saveGraph(Graph graph)
 	{
-		this.output.println("<"+TigerXMLDictionary.ELEMENT_GRAPH+" "+TigerXMLDictionary.ATTRIBUTE_ID+"=\""+graph.getId()+"\">");
+		this.output.print("<"+TigerXMLDictionary.ELEMENT_GRAPH);
+		SyntacticNode synNode= graph.findRoot();
+		if (synNode!= null)
+			this.output.print(" "+ TigerXMLDictionary.ATTRIBUTE_ROOT+"=\""+synNode.getId()+"\"");
+		this.output.println(">");
 		//start: store terminal nodes
 			if (	(graph.getTerminals()!= null)&&
 					(graph.getTerminals().size()> 0))
@@ -395,10 +443,14 @@ public class TigerXMLWriter
 		if (terminal!= null)
 		{
 			this.output.print("<"+TigerXMLDictionary.ELEMENT_TERMINAL+" "+TigerXMLDictionary.ATTRIBUTE_ID+"=\""+terminal.getId()+"\"");
-			this.output.print(" "+TigerXMLDictionary.ATTRIBUTE_WORD+"=\""+StringEscapeUtils.escapeXml(terminal.getWord())+"\"");
-//			if (terminal.getType()!= null)
-//				this.output.print(" "+NS_ALIAS_TIGER2+":"+TigerXMLDictionary.ATTRIBUTE_TYPE+"=\""+terminal.getType()+"\"");
-			
+			if (terminal.getWord()!= null)
+			{
+				String word= "";
+				System.out.println("to write word: "+ terminal.getWord());
+				if (!terminal.getWord().isEmpty())
+					word= StringEscapeUtils.escapeXml(terminal.getWord());
+				this.output.print(" "+TigerXMLDictionary.ATTRIBUTE_WORD+"=\""+word+"\"");
+			}
 			this.saveAnnotations(terminal.getAnnotations());
 			if (terminal.getGraph().getOutgoingEdges(terminal.getId())!= null)
 			{
@@ -423,9 +475,6 @@ public class TigerXMLWriter
 		if (nonTerminal!= null)
 		{
 			this.output.print("<"+TigerXMLDictionary.ELEMENT_NONTERMINAL+" "+TigerXMLDictionary.ATTRIBUTE_ID+"=\""+nonTerminal.getId()+"\"");
-//			if (nonTerminal.getType()!= null)
-//				this.output.print(" "+NS_ALIAS_TIGER2+":"+TigerXMLDictionary.ATTRIBUTE_TYPE+"=\""+nonTerminal.getType()+"\"");
-			
 			this.saveAnnotations(nonTerminal.getAnnotations());
 			if (nonTerminal.getGraph().getOutgoingEdges(nonTerminal.getId())!= null)
 			{
@@ -473,8 +522,7 @@ public class TigerXMLWriter
 		//start: compute xml element name: secedge or edge
 			if (edge.getType()!= null)
 			{
-				if (	(DEFAULT_TYPE.PRIM.equals(edge.getType())||
-						(DEFAULT_TYPE.PRIM.equals(edge.getType()))))
+				if (DEFAULT_TYPE.PRIM.toString().equalsIgnoreCase(edge.getType()))
 						xmlElement= TigerXMLDictionary.ELEMENT_EDGE;
 				else xmlElement= TigerXMLDictionary.ELEMENT_SECEDGE;
 			}
@@ -492,21 +540,35 @@ public class TigerXMLWriter
 							throw new TigerInvalidModelException("Cannot export <tiger2/> model to TigerXML, because the type of Annotation of the given edge '"+edge.getId()+"' is not the same for all annotations.");
 					}
 				}
-				if (	(DEFAULT_TYPE.PRIM.equals(featType)||
-						(DEFAULT_TYPE.PRIM.equals(featType))))
+				if (DEFAULT_TYPE.PRIM.toString().equalsIgnoreCase(featType))
 						xmlElement= TigerXMLDictionary.ELEMENT_EDGE;
 				else xmlElement= TigerXMLDictionary.ELEMENT_SECEDGE;
 			}
-		
 		//end: compute xml element name: secedge or edge
-		this.output.print("<"+xmlElement+" "+TigerXMLDictionary.ATTRIBUTE_ID+"=\""+edge.getId()+"\"");
-//		if (edge.getType()!= null)
-//			this.output.print(" "+NS_ALIAS_TIGER2+":"+TigerXMLDictionary.ATTRIBUTE_TYPE+"=\""+edge.getType()+"\"");
-		this.output.print(" "+TigerXMLDictionary.ATTRIBUTE_IDREF+"=\"#"+edge.getTarget().getId()+"\"");
+		this.output.print("<"+xmlElement);
+		this.output.print(" "+TigerXMLDictionary.ATTRIBUTE_IDREF+"=\""+edge.getTarget().getId()+"\"");
 		
+		//start: print only 'label'-annotation, in case of no label annotation exists, print first annotation
+			Annotation labelAnno= null;
+			if (	(edge.getAnnotations()!= null)&&
+					(edge.getAnnotations().size()>0))
+			{
+				for (Annotation anno: edge.getAnnotations())
+				{
+					if (DEFAULT_TYPE.LABEL.toString().equals(anno.getValue()))
+					{
+						labelAnno= anno;
+						break;
+					}
+				}
+				if (labelAnno== null)
+					labelAnno= edge.getAnnotations().get(0);
+			}
+			
+			if (labelAnno!= null)
+				this.output.print(" "+DEFAULT_TYPE.LABEL.toString()+"=\""+StringEscapeUtils.escapeXml(labelAnno.getValue())+"\"");
+		//end: print only 'label'-annotation, in case of no label annotation exists, print first annotation
 		
-		//TODO: print only 'label'-annotation, in case of no label annotation exists, print first annotation 
-		this.saveAnnotations(edge.getAnnotations());
 		this.output.println("/>");
 	}
 }

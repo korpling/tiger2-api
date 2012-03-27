@@ -197,4 +197,19 @@ public interface Graph extends EObject {
 	 */
 	Edge findEdge(String edgeId);
 
+	/**
+	 * Searches for root nodes and returns the found nodes as an unsorted list. A root node is a node without incoming edges.
+	 * @model
+	 * @generated
+	 */
+	EList<SyntacticNode> findRoots();
+
+	/**
+	 * Searches for root nodes and returns the found node. If more than one node is a rootnode, only the first found root node is returned.
+	 * A root node is a node without incoming edges.
+	 * @model
+	 * @generated
+	 */
+	SyntacticNode findRoot();
+
 } // Graph

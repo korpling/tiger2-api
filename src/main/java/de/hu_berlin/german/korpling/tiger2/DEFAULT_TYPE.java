@@ -48,7 +48,23 @@ public enum DEFAULT_TYPE implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRIM(2, "PRIM", "prim");
+	PRIM(2, "PRIM", "prim"), /**
+	 * The '<em><b>LABEL</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LABEL_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	LABEL(3, "LABEL", "label"), /**
+	 * The '<em><b>SEC</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SEC_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SEC(4, "SEC", "sec");
 
 	/**
 	 * The '<em><b>EDGE</b></em>' literal value.
@@ -96,6 +112,36 @@ public enum DEFAULT_TYPE implements Enumerator {
 	public static final int PRIM_VALUE = 2;
 
 	/**
+	 * The '<em><b>LABEL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LABEL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LABEL
+	 * @model literal="label"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LABEL_VALUE = 3;
+
+	/**
+	 * The '<em><b>SEC</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SEC</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SEC
+	 * @model literal="sec"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SEC_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>DEFAULT TYPE</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,6 +152,8 @@ public enum DEFAULT_TYPE implements Enumerator {
 			EDGE,
 			SECEDGE,
 			PRIM,
+			LABEL,
+			SEC,
 		};
 
 	/**
@@ -159,6 +207,8 @@ public enum DEFAULT_TYPE implements Enumerator {
 			case EDGE_VALUE: return EDGE;
 			case SECEDGE_VALUE: return SECEDGE;
 			case PRIM_VALUE: return PRIM;
+			case LABEL_VALUE: return LABEL;
+			case SEC_VALUE: return SEC;
 		}
 		return null;
 	}

@@ -15,7 +15,7 @@
  *
  *
  */
-package de.hu_berlin.german.korpling.tiger2.resources.tiger2;
+package de.hu_berlin.german.korpling.tiger2.resources.tiger2.v205;
 
 import java.util.Collections;
 import java.util.HashMap;

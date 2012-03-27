@@ -15,7 +15,7 @@
  *
  *
  */
-package de.hu_berlin.german.korpling.tiger2.resources.tiger2;
+package de.hu_berlin.german.korpling.tiger2.resources.tiger2.v205;
 
 import java.io.File;
 import java.util.Stack;

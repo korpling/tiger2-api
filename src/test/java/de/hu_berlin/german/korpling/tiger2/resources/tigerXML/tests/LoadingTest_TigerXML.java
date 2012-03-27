@@ -36,6 +36,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.hu_berlin.german.korpling.tiger2.Corpus;
+import de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE;
 import de.hu_berlin.german.korpling.tiger2.DOMAIN;
 import de.hu_berlin.german.korpling.tiger2.Edge;
 import de.hu_berlin.german.korpling.tiger2.Feature;
@@ -161,47 +162,103 @@ public class LoadingTest_TigerXML extends TestCase{
 		//nonterminals
 			
 		//start: check edges
+			assertEquals(4, graph.getEdges().size());
+			
 			Edge edge= null;
 			
 			edge= graph.findEdge("e1");
 			assertNotNull(edge);
-			assertEquals("edge", edge.getType());
+			assertEquals(DEFAULT_TYPE.PRIM.toString(), edge.getType());
 			assertNotNull(edge.getSource());
 			assertNotNull(edge.getTarget());
 			assertEquals(graph.findNode("s4_501"), edge.getSource());
 			assertEquals(graph.findNode("s4_1"), edge.getTarget());
-			assertNotNull(edge.findAnnotation("label"));
-			assertEquals("MO", edge.findAnnotation("label").getValue());
+			assertNotNull(edge.findAnnotation(DEFAULT_TYPE.LABEL.toString()));
+			assertEquals("MO", edge.findAnnotation(DEFAULT_TYPE.LABEL.toString()).getValue());
 			
 			edge= graph.findEdge("e2");
 			assertNotNull(edge);
-			assertEquals("edge", edge.getType());
+			assertEquals(DEFAULT_TYPE.PRIM.toString(), edge.getType());
 			assertNotNull(edge.getSource());
 			assertNotNull(edge.getTarget());
 			assertEquals(graph.findNode("s4_501"), edge.getSource());
 			assertEquals(graph.findNode("s4_2"), edge.getTarget());
-			assertNotNull(edge.findAnnotation("label"));
-			assertEquals("SB", edge.findAnnotation("label").getValue());
+			assertNotNull(edge.findAnnotation(DEFAULT_TYPE.LABEL.toString()));
+			assertEquals("SB", edge.findAnnotation(DEFAULT_TYPE.LABEL.toString()).getValue());
 			
 			edge= graph.findEdge("e3");
 			assertNotNull(edge);
-			assertEquals("edge", edge.getType());
+			assertEquals(DEFAULT_TYPE.PRIM.toString(), edge.getType());
 			assertNotNull(edge.getSource());
 			assertNotNull(edge.getTarget());
 			assertEquals(graph.findNode("s4_500"), edge.getSource());
 			assertEquals(graph.findNode("s4_501"), edge.getTarget());
-			assertNotNull(edge.findAnnotation("label"));
-			assertEquals("--", edge.findAnnotation("label").getValue());
+			assertNotNull(edge.findAnnotation(DEFAULT_TYPE.LABEL.toString()));
+			assertEquals("--", edge.findAnnotation(DEFAULT_TYPE.LABEL.toString()).getValue());
 			
 			edge= graph.findEdge("e4");
 			assertNotNull(edge);
-			assertEquals("edge", edge.getType());
+			assertEquals(DEFAULT_TYPE.PRIM.toString(), edge.getType());
 			assertNotNull(edge.getSource());
 			assertNotNull(edge.getTarget());
 			assertEquals(graph.findNode("s4_500"), edge.getSource());
 			assertEquals(graph.findNode("s4_3"), edge.getTarget());
-			assertNotNull(edge.findAnnotation("label"));
-			assertEquals("--", edge.findAnnotation("label").getValue());
+			assertNotNull(edge.findAnnotation(DEFAULT_TYPE.LABEL.toString()));
+			assertEquals("--", edge.findAnnotation(DEFAULT_TYPE.LABEL.toString()).getValue());
 		//end: check edges
+	}
+	
+	/**
+	 * Tests a small sample corpus, having some meta annotations, annotation definitions and one segments including
+	 * one graph. Checks only the correct number of nodes and edges.
+	 * @throws IOException
+	 */
+	@Test
+	public void testReadSecEdges() throws IOException
+	{
+		File inputFile= new File(TEST_FOLDER+ "withSecEdges/sampleCorpus1.xml");
+		
+		//load resource 
+		Resource resource = resourceSet.createResource(URI.createFileURI(inputFile.getAbsolutePath()));
+		
+		if (resource== null)
+			throw new NullPointerException("The resource is null.");
+		resource.load(null);
+		
+		assertNotNull(resource.getContents());
+		assertEquals(1, resource.getContents().size());
+		
+		Corpus corpus= (Corpus) resource.getContents().get(0);
+		
+		assertNotNull(corpus.getFeatures());
+		assertEquals(6, corpus.getFeatures().size());
+		
+		assertNotNull(corpus.findFeature("lemma", DOMAIN.T).getFeatureValues());
+		assertEquals(0, corpus.findFeature("lemma", DOMAIN.T).getFeatureValues().size());
+		
+		assertNotNull(corpus.findFeature("pos", DOMAIN.T).getFeatureValues());
+		assertEquals(7, corpus.findFeature("pos", DOMAIN.T).getFeatureValues().size());
+		
+		assertNotNull(corpus.findFeature("function", DOMAIN.T).getFeatureValues());
+		assertEquals(1, corpus.findFeature("function", DOMAIN.T).getFeatureValues().size());
+		
+		assertNotNull(corpus.findFeature("cat", DOMAIN.NT).getFeatureValues());
+		assertEquals(4, corpus.findFeature("cat", DOMAIN.NT).getFeatureValues().size());
+		
+		assertNotNull(corpus.findFeature(DEFAULT_TYPE.LABEL.toString(), DOMAIN.EDGE, DEFAULT_TYPE.PRIM.toString()).getFeatureValues());
+		assertEquals(5, corpus.findFeature(DEFAULT_TYPE.LABEL.toString(), DOMAIN.EDGE, DEFAULT_TYPE.PRIM.toString()).getFeatureValues().size());
+		
+		assertNotNull(corpus.findFeature(DEFAULT_TYPE.LABEL.toString(), DOMAIN.EDGE, DEFAULT_TYPE.SEC.toString()).getFeatureValues());
+		assertEquals(1, corpus.findFeature(DEFAULT_TYPE.LABEL.toString(), DOMAIN.EDGE, DEFAULT_TYPE.SEC.toString()).getFeatureValues().size());
+		
+		assertNotNull(corpus.getSegments());
+		assertEquals(1, corpus.getSegments().size());
+		assertNotNull(corpus.getSegments().get(0).getGraphs());
+		assertEquals(1, corpus.getSegments().get(0).getGraphs().size());
+		
+		Graph graph= corpus.getSegments().get(0).getGraphs().get(0);
+		assertEquals(8, graph.getTerminals().size());
+		assertEquals(7, graph.getNonTerminals().size());
+		assertEquals(15, graph.getEdges().size());
 	}
 }

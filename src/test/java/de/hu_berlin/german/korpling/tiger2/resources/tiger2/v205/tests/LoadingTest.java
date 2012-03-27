@@ -18,7 +18,7 @@
 /**
  * 
  */
-package de.hu_berlin.german.korpling.tiger2.resources.tiger2.tests;
+package de.hu_berlin.german.korpling.tiger2.resources.tiger2.v205.tests;
 
 
 import java.io.File;

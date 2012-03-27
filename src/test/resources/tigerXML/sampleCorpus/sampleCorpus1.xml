@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<corpus id="NOT_SET">
+    <head>
+        <meta>
+            <name>sampleCorpus1</name>
+            <author>author1</author>
+            <date>1 January 2010</date>
+            <description>some Description</description>
+            <format>format 01</format>
+            <history>any history</history>
+        </meta>
+        <annotation>
+            <feature name="lemma" domain="T"> </feature>
+            <feature name="pos" domain="T">
+                <value name=".">Punctuation</value>
+                <value name="JJ">Adjective</value>
+                <value name="NN">Noun, singular or mass</value>
+                <value name="PP">Personal pronoun</value>
+                <value name="RP">Particle</value>
+                <value name="VB">Verb, base form</value>
+                <value name="VBP">Verb, non-3rd person singular present</value>
+            </feature>
+            <feature name="function" domain="T">
+                <value name="SC">Verb, base form</value>
+            </feature>
+            <feature name="cat" domain="T">
+                <value name="NP">Nominal Phrase</value>
+                <value name="S">Sentence or Clause</value>
+                <value name="VP">Verbal Phrase</value>
+                <value name="ROOT">Graph Root</value>
+            </feature>
+            <edgelabel>
+                <value name="AT">Attribute</value>
+                <value name="DO">Direct Object</value>
+                <value name="HD">Head</value>
+                <value name="IO">Infinitive</value>
+                <value name="SB">Subject</value>
+            </edgelabel>
+            <secedgelabel>
+                <value name="anaphoric">Anaphoric Link</value>
+            </secedgelabel>
+        </annotation>
+    </head>
+    <body>
+        <s id="seg_2">
+           <graph root="s1_t1">
+                <terminals>
+                    <t id="s1_t1" word="I" lemma="I" pos="PP"/>
+                    <t id="s1_t2" word="wanna" lemma="wanna" pos="VBP"/>
+                    <t id="s1_t3" function="SC">
+                        <secedge idref="s1_t1" label="anaphoric"/>
+                    </t>
+                    <t id="s1_t4" word="put" lemma="put" pos="VB"/>
+                    <t id="s1_t5" word="up" lemma="up" pos="RP"/>
+                    <t id="s1_t6" word="new" lemma="new" pos="JJ"/>
+                    <t id="s1_t7" word="wallpaper" lemma="wallpaper" pos="NN"/>
+                    <t id="s1_t8" word="." lemma="." pos="."/>
+                </terminals>
+                <nonterminals>
+                    <nt id="s1_nt1" cat="NP">
+                        <edge idref="s1_t1" label="HD"/>
+                    </nt>
+                    <nt id="s1_nt2" cat="VP">
+                        <edge idref="s1_t2" label="HD"/>
+                        <edge idref="s1_nt5"/>
+                    </nt>
+                    <nt id="s1_nt3" cat="VP">
+                        <edge idref="s1_t4" label="HD"/>
+                        <edge idref="s1_t5"/>
+                        <edge idref="s1_nt4" label="DO"/>
+                    </nt>
+                    <nt id="s1_nt4" cat="NP">
+                        <edge idref="s1_t6" label="AT"/>
+                        <edge idref="s1_t7" label="HD"/>
+                    </nt>
+                    <nt id="s1_nt5" cat="S">
+                        <edge idref="s1_t3" label="SB"/>
+                        <edge idref="s1_t1"/>
+                    </nt>
+                    <nt id="s1_nt6" cat="S">
+                        <edge idref="s1_t1" label="SB"/>
+                        <edge idref="s1_nt2"/>
+                    </nt>
+                    <nt id="s1_ROOT" cat="ROOT">
+                        <edge idref="s1_nt1"/>
+                        <edge idref="s1_t8"/>
+                    </nt>
+                </nonterminals>
+            </graph>
+        </s>
+    </body>
+</corpus>

@@ -424,9 +424,15 @@ public class CorpusImpl extends EObjectImpl implements Corpus {
 				else 
 				{
 					EList<String> features= new BasicEList<String>();
-					for (FeatureValue featureValue2: this.findFeature(featureName, domain).getFeatureValues())
-						features.add(featureValue2.getValue());
-					throw new TigerInvalidModelException("Cannot create an annotation for feature '"+featureName+"' in domain '"+domain+"' with value '"+featureValue+"', because there is no featureValue defined for such an annotation value. Known values are: "+ features);
+					Feature feature2= this.findFeature(featureName, domain);
+					if (	(feature2 != null)&&
+							(feature2.getFeatureValues()!= null)&&
+							(feature2.getFeatureValues().size()> 0))
+					{
+						for (FeatureValue featureValue2: feature2.getFeatureValues())
+							features.add(featureValue2.getValue());
+					}
+					throw new TigerInvalidModelException("Cannot create an annotation for feature '"+featureName+"' in domain '"+domain+"' and type '"+type+"' with value '"+featureValue+"', because there is no featureValue defined for such an annotation value. Known values are: "+ features);
 				}
 			}
 			else throw new TigerInvalidModelException("Cannot create an annotation for feature '"+featureName+"' in domain '"+domain+"' with value '"+featureValue+"', because there is no matching feature defined. Supported features are: "+ this.featureNameDomain2FeatureMap);

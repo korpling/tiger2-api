@@ -26,6 +26,7 @@ import de.hu_berlin.german.korpling.tiger2.Terminal;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -307,6 +308,42 @@ public class GraphImpl extends EObjectImpl implements Graph {
 			}
 		}
 		return(retVal);
+	}
+
+	/**
+	 * {@inheritDoc Graph#findRoots()}
+	 */
+	public EList<SyntacticNode> findRoots() 
+	{
+		EList<SyntacticNode> retVal= null;
+		HashSet<String> nonRoots= new HashSet<String>();
+		for (Edge edge: this.getEdges())
+		{
+			nonRoots.add(edge.getSource().getId());
+		}
+		for (SyntacticNode synNode: this.getSyntacticNodes())
+		{
+			if (!nonRoots.contains(synNode.getId()))
+			{
+				if (retVal== null)
+					retVal= new BasicEList<SyntacticNode>();
+				retVal.add(synNode);
+			}
+		}
+		return(retVal);
+	}
+
+	/**
+	 * {@inheritDoc Graph#findRoot()}
+	 */
+	public SyntacticNode findRoot() {
+		SyntacticNode retVal= null;
+		EList<SyntacticNode> roots= this.findRoots();
+		if (	(roots!= null)&&
+				(roots.size()> 0))
+			retVal= roots.get(0);
+		return(retVal);
+		
 	}
 
 	/**
