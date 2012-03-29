@@ -82,7 +82,7 @@ public class WritingTest extends XMLTestCase{
 	public ResourceSet resourceSet = null;
 	
 	public static final String TEST_FOLDER="./src/test/resources/tigerXML/";
-	public static final String TMP_FOLDER= System.getProperty("java.io.tmpdir")+ "tigerXML/writer/";
+	public static final String TMP_FOLDER= System.getProperty("java.io.tmpdir")+ "/tigerXML/writer/";
 	
 	/**
 	 * Writes the sample comming from {@link Tiger2Sample#createSample1()} to xml file and compares it to a
