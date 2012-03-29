@@ -82,7 +82,7 @@ public class Tiger2Converter {
 	}
 
 	/**
-	 * Creates the folders in output recursively to mirror th einput folder.
+	 * Creates the folders in output recursively to mirror the input folder.
 	 * @param inputFile
 	 * @param outputFile
 	 * @param convertMode
