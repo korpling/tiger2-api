@@ -65,20 +65,6 @@ public class Tiger2Converter {
 			throw new TigerException("Cannot convert files, because given outputFile is not a directory.");
 		
 		this.convertRec(inputFile, outputFile, convertMode);
-		
-		
-//		if (	(convertMode.equals(PARAMETERS.t2_t)) ||
-//				(convertMode.equals(PARAMETERS.t2_t2)))
-//		{
-//			
-//		}
-//		else if (	(convertMode.equals(PARAMETERS.t_t)) ||
-//					(convertMode.equals(PARAMETERS.t_t2)))
-//		{
-//			
-//		}
-//		else 
-//			throw new TigerException("Cannot convert files, the given convertMode does not match.");
 	}
 
 	/**
@@ -151,13 +137,11 @@ public class Tiger2Converter {
 						(convertMode.equals(PARAMETERS.t2_t2)))
 				{
 					outputURI= URI.createFileURI(outputFile.getAbsolutePath()+"/"+inputFile.getName()+"."+TigerResourceFactory.FILE_ENDING_TIGER2);
-					System.out.println("HERE 1: "+ outputURI);
 				}
 				else if (	(convertMode.equals(PARAMETERS.t_t)) ||
 							(convertMode.equals(PARAMETERS.t2_t)))
 				{
 					outputURI= URI.createFileURI(outputFile.getAbsolutePath()+"/"+inputFile.getName()+"."+TigerResourceFactory.FILE_ENDING_TIGERXML);
-					System.out.println("HERE 2: "+ outputURI);
 				}
 				else throw new TigerException("No matching convertMode was given.");
 				
@@ -218,104 +202,54 @@ public class Tiger2Converter {
 	{
 		System.out.println(sayHello());
 		
-		if (	(args== null)||
-				(args.length== 0))
-			System.out.println(getHelp());
-		
-		File inputFile= null;
-		File outputFolder= null;
-		PARAMETERS convertDirection= null;
-		
-		for (int i = 0; i< args.length; i++)
+		try
 		{
-			if (args[i].equalsIgnoreCase("-"+PARAMETERS.o) )
+			if (	(args== null)||
+					(args.length== 0))
+				System.out.println(getHelp());
+			
+			File inputFile= null;
+			File outputFolder= null;
+			PARAMETERS convertDirection= null;
+			
+			for (int i = 0; i< args.length; i++)
 			{
-				outputFolder= new File(args[i+1]);
+				if (args[i].equalsIgnoreCase("-"+PARAMETERS.o) )
+				{
+					outputFolder= new File(args[i+1]);
+				}
+				else if (args[i].equalsIgnoreCase("-"+PARAMETERS.i) )
+				{
+					inputFile= new File(args[i+1]);
+				}
+				else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t2_t) )
+					convertDirection= PARAMETERS.t2_t;
+				else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t_t2) )
+					convertDirection= PARAMETERS.t_t2;
+				else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t_t) )
+					convertDirection= PARAMETERS.t_t;
+				else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t2_t2) )
+					convertDirection= PARAMETERS.t2_t2;
 			}
-			else if (args[i].equalsIgnoreCase("-"+PARAMETERS.i) )
+			
+			if (inputFile== null)
+				throw new IOException("No file or folder for tiger2 was given");
+			if (outputFolder== null)
+				throw new IOException("No file or folder for tigerXML was given");
+			if (convertDirection== null)
+				throw new NullPointerException("No convert direction is given.");
+			
+			Tiger2Converter converter= new Tiger2Converter();
+			if (inputFile.isDirectory())
 			{
-				inputFile= new File(args[i+1]);
+				converter.convert(inputFile, outputFolder, convertDirection);
 			}
-			else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t2_t) )
-				convertDirection= PARAMETERS.t2_t;
-			else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t_t2) )
-				convertDirection= PARAMETERS.t_t2;
-			else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t_t) )
-				convertDirection= PARAMETERS.t_t;
-			else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t2_t2) )
-				convertDirection= PARAMETERS.t2_t2;
-		}
-		
-		if (inputFile== null)
-			throw new IOException("No file or folder for tiger2 was given");
-		if (outputFolder== null)
-			throw new IOException("No file or folder for tigerXML was given");
-		if (convertDirection== null)
-			throw new NullPointerException("No convert direction is given.");
-		
-		Tiger2Converter converter= new Tiger2Converter();
-		if (inputFile.isDirectory())
+			else 
+				converter.convertFiles(inputFile, outputFolder, convertDirection);
+		}finally
 		{
-			System.out.println("input is directory");
-			converter.convert(inputFile, outputFolder, convertDirection);
+			System.out.println(sayBye());
 		}
-		else 
-			converter.convertFiles(inputFile, outputFolder, convertDirection);
-		
-//		if (convertDirection.equals(PARAMETERS.t2_t))
-//		{
-//			
-//			
-//			if (inputFile.isDirectory())
-//			{
-//				if (!outputFolder.exists())
-//					outputFolder.mkdirs();
-//				for (File tig2File: inputFile.listFiles())
-//				{
-//					if(tig2File.toString().endsWith(TigerResourceFactory.FILE_ENDING_TIGER2))
-//					{
-//						URI inputURI= URI.createFileURI(tig2File.toString());
-//						Resource resource = resourceSet.createResource(inputURI);
-//						if (resource== null)
-//							throw new NullPointerException("No resource found for file '"+tig2File.getAbsolutePath()+"'.");
-//						resource.load(null);
-//					}
-//				}
-//			}
-//		}
-//		else if (convertDirection.equals(PARAMETERS.t2_t2))
-//		{
-//			if (inputFile.isDirectory())
-//			{
-//				if (!outputFolder.exists())
-//					outputFolder.mkdirs();
-//				for (File tig2File: inputFile.listFiles())
-//				{
-//					Corpus corpus= loadTiger2(tig2File);
-//					
-//					File outputFile= null;
-//					outputFile= new File(outputFolder.getAbsolutePath()+"/"+corpus.getId()+TigerResourceFactory.FILE_ENDING_TIGER2);
-//					Resource resource = resourceSet.createResource(URI.createURI(outputFile.toURI().toString()));
-//					resource.getContents().add(corpus);
-//					resource.save(null);
-//				}
-//			}
-//			else
-//			{
-//				Corpus corpus= loadTiger2(inputFile);
-//				if (corpus== null)
-//					throw new NullPointerException("Could not map file '"+inputFile.getAbsolutePath()+"' to a <tiger2/> model.");
-//				
-//				File outputFile= null;
-//				outputFile= new File(outputFolder.getAbsolutePath()+"/"+corpus.getId()+TigerResourceFactory.FILE_ENDING_TIGER2);
-//				Resource resource = resourceSet.createResource(URI.createURI(outputFile.toURI().toString()));
-//				resource.getContents().add(corpus);
-//				resource.save(null);
-//			}
-//		}
-//		else throw new UnsupportedOperationException("This has not been implemented yet.");
-		
-		System.out.println(sayBye());
 	}
 
 }
