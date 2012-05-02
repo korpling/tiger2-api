@@ -46,6 +46,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <bundle.file>${project.groupId}.${project.artifactId}_${project.version}.jar</bundle.file>
+        <assemblies.name>src/assemble/assemblies.xml</assemblies.name>
         <license.file>${basedir}/LICENSE</license.file>
         <notice.file>${basedir}/NOTICE</notice.file>
     </properties>
@@ -101,6 +102,20 @@
     </dependencies>
     <build>
         <plugins>
+	      <!-- start: assembly plugin -->
+	      <plugin>
+	        <artifactId>maven-assembly-plugin</artifactId>
+	        <version>2.2</version>
+	        <configuration>
+	          <descriptors>
+	            <descriptor>${assemblies.name}</descriptor>
+	          </descriptors>
+	          <appendAssemblyId>false</appendAssemblyId>
+	          <finalName>${project.groupId}.misc.${project.artifactId}_${project.version}</finalName>
+	          <outputDirectory>target/distribution</outputDirectory>
+	          <workDirectory>target/assembly/work</workDirectory>
+	        </configuration>
+	      </plugin>
             <!-- start: site plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -119,7 +134,7 @@
                     <tagBase>
                         https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger-api/tags/ </tagBase>
                     <releaseProfiles>release</releaseProfiles>
-                    <goals>package deploy</goals>
+                    <goals>package assembly:single deploy</goals>
                 </configuration>
             </plugin>
             <!-- end: Plugin for automatic releasing -->
@@ -148,7 +163,6 @@
             </plugin>
             <!-- end: creates a NOTICE file use mvn notice:generate -->
             <!-- start: includes all dependencies in one single jar -->
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -184,6 +198,7 @@
             </plugin>
             <!-- end: includes all dependencies in one single jar -->
 
+			<!-- start: OSGI bundle generator -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
@@ -207,10 +222,11 @@
                         <Bundle-Version>${project.version}</Bundle-Version>
                         <Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
                         <Include-Resource>{maven-resources}, LICENSE, NOTICE</Include-Resource>
-                        <!-- <Import-Package>!org.custommonkey.*,*</Import-Package> -->
                     </instructions>
                 </configuration>
             </plugin>
+            <!-- end: OSGI bundle generator -->
         </plugins>
+        <finalName>${project.groupId}.${project.artifactId}_${project.version}</finalName>
     </build>
 </project>
