@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.hu_berlin.german.korpling</groupId>
-    <artifactId>tiger-api</artifactId>
+    <artifactId>tiger2-api</artifactId>
     <packaging>bundle</packaging>
     <name>${project.groupId}.${project.artifactId}</name>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <description>This project provides an api reading and writing data from or to the&lt;tiger2/&gt; format and the TigerXML format as well.</description>
     <url>https://korpling.german.hu-berlin.de/p/projects/tiger2/</url>
     <licenses>
