@@ -4,7 +4,7 @@
     <artifactId>tiger-api</artifactId>
     <packaging>bundle</packaging>
     <name>${project.groupId}.${project.artifactId}</name>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <description>This project provides an api reading and writing data from or to the&lt;tiger2/&gt; format and the TigerXML format as well.</description>
     <url>https://korpling.german.hu-berlin.de/p/projects/tiger2/</url>
     <licenses>
@@ -23,9 +23,8 @@
     </ciManagement>
     <inceptionYear>2011</inceptionYear>
     <scm>
-        <developerConnection>scm:svn:https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger-api/tags/tiger-api-0.0.1</developerConnection>
-        <tag>scm:svn:https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger-api/tags</tag>
-        <url>scm:svn:https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger-api/tags/tiger-api-0.0.1</url>
+        <developerConnection>scm:svn:https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger-api/trunk</developerConnection>
+        <url>https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger-api</url>
     </scm>
     <organization>
         <name>Humboldt Univerity of Berlin, INRIA</name>
