@@ -11,11 +11,20 @@
   	<!-- Include tiger2-api bundle -->
   	<fileSet>
   		<outputDirectory>.</outputDirectory>
-  		<directory>${basedir}/target</directory>
+  		<directory>${basedir}/target/</directory>
   		<includes>
   			<include>${bundle.file}</include>
   		</includes>
   	</fileSet>
+  	
+  	<!-- start: copies the scripts -->
+  	<fileSet>
+  		<outputDirectory>${project.groupId}.${project.artifactId}_${project.version}</outputDirectory>
+  		<includes>
+  			<include>${basedir}/tiger2converter.*</include>
+  		</includes>
+  	</fileSet>
+ 	<!-- end: copies the scripts -->
   	
   	<!-- Include license and notice file -->
   	<fileSet>

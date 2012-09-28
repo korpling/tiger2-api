@@ -1,11 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.hu_berlin.german.korpling</groupId>
     <artifactId>tiger2-api</artifactId>
     <packaging>bundle</packaging>
     <name>${project.groupId}.${project.artifactId}</name>
     <version>0.0.1-SNAPSHOT</version>
-    <description>This project provides an api reading and writing data from or to the&lt;tiger2/&gt; format and the TigerXML format as well.</description>
+    <description>This project provides an api reading and writing data from or to the&lt;tiger2/&gt;
+        format and the TigerXML format as well.</description>
     <url>https://korpling.german.hu-berlin.de/p/projects/tiger2/</url>
     <licenses>
         <license>
@@ -46,7 +49,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <bundle.file>${project.groupId}.${project.artifactId}_${project.version}.jar</bundle.file>
-        <assemblies.name>src/assemble/assemblies.xml</assemblies.name>
+        <assembly.directory>src/main/assembly/</assembly.directory>
+        <assembly.pepperBundle>${assembly.directory}assembly_pepperBundle.xml</assembly.pepperBundle>
+        <assembly.standAlone>${assembly.directory}assembly_standAlone.xml</assembly.standAlone>
         <license.file>${basedir}/LICENSE</license.file>
         <notice.file>${basedir}/NOTICE</notice.file>
     </properties>
@@ -73,18 +78,18 @@
         </dependency>
         <!-- start: logging -->
         <dependency>
-	  		<groupId>org.slf4j</groupId>
-	  		<artifactId>slf4j-api</artifactId>
-	  		<version>1.6.4</version>
-	  		<scope>compile</scope>
-	  	</dependency>
-	  	<!-- end: logging -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- end: logging -->
         <!-- xml escaping unescaping  -->
         <dependency>
-        	<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.6</version>
-			<scope>compile</scope>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+            <scope>compile</scope>
         </dependency>
         <!-- comparing xml files -->
         <dependency>
@@ -102,20 +107,66 @@
     </dependencies>
     <build>
         <plugins>
-	      <!-- start: assembly plugin -->
-	      <plugin>
-	        <artifactId>maven-assembly-plugin</artifactId>
-	        <version>2.2</version>
-	        <configuration>
-	          <descriptors>
-	            <descriptor>${assemblies.name}</descriptor>
-	          </descriptors>
-	          <appendAssemblyId>false</appendAssemblyId>
-	          <finalName>${project.groupId}.misc.${project.artifactId}_${project.version}</finalName>
-	          <outputDirectory>target/distribution</outputDirectory>
-	          <workDirectory>target/assembly/work</workDirectory>
-	        </configuration>
-	      </plugin>
+            <!-- start: assembly plugin -->
+            <!--  
+                <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                <descriptors>
+                <descriptor>${assembly.pepperBundle}</descriptor>
+                </descriptors>
+                <appendAssemblyId>false</appendAssemblyId>
+                <finalName>${project.groupId}.misc.${project.artifactId}_${project.version}</finalName>
+                <outputDirectory>target/distribution/pepper-bundle</outputDirectory>
+                <workDirectory>target/assembly/work</workDirectory>
+                </configuration>
+                </plugin>
+            -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.3</version>
+                <!-- 
+                <configuration>
+		         <descriptorRefs>
+		           <descriptorRef>tiger2-api-pepper-bundle</descriptorRef>
+		         </descriptorRefs>
+		       </configuration>
+		        -->
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>assembly</phase>
+                    	<goals><goal>single</goal></goals>
+                        <configuration>
+                            <descriptors>
+                               <!--  <descriptor>${assembly.pepperBundle}</descriptor> -->
+                               <descriptor>src/main/assembly/assembly_pepperBundle.xml</descriptor>
+                            </descriptors>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${project.groupId}.misc.${project.artifactId}_${project.version}</finalName>
+                            <outputDirectory>target/distribution/pepper-bundle</outputDirectory>
+                            <workDirectory>target/assembly/work</workDirectory>
+                        </configuration>
+                    </execution>
+                    <!-- 
+                    <execution>
+                        <id>tiger2-api-stand-alone</id>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>${assembly.standAlone}</descriptor>
+                            </descriptors>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${project.groupId}.misc.${project.artifactId}_${project.version}</finalName>
+                            <outputDirectory>target/distribution/stand-alone</outputDirectory>
+                            <workDirectory>target/assembly/work</workDirectory>
+                        </configuration>
+                    </execution>
+                     -->
+                </executions>
+
+            </plugin>
+            <!-- end: assembly plugin -->
             <!-- start: site plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -178,8 +229,9 @@
                         </goals>
                         <configuration>
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>de.hu_berlin.german.korpling.tiger2.main.Tiger2Main</mainClass>
+                                <transformer
+                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>de.hu_berlin.german.korpling.tiger2.main.Tiger2Converter</mainClass>
                                 </transformer>
                             </transformers>
                             <filters>
@@ -198,7 +250,7 @@
             </plugin>
             <!-- end: includes all dependencies in one single jar -->
 
-			<!-- start: OSGI bundle generator -->
+            <!-- start: OSGI bundle generator -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>

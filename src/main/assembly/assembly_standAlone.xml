@@ -1,0 +1,44 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+  <id>tiger2-api-stand-alone</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  
+  <fileSets>
+  	<!-- Include tiger2-api bundle -->
+  	<fileSet>
+  		<outputDirectory>.</outputDirectory>
+  		<directory>${basedir}/target</directory>
+  		<includes>
+  			<include>${bundle.file}</include>
+  		</includes>
+  	</fileSet>
+  	
+  	<!-- start: copies the scripts -->
+  	<fileSet>
+  		<outputDirectory>${project.groupId}.${project.artifactId}_${project.version}</outputDirectory>
+  		<includes>
+  			<include>${basedir}/tiger2converter.*</include>
+  		</includes>
+  	</fileSet>
+ 	<!-- end: copies the scripts -->
+  	
+  	<!-- Include license and notice file -->
+  	<fileSet>
+  		<outputDirectory>${project.groupId}.${project.artifactId}_${project.version}</outputDirectory>
+  		<includes>
+  			<include>${license.file}</include>
+  			<include>${notice.file}</include>
+  		</includes>
+  	</fileSet>
+  	
+  	<!-- Include resource files -->
+  	<fileSet>
+  		<outputDirectory>${project.groupId}.${project.artifactId}_${project.version}</outputDirectory>
+  		<directory>${basedir}/src/main/resources/</directory>
+  	</fileSet>
+  </fileSets>
+</assembly>
