@@ -26,8 +26,8 @@
     </ciManagement>
     <inceptionYear>2011</inceptionYear>
     <scm>
-        <developerConnection>scm:svn:https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger-api/trunk</developerConnection>
-        <url>https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger-api</url>
+        <developerConnection>scm:svn:https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger2-api/trunk</developerConnection>
+        <url>https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger2-api</url>
     </scm>
     <organization>
         <name>Humboldt Univerity of Berlin, INRIA</name>
@@ -183,7 +183,7 @@
                 <version>2.1</version>
                 <configuration>
                     <tagBase>
-                        https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger-api/tags/ </tagBase>
+                        https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger2-api/tags/ </tagBase>
                     <releaseProfiles>release</releaseProfiles>
                     <goals>package assembly:single deploy</goals>
                 </configuration>
