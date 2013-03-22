@@ -4,7 +4,7 @@
     <artifactId>tiger2-api</artifactId>
     <packaging>bundle</packaging>
     <name>${project.groupId}.${project.artifactId}</name>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
     <description>This project provides an api reading and writing data from or to the&lt;tiger2/&gt;
         format and the TigerXML format as well.</description>
     <url>https://korpling.german.hu-berlin.de/p/projects/tiger2/</url>
@@ -24,8 +24,8 @@
     </ciManagement>
     <inceptionYear>2011</inceptionYear>
     <scm>
-        <developerConnection>scm:svn:https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger2-api/tags/tiger2-api-0.0.2</developerConnection>
-        <url>scm:svn:https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger2-api/tags/tiger2-api-0.0.2</url>
+        <developerConnection>scm:svn:https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger2-api/trunk</developerConnection>
+        <url>https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger2-api</url>
     </scm>
     <organization>
         <name>Humboldt Univerity of Berlin, INRIA</name>
