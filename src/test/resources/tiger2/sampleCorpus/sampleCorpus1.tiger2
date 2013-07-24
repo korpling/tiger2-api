@@ -22,13 +22,13 @@
 <value name="VB">Verb, base form</value>
 <value name="VBP">Verb, non-3rd person singular present</value>
 </feature>
-<feature name="function" domain="t">
+<feature type="PRO" name="function" domain="t">
 <value name="SC">Verb, base form</value>
 </feature>
-<feature name="label" domain="edge">
+<feature type="coref" name="label" domain="edge">
 <value name="anaphoric">Anaphoric Link</value>
 </feature>
-<feature name="label" domain="edge">
+<feature type="prim" name="label" domain="edge">
 <value name="AT">Attribute</value>
 <value name="DO">Direct Object</value>
 <value name="HD">Head</value>

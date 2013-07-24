@@ -253,6 +253,8 @@ public class Tiger2Writer
 				this.output.print("<"+Tiger2Dictionary.ELEMENT_FEATURE);
 				if (feature.getId()!= null)
 					this.output.print(" "+ Tiger2Dictionary.ATTRIBUTE_ID+"=\""+feature.getId()+"\"");
+				if (feature.getType()!= null)
+					this.output.print(" "+ Tiger2Dictionary.ATTRIBUTE_TYPE+"=\""+feature.getType()+"\"");
 				if (feature.getName()!= null)
 					this.output.print(" "+ Tiger2Dictionary.ATTRIBUTE_NAME+"=\""+feature.getName()+"\"");
 				if (feature.getDomain()!= null)

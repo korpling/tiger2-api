@@ -129,6 +129,7 @@ public class WritingTest extends XMLTestCase{
 		
 		XMLUnit.setIgnoreWhitespace(true);
 		Diff myDiff = new Diff(expectedSource, tmpSource);
+		
 	    assertTrue("test XML matches control skeleton XML " + myDiff, myDiff.similar());
 	}
 }
