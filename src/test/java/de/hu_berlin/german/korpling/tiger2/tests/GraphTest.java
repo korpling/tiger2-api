@@ -41,10 +41,12 @@ import junit.textui.TestRunner;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getIncomingEdges(java.lang.String) <em>Get Incoming Edges</em>}</li>
  *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getOutgoingEdges(java.lang.String) <em>Get Outgoing Edges</em>}</li>
+ *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getIncomingEdges(java.lang.String) <em>Get Incoming Edges</em>}</li>
  *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findNode(java.lang.String) <em>Find Node</em>}</li>
  *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findEdge(java.lang.String) <em>Find Edge</em>}</li>
+ *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findRoots() <em>Find Roots</em>}</li>
+ *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findRoot() <em>Find Root</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -302,6 +304,61 @@ public class GraphTest extends TestCase {
 		assertEquals(this.getFixture().findEdge("e1"), edge1);
 		assertEquals(this.getFixture().findEdge("e2"), edge2);
 		assertEquals(this.getFixture().findEdge("e3"), edge3);
+	}
+
+	/**
+	 * Creates small tree
+	 * @see de.hu_berlin.german.korpling.tiger2.Graph#findRoots()
+	 */
+	public void testFindRoots() {
+		NonTerminal root1= Tiger2Factory.eINSTANCE.createNonTerminal();
+		root1.setId("root1");
+		getFixture().getSyntacticNodes().add(root1);
+		
+		Terminal t1= Tiger2Factory.eINSTANCE.createTerminal();
+		t1.setId("t1");
+		getFixture().getSyntacticNodes().add(t1);
+		
+		Terminal t2= Tiger2Factory.eINSTANCE.createTerminal();
+		t2.setId("t2");
+		getFixture().getSyntacticNodes().add(t2);
+		
+		NonTerminal root2= Tiger2Factory.eINSTANCE.createNonTerminal();
+		root2.setId("root2");
+		getFixture().getSyntacticNodes().add(root2);
+		
+		Terminal t3= Tiger2Factory.eINSTANCE.createTerminal();
+		t3.setId("t3");
+		getFixture().getSyntacticNodes().add(t3);
+		
+		Terminal t4= Tiger2Factory.eINSTANCE.createTerminal();
+		t4.setId("t2");
+		getFixture().getSyntacticNodes().add(t4);
+		
+		assertTrue(getFixture().findRoots().contains(root1));
+		assertTrue(getFixture().findRoots().contains(root2));
+	}
+
+	/**
+	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Graph#findRoot() <em>Find Root</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hu_berlin.german.korpling.tiger2.Graph#findRoot()
+	 */
+	public void testFindRoot() {
+		NonTerminal root= Tiger2Factory.eINSTANCE.createNonTerminal();
+		root.setId("root");
+		getFixture().getSyntacticNodes().add(root);
+		
+		Terminal t1= Tiger2Factory.eINSTANCE.createTerminal();
+		t1.setId("t1");
+		getFixture().getSyntacticNodes().add(t1);
+		
+		Terminal t2= Tiger2Factory.eINSTANCE.createTerminal();
+		t2.setId("t2");
+		getFixture().getSyntacticNodes().add(t2);
+		
+		assertEquals(root, getFixture().findRoot());
 	}
 
 } //GraphTest
