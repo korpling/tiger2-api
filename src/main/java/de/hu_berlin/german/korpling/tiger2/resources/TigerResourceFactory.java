@@ -48,6 +48,7 @@ public class TigerResourceFactory extends ResourceFactoryImpl
 	public static final String FILE_ENDING_TIGER2= "tiger2";
 	public static final String FILE_ENDING_TIGER2_2= "tig2";
 	public static final String FILE_ENDING_TIGERXML= "xml";
+	public static final String FILE_ENDING_TIGERXML_2="tiger";
 	
 	public Resource createResource(URI uri)
 	{
