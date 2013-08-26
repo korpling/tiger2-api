@@ -101,14 +101,14 @@ public class LoadStoreTest extends XMLTestCase{
 		Reader outputReader = new InputStreamReader(outputStream, "UTF-8");
 		InputSource outputSource = new InputSource(outputReader);
 		
-		System.out.println("num of segments: "+ corpus.getSegments().size());
-		System.out.println("num of graphs: "+ corpus.getSegments().get(0).getGraphs().size());
-		System.out.println("num of syn nodes: "+ corpus.getSegments().get(0).getGraphs().get(0).getSyntacticNodes().size());
-		System.out.println("num of non-terminals: "+ corpus.getSegments().get(0).getGraphs().get(0).getNonTerminals().size());
-		System.out.println("num of terminals: "+ corpus.getSegments().get(0).getGraphs().get(0).getTerminals().size());
-		System.out.println("num of edges: "+ corpus.getSegments().get(0).getGraphs().get(0).getEdges().size());
-		System.out.println("inputFile: "+ inputFile.getAbsolutePath());
-		System.out.println("outputFile: "+ outputFile.getAbsolutePath());
+//		System.out.println("num of segments: "+ corpus.getSegments().size());
+//		System.out.println("num of graphs: "+ corpus.getSegments().get(0).getGraphs().size());
+//		System.out.println("num of syn nodes: "+ corpus.getSegments().get(0).getGraphs().get(0).getSyntacticNodes().size());
+//		System.out.println("num of non-terminals: "+ corpus.getSegments().get(0).getGraphs().get(0).getNonTerminals().size());
+//		System.out.println("num of terminals: "+ corpus.getSegments().get(0).getGraphs().get(0).getTerminals().size());
+//		System.out.println("num of edges: "+ corpus.getSegments().get(0).getGraphs().get(0).getEdges().size());
+//		System.out.println("inputFile: "+ inputFile.getAbsolutePath());
+//		System.out.println("outputFile: "+ outputFile.getAbsolutePath());
 		
 		XMLUnit.setIgnoreWhitespace(true);
 		XMLUnit.getIgnoreAttributeOrder();

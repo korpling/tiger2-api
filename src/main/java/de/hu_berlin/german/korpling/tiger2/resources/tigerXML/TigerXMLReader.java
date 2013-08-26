@@ -390,7 +390,20 @@ public class TigerXMLReader extends DefaultHandler2
 			}
 			else
 			{
-				Annotation annotation= this.currentCorpus.createAnnotation(attName, DOMAIN.T, attValue);
+				Annotation annotation= null;
+				if (currentCorpus.findFeature(attName, DOMAIN.T)==null)
+				{
+					Feature newFeature= Tiger2Factory.eINSTANCE.createFeature();
+					newFeature.setDomain(DOMAIN.T);
+					newFeature.setName(attName);
+					currentCorpus.getFeatures().add(newFeature);
+				}
+				try{
+					annotation= this.currentCorpus.createAnnotation(attName, DOMAIN.T, attValue);
+				}catch (TigerInvalidModelException e) {
+					throw new TigerImplausibleContentException("Error in corpus in file '"+ getInputURI()+"'.", e);
+				}
+					
 				if (annotation!= null)
 					terminal.getAnnotations().add(annotation);
 			}
@@ -431,7 +444,20 @@ public class TigerXMLReader extends DefaultHandler2
 				;//ignore it
 			else
 			{
-				Annotation annotation= this.currentCorpus.createAnnotation(attName, DOMAIN.NT, attValue);
+				
+				Annotation annotation= null;
+				if (currentCorpus.findFeature(attName, DOMAIN.NT)==null)
+				{
+					Feature newFeature= Tiger2Factory.eINSTANCE.createFeature();
+					newFeature.setDomain(DOMAIN.NT);
+					newFeature.setName(attName);
+					currentCorpus.getFeatures().add(newFeature);
+				}
+				try{
+					annotation= currentCorpus.createAnnotation(attName, DOMAIN.NT, attValue);
+				}catch (TigerInvalidModelException e) {
+					throw new TigerImplausibleContentException("Error in corpus in file '"+ getInputURI()+"'.", e);
+				}
 				if (annotation!= null)
 					nonTerminal.getAnnotations().add(annotation);
 			}
@@ -497,11 +523,20 @@ public class TigerXMLReader extends DefaultHandler2
 			else
 			{
 				Annotation annotation= null;
-				try{
-					annotation= this.currentCorpus.createAnnotation(attName, DOMAIN.EDGE, edge.getType(), attValue);
-				}catch (TigerInvalidModelException e) {
-					throw new TigerImplausibleContentException("An exception occurs in edge '"+edge.getId()+"' ", e);
+				if (currentCorpus.findFeature(attName, DOMAIN.EDGE, type)==null)
+				{
+					Feature newFeature= Tiger2Factory.eINSTANCE.createFeature();
+					newFeature.setDomain(DOMAIN.EDGE);
+					newFeature.setName(attName);
+					newFeature.setType(type);
+					currentCorpus.getFeatures().add(newFeature);
 				}
+				try{
+					annotation= currentCorpus.createAnnotation(attName, DOMAIN.EDGE, edge.getType(), attValue);
+				}catch (TigerInvalidModelException e) {
+					throw new TigerImplausibleContentException("Error in corpus in file '"+ getInputURI()+"'.", e);
+				}
+				
 				if (annotation!= null)
 					edge.getAnnotations().add(annotation);
 			}
