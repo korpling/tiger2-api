@@ -522,8 +522,11 @@ public class TigerXMLWriter
 		//start: compute xml element name: secedge or edge
 			if (edge.getType()!= null)
 			{
-				if (DEFAULT_TYPE.PRIM.toString().equalsIgnoreCase(edge.getType()))
-						xmlElement= TigerXMLDictionary.ELEMENT_EDGE;
+				if (	(DEFAULT_TYPE.PRIM.toString().equalsIgnoreCase(edge.getType())) ||
+						((DEFAULT_TYPE.EDGE.toString().equalsIgnoreCase(edge.getType()))))
+				{
+					xmlElement= TigerXMLDictionary.ELEMENT_EDGE;
+				}
 				else xmlElement= TigerXMLDictionary.ELEMENT_SECEDGE;
 			}
 			else
@@ -540,7 +543,8 @@ public class TigerXMLWriter
 							throw new TigerInvalidModelException("Cannot export <tiger2/> model to TigerXML, because the type of Annotation of the given edge '"+edge.getId()+"' is not the same for all annotations.");
 					}
 				}
-				if (DEFAULT_TYPE.PRIM.toString().equalsIgnoreCase(featType))
+				if (	(DEFAULT_TYPE.PRIM.toString().equalsIgnoreCase(featType))||
+						(DEFAULT_TYPE.EDGE.toString().equalsIgnoreCase(featType)))
 						xmlElement= TigerXMLDictionary.ELEMENT_EDGE;
 				else xmlElement= TigerXMLDictionary.ELEMENT_SECEDGE;
 			}

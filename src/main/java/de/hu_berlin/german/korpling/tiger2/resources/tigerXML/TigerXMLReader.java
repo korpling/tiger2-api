@@ -281,9 +281,9 @@ public class TigerXMLReader extends DefaultHandler2
 				this.currentFeature.setDomain(DOMAIN.EDGE);
 				
 				if ((TigerXMLDictionary.ELEMENT_EDGELABEL.equals(qName)))
-					this.currentFeature.setType(DEFAULT_TYPE.PRIM.toString());
+					this.currentFeature.setType(DEFAULT_TYPE.EDGE.toString());
 				else if ((TigerXMLDictionary.ELEMENT_SECEDGELABEL.equals(qName)))
-					this.currentFeature.setType(DEFAULT_TYPE.SEC.toString());
+					this.currentFeature.setType(DEFAULT_TYPE.SECEDGE.toString());
 				
 				currentCorpus.getFeatures().add(currentFeature);
 			}
@@ -495,8 +495,8 @@ public class TigerXMLReader extends DefaultHandler2
 		//start: @type
 			String type= null;
 			if (TigerXMLDictionary.ELEMENT_EDGE.equals(qName))
-				type= DEFAULT_TYPE.PRIM.toString();
-			else type= DEFAULT_TYPE.SEC.toString();
+				type= DEFAULT_TYPE.EDGE.toString();
+			else type= DEFAULT_TYPE.SECEDGE.toString();
 			edge.setType(type);
 		//end: @type
 		

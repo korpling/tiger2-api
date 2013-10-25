@@ -232,6 +232,7 @@ public class LoadingTest_TigerXML extends TestCase{
 		
 		assertNotNull(corpus.getFeatures());
 		
+		System.out.println("features: "+corpus.getFeatures());
 		assertEquals(6, corpus.getFeatures().size());
 		
 		assertNotNull(corpus.findFeature("lemma", DOMAIN.T).getFeatureValues());
