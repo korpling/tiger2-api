@@ -53,7 +53,6 @@ import de.hu_berlin.german.korpling.tiger2.exceptions.TigerInvalidModelException
 public class Tiger2Reader extends DefaultHandler2
 {
 	private static final Logger LOGGER= LoggerFactory.getLogger(Tiger2Reader.class); 
-//	private static final Log LOGGER = LogFactory.getLog(Tiger2Reader.class);
 	/**
 	 * The {@link Corpus} object, which shall be filled.
 	 */
@@ -193,7 +192,12 @@ public class Tiger2Reader extends DefaultHandler2
 	 * This is necessary, because of edges are sometimes added to the graph first, when all nodes are read.
 	 */
 	private int edgeCounter= 0;
-	
+	/** true, if an edge with no id was found while reading **/
+	boolean edgesWithNoIds= false;
+	/** true, if a terminal with no id was found while reading **/
+	boolean terminalsWithNoIds= false;
+	/** true, if a non-terminal with no id was found while reading **/
+	boolean nonTerminalsWithNoIds= false;
 	/**
 	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */
@@ -203,6 +207,8 @@ public class Tiger2Reader extends DefaultHandler2
             					String qName,
             					Attributes attributes) throws SAXException
     {
+		
+		
 		if (Tiger2Dictionary.ELEMENT_CORPUS.equals(qName))
 		{
 		}
@@ -277,7 +283,8 @@ public class Tiger2Reader extends DefaultHandler2
 				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
 				if (id== null)
 				{
-					LOGGER.warn("One syntactic node (terminal) element has no id.");
+//					LOGGER.warn("One syntactic node (terminal) element has no id.");
+					terminalsWithNoIds= true;
 					id= "synNode_"+ this.currentGraph.getSyntacticNodes().size()+1;
 				}
 				else
@@ -331,7 +338,8 @@ public class Tiger2Reader extends DefaultHandler2
 				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
 				if (id== null)
 				{
-					LOGGER.warn("One syntactic node element (non-terminal) has no id.");
+//					LOGGER.warn("One syntactic node element (non-terminal) has no id.");
+					nonTerminalsWithNoIds= true;
 					id= "synNode_"+ this.currentGraph.getSyntacticNodes().size()+1;
 				}
 				else
@@ -372,7 +380,8 @@ public class Tiger2Reader extends DefaultHandler2
 				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
 				if (id== null)
 				{
-					LOGGER.warn("One '"+Tiger2Dictionary.ELEMENT_EDGE+"' element has no id.");
+//					LOGGER.warn("One '"+Tiger2Dictionary.ELEMENT_EDGE+"' element has no id.");
+					edgesWithNoIds= true;
 					id= "edge_"+ edgeCounter;
 					this.edgeCounter++;
 				}
@@ -521,6 +530,18 @@ public class Tiger2Reader extends DefaultHandler2
 		if (popElement)
 		{
 			elementStack.pop();
+		}
+	}
+	
+	public void endDocument() throws SAXException{
+		if (edgesWithNoIds){
+			LOGGER.warn("One or more edge elements have no id in file '"+ this.inputURI+"'. ");
+		}
+		if (nonTerminalsWithNoIds){
+			LOGGER.warn("One or more syntactic node (non-terminal) elements have no id in file '"+ this.inputURI+"'. ");
+		}
+		if (terminalsWithNoIds){
+			LOGGER.warn("One or more syntactic node (terminal) elements have no id in file '"+ this.inputURI+"'. ");
 		}
 	}
 	

@@ -214,6 +214,13 @@ public class TigerXMLReader extends DefaultHandler2
 	 */
 	private int edgeCounter= 0;
 	
+	/** true, if an edge with no id was found while reading **/
+	boolean edgesWithNoIds= false;
+	/** true, if a terminal with no id was found while reading **/
+	boolean terminalsWithNoIds= false;
+	/** true, if a non-terminal with no id was found while reading **/
+	boolean nonTerminalsWithNoIds= false;
+	
 	/**
 	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */
@@ -363,7 +370,7 @@ public class TigerXMLReader extends DefaultHandler2
 			String id= attributes.getValue(TigerXMLDictionary.ATTRIBUTE_ID);
 			if (id== null)
 			{
-				LOGGER.warn("One syntactic node (terminal) element has no id.");
+				terminalsWithNoIds= true;
 				id= "synNode_"+ this.currentGraph.getSyntacticNodes().size()+1;
 			}
 			else
@@ -424,7 +431,7 @@ public class TigerXMLReader extends DefaultHandler2
 			String id= attributes.getValue(TigerXMLDictionary.ATTRIBUTE_ID);
 			if (id== null)
 			{
-				LOGGER.warn("One syntactic node element (non-terminal) has no id.");
+				nonTerminalsWithNoIds= true;
 				id= "synNode_"+ this.currentGraph.getSyntacticNodes().size()+1;
 			}
 			else
@@ -477,7 +484,7 @@ public class TigerXMLReader extends DefaultHandler2
 			String id= attributes.getValue(TigerXMLDictionary.ATTRIBUTE_ID);
 			if (id== null)
 			{
-				LOGGER.warn("One '"+TigerXMLDictionary.ELEMENT_EDGE+"' element has no id.");
+				edgesWithNoIds= true;
 				id= "edge_"+ edgeCounter;
 				this.edgeCounter++;
 			}
@@ -560,6 +567,18 @@ public class TigerXMLReader extends DefaultHandler2
 			this.currentGraph= null;
 		}
 		elementStack.pop();
+	}
+	
+	public void endDocument() throws SAXException{
+		if (edgesWithNoIds){
+			LOGGER.warn("One or more edge elements have no id in file '"+ this.inputURI+"'. ");
+		}
+		if (nonTerminalsWithNoIds){
+			LOGGER.warn("One or more syntactic node (non-terminal) elements have no id in file '"+ this.inputURI+"'. ");
+		}
+		if (terminalsWithNoIds){
+			LOGGER.warn("One or more syntactic node (terminal) elements have no id in file '"+ this.inputURI+"'. ");
+		}
 	}
 	
 	/**
