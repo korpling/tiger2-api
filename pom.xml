@@ -15,8 +15,8 @@
         </license>
     </licenses>
     <issueManagement>
-        <system>Redmine</system>
-        <url>https://korpling.german.hu-berlin.de/p/projects/tiger2/issues</url>
+        <system>GitHub</system>
+		<url>https://github.com/korpling/tiger2-emf-api/issues</url>
     </issueManagement>
     <ciManagement>
         <system>Jenkins</system>
@@ -24,9 +24,10 @@
     </ciManagement>
     <inceptionYear>2011</inceptionYear>
     <scm>
-        <developerConnection>scm:svn:https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger2-api/trunk</developerConnection>
-        <url>https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger2-api</url>
-    </scm>
+		<connection>scm:git:git://github.com/korpling/tiger2-emf-api.git</connection>
+		<developerConnection>scm:git:git@github.com:korpling/tiger2-emf-api.git</developerConnection>
+		<url>https://github.com/korpling/tiger2-emf-api</url>
+	</scm>
     <organization>
         <name>Humboldt Univerity of Berlin, INRIA</name>
     </organization>
@@ -133,15 +134,24 @@
             <!-- end: site plugin -->
             <!-- start: Plugin for automatic releasing -->
             <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <tagBase>
-                        https://korpling.german.hu-berlin.de/svn/saltnpepper/models/tiger2-api/tags/ </tagBase>
-                    <releaseProfiles>release</releaseProfiles>
-                    <goals>package assembly:single deploy</goals>
-                </configuration>
-            </plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${maven-release-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>perform</goal>        			
+						</goals>
+						<configuration>
+							<pomFileName>tiger2-emf-api/pom.xml</pomFileName>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+				  <releaseProfiles>release</releaseProfiles>
+				  <goals>package assembly:single deploy</goals>
+				</configuration>
+			</plugin>
             <!-- end: Plugin for automatic releasing -->
             <!-- start: for generating license headers in source files. Run mvn license:format -->
             <plugin>
