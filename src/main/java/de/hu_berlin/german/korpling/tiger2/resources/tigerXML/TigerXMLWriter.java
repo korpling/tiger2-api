@@ -446,7 +446,6 @@ public class TigerXMLWriter
 			if (terminal.getWord()!= null)
 			{
 				String word= "";
-				System.out.println("to write word: "+ terminal.getWord());
 				if (!terminal.getWord().isEmpty())
 					word= StringEscapeUtils.escapeXml(terminal.getWord());
 				this.output.print(" "+TigerXMLDictionary.ATTRIBUTE_WORD+"=\""+word+"\"");
