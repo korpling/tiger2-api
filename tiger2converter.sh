@@ -16,9 +16,8 @@
 #
 #
 #
-CLASS_PATH='-classpath ./*'
+CLASS_PATH='-classpath target/tiger2-api*.jar'
 EXEC_CLASS='de.hu_berlin.german.korpling.tiger2.main.Tiger2Converter'
 VM_PARAMS='-Xmx1024m -XX:-UseGCOverheadLimit'
-PARAMS=$1' '$2' '$3' '$4
-JAVA_PARAMS=$CLASS_PATH' '$EXEC_CLASS' '$PARAMS' '$VM_PARAMS
+JAVA_PARAMS=$VM_PARAMS' '$CLASS_PATH' -Dlogback.configurationFile=./conf/logback.xml '$EXEC_CLASS' '$*
 java $JAVA_PARAMS

@@ -29,7 +29,7 @@
 		<url>https://github.com/korpling/tiger2-emf-api</url>
 	</scm>
     <organization>
-        <name>Humboldt Univerity of Berlin, INRIA</name>
+        <name>Humboldt-Universität zu Berlin, INRIA</name>
     </organization>
     <distributionManagement>
         <repository>
@@ -50,7 +50,6 @@
         <bundle.file>${project.groupId}.${project.artifactId}_${project.version}.jar</bundle.file>
         <assembly.directory>${basedir}/src/main/assembly/</assembly.directory>
         <assembly.pepperBundle>${assembly.directory}assembly_pepperBundle.xml</assembly.pepperBundle>
-        <assembly.standAlone>${assembly.directory}assembly_standAlone.xml</assembly.standAlone>
         <license.file>${basedir}/LICENSE</license.file>
         <notice.file>${basedir}/NOTICE</notice.file>
         <emf.version>2.9.1-v20130827-0309</emf.version>
@@ -114,7 +113,6 @@
                 <configuration>
                     <descriptors>
                         <descriptor>${assembly.pepperBundle}</descriptor>
-						<descriptor>${assembly.standAlone}</descriptor>
                     </descriptors>
                     <appendAssemblyId>false</appendAssemblyId>
                     <finalName>${project.groupId}.${project.artifactId}_${project.version}</finalName>
@@ -184,7 +182,7 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>1.5</version>
                 <configuration>
-                    <!-- put your configurations here -->
+                    <shadedArtifactAttached>true</shadedArtifactAttached>
                 </configuration>
                 <executions>
                     <execution>
