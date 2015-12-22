@@ -3,7 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.corpus-tools</groupId>
 	<artifactId>tiger2-api</artifactId>
+<<<<<<< HEAD
 	<version>0.0.7-SNAPSHOT</version>
+=======
+	<version>0.0.8-SNAPSHOT</version>
+>>>>>>> 451ea5515c78b79f5d9e6406c6dd7d2d4e043c74
 	<packaging>bundle</packaging>	
 	<licenses>
 		<license>
