@@ -18,7 +18,16 @@
         <system>GitHub</system>
 		<url>https://github.com/korpling/tiger2-emf-api/issues</url>
     </issueManagement>
-    <ciManagement>
+    <developers>
+		<developer>
+			<name>Florian Zipser</name>
+			<email>saltnpepper@lists.hu-berlin.de</email>
+			<organization>Humboldt-Universität zu Berlin</organization>
+			<organizationUrl>https://www.hu-berlin.de</organizationUrl>
+		</developer>
+	</developers>
+	<description><tiger2/> is a standard conformant XML format modelled to express syntactic structures for a wide variety of theoretical formalisms and corpus architectures. http://korpling.german.hu-berlin.de/tiger2/</description>
+	<ciManagement>
         <system>Jenkins</system>
         <url>https://korpling.german.hu-berlin.de/jenkins/</url>
     </ciManagement>
@@ -56,6 +65,10 @@
         <license.file>${basedir}/LICENSE</license.file>
         <notice.file>${basedir}/NOTICE</notice.file>
         <emf.version>2.9.1-v20130827-0309</emf.version>
+		<exec-maven-plugin.version>1.4.0</exec-maven-plugin.version>
+		<maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
+		<maven-source-plugin.version>2.4</maven-source-plugin.version>
+		<maven-javadoc-plugin.version>2.10.1</maven-javadoc-plugin.version>
     </properties>
     <dependencies>
     	<dependency>
@@ -247,4 +260,57 @@
         </plugins>
         <finalName>${project.groupId}.${project.artifactId}_${project.version}</finalName>
     </build>
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<!-- generate a jar for sources -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>${maven-source-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Generates a Javadoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>${maven-javadoc-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- The Maven GPG plugin is used to sign the components -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${maven-gpg-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
