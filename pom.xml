@@ -25,8 +25,7 @@
 			<organization>Humboldt-Universität zu Berlin</organization>
 			<organizationUrl>https://www.hu-berlin.de</organizationUrl>
 		</developer>
-	</developers>
-	<description><tiger2/> is a standard conformant XML format modelled to express syntactic structures for a wide variety of theoretical formalisms and corpus architectures. http://korpling.german.hu-berlin.de/tiger2/</description>
+	</developers>	
 	<ciManagement>
         <system>Jenkins</system>
         <url>https://korpling.german.hu-berlin.de/jenkins/</url>
