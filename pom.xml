@@ -7,7 +7,7 @@
     <version>0.0.7-SNAPSHOT</version>
     <description>This project provides an api reading and writing data from or to the&lt;tiger2/&gt;
         format and the TigerXML format as well.</description>
-    <url>https://korpling.german.hu-berlin.de/p/projects/tiger2/</url>
+    <url>https://korpling.org/p/projects/tiger2/</url>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
