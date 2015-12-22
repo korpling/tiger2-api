@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.corpus-tools</groupId>
 	<artifactId>tiger2-api</artifactId>
-	<version>0.0.7</version>
+	<version>0.0.8-SNAPSHOT</version>
 	<packaging>bundle</packaging>	
 	<licenses>
 		<license>
@@ -42,7 +42,7 @@
 		<connection>scm:git:git://github.com/korpling/tiger2-api.git</connection>
 		<developerConnection>scm:git:git@github.com:korpling/tiger2-api.git</developerConnection>
 		<url>http://github.com/korpling/tiger2-api</url>
-		<tag>tiger2-api-0.0.7</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
 		<snapshotRepository>
