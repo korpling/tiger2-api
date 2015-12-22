@@ -171,7 +171,14 @@ public class Tiger2Converter {
 	{
 		StringBuffer buf= new StringBuffer();
 		
-		buf.append("any help");
+		buf.append("Synopsis: -i INPUT_FILE -o OUTPUT_FILE [direction]\n");
+		buf.append("\t INPUT_FILE determines an input file or folder\n");
+		buf.append("\t OUTPUT_FOLDER determines the output folder\n");
+		buf.append("direction:\n");
+		buf.append("\t -t2_t transforms tigerXML data into <tiger2/> data\n");
+		buf.append("\t -t_t2 transforms <tiger2/> data into tigerXML data\n");
+		buf.append("\t -t_t transforms tigerXML data into tigerXML data\n");
+		buf.append("\t -t2_t2 transforms <tiger2/> data into <tiger2/> data");
 		
 		return(buf.toString());
 	}
@@ -188,7 +195,7 @@ public class Tiger2Converter {
 	}
 	
 	/**
-	 * An enumeration of all parameters , whcih can be passed to the &lt;tiger2&gt; converter.
+	 * An enumeration of all parameters , which can be passed to the &lt;tiger2&gt; converter.
 	 * @author Florian Zipser
 	 *
 	 */

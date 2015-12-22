@@ -15,4 +15,6 @@
 @REM
 @REM
 @REM
-java -Xmx1024m -XX:-UseGCOverheadLimit -cp ./*  de.hu_berlin.german.korpling.tiger2.main.Tiger2Converter %1 %2 %3 %4
+for /r %%x in (tiger2-api-*-SNAPSHOT-shaded.jar) do set jarfile= %%x
+
+java -Xmx1024m -XX:-UseGCOverheadLimit -cp %jarFile% de.hu_berlin.german.korpling.tiger2.main.Tiger2Converter %1 %2 %3 %4

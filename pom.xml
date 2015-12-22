@@ -4,7 +4,7 @@
     <artifactId>tiger2-api</artifactId>
     <packaging>bundle</packaging>
     <name>${project.groupId}.${project.artifactId}</name>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.8-SNAPSHOT</version>
     <description>This project provides an api reading and writing data from or to the&lt;tiger2/&gt;
         format and the TigerXML format as well.</description>
     <url>https://korpling.german.hu-berlin.de/p/projects/tiger2/</url>
@@ -29,7 +29,7 @@
 		<url>https://github.com/korpling/tiger2-emf-api</url>
 	</scm>
     <organization>
-        <name>Humboldt Univerity of Berlin, INRIA</name>
+        <name>Humboldt-Universität zu Berlin, INRIA</name>
     </organization>
 	<distributionManagement>
 		<snapshotRepository>
@@ -53,28 +53,28 @@
         <bundle.file>${project.groupId}.${project.artifactId}_${project.version}.jar</bundle.file>
         <assembly.directory>${basedir}/src/main/assembly/</assembly.directory>
         <assembly.pepperBundle>${assembly.directory}assembly_pepperBundle.xml</assembly.pepperBundle>
-        <assembly.standAlone>${assembly.directory}assembly_standAlone.xml</assembly.standAlone>
         <license.file>${basedir}/LICENSE</license.file>
         <notice.file>${basedir}/NOTICE</notice.file>
+        <emf.version>2.9.1-v20130827-0309</emf.version>
     </properties>
     <dependencies>
     	<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.common</artifactId>
-			<version>2.8.0-v20120911-0500</version>
+			<version>${emf.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore</artifactId>
-			<version>2.8.0-v20120911-0500</version>
+			<version>${emf.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
-			<version>2.8.0-v20120911-0500</version>
+			<version>${emf.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
@@ -116,7 +116,6 @@
                 <configuration>
                     <descriptors>
                         <descriptor>${assembly.pepperBundle}</descriptor>
-						<descriptor>${assembly.standAlone}</descriptor>
                     </descriptors>
                     <appendAssemblyId>false</appendAssemblyId>
                     <finalName>${project.groupId}.${project.artifactId}_${project.version}</finalName>
@@ -186,7 +185,7 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>1.5</version>
                 <configuration>
-                    <!-- put your configurations here -->
+                    <shadedArtifactAttached>true</shadedArtifactAttached>
                 </configuration>
                 <executions>
                     <execution>
