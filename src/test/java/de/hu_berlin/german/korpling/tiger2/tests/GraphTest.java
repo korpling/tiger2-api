@@ -28,42 +28,50 @@ import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 /**
- * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Graph</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A test case for the model object
+ * '<em><b>Graph</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are tested:
  * <ul>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getNonTerminals() <em>Non Terminals</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getTerminals() <em>Terminals</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getNonTerminals()
+ * <em>Non Terminals</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getTerminals()
+ * <em>Terminals</em>}</li>
  * </ul>
  * </p>
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getOutgoingEdges(java.lang.String) <em>Get Outgoing Edges</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getIncomingEdges(java.lang.String) <em>Get Incoming Edges</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findNode(java.lang.String) <em>Find Node</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findEdge(java.lang.String) <em>Find Edge</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findRoots() <em>Find Roots</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findRoot() <em>Find Root</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getOutgoingEdges(java.lang.String)
+ * <em>Get Outgoing Edges</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#getIncomingEdges(java.lang.String)
+ * <em>Get Incoming Edges</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findNode(java.lang.String)
+ * <em>Find Node</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findEdge(java.lang.String)
+ * <em>Find Edge</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findRoots() <em>Find
+ * Roots</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Graph#findRoot() <em>Find
+ * Root</em>}</li>
  * </ul>
  * </p>
+ * 
  * @generated
  */
 public class GraphTest extends TestCase {
 
 	/**
-	 * The fixture for this Graph test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The fixture for this Graph test case. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Graph fixture = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -71,9 +79,9 @@ public class GraphTest extends TestCase {
 	}
 
 	/**
-	 * Constructs a new Graph test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Constructs a new Graph test case with the given name. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GraphTest(String name) {
@@ -81,9 +89,9 @@ public class GraphTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Graph test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the fixture for this Graph test case. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void setFixture(Graph fixture) {
@@ -91,9 +99,9 @@ public class GraphTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Graph test case.
-	 * <!-- begin-user-doc -->
+	 * Returns the fixture for this Graph test case. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Graph getFixture() {
@@ -101,8 +109,8 @@ public class GraphTest extends TestCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
@@ -112,8 +120,8 @@ public class GraphTest extends TestCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
@@ -123,30 +131,31 @@ public class GraphTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Graph#getNonTerminals() <em>Non Terminals</em>}' feature getter.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Graph#getNonTerminals()
+	 * <em>Non Terminals</em>}' feature getter. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Graph#getNonTerminals()
 	 */
-	public void testGetNonTerminals() 
-	{
-		NonTerminal nt1= Tiger2Factory.eINSTANCE.createNonTerminal();
+	public void testGetNonTerminals() {
+		NonTerminal nt1 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		this.getFixture().getSyntacticNodes().add(nt1);
 		assertNotNull(this.getFixture().getNonTerminals());
 		assertEquals(1, this.getFixture().getNonTerminals().size());
 		assertTrue(this.getFixture().getNonTerminals().contains(nt1));
-		
-		NonTerminal nt2= Tiger2Factory.eINSTANCE.createNonTerminal();
+
+		NonTerminal nt2 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		this.getFixture().getSyntacticNodes().add(nt2);
-		
+
 		assertNotNull(this.getFixture().getNonTerminals());
 		assertEquals(2, this.getFixture().getNonTerminals().size());
 		assertTrue(this.getFixture().getNonTerminals().contains(nt1));
 		assertTrue(this.getFixture().getNonTerminals().contains(nt2));
-		
-		NonTerminal nt3= Tiger2Factory.eINSTANCE.createNonTerminal();
+
+		NonTerminal nt3 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		this.getFixture().getSyntacticNodes().add(nt3);
-		
+
 		assertNotNull(this.getFixture().getNonTerminals());
 		assertEquals(3, this.getFixture().getNonTerminals().size());
 		assertTrue(this.getFixture().getNonTerminals().contains(nt1));
@@ -155,30 +164,31 @@ public class GraphTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Graph#getTerminals() <em>Terminals</em>}' feature getter.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Graph#getTerminals()
+	 * <em>Terminals</em>}' feature getter. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Graph#getTerminals()
 	 */
-	public void testGetTerminals() 
-	{
-		Terminal t1= Tiger2Factory.eINSTANCE.createTerminal();
+	public void testGetTerminals() {
+		Terminal t1 = Tiger2Factory.eINSTANCE.createTerminal();
 		this.getFixture().getSyntacticNodes().add(t1);
 		assertNotNull(this.getFixture().getTerminals());
 		assertEquals(1, this.getFixture().getTerminals().size());
 		assertTrue(this.getFixture().getTerminals().contains(t1));
-		
-		Terminal t2= Tiger2Factory.eINSTANCE.createTerminal();
+
+		Terminal t2 = Tiger2Factory.eINSTANCE.createTerminal();
 		this.getFixture().getSyntacticNodes().add(t2);
-		
+
 		assertNotNull(this.getFixture().getTerminals());
 		assertEquals(2, this.getFixture().getTerminals().size());
 		assertTrue(this.getFixture().getTerminals().contains(t1));
 		assertTrue(this.getFixture().getTerminals().contains(t2));
-		
-		Terminal t3= Tiger2Factory.eINSTANCE.createTerminal();
+
+		Terminal t3 = Tiger2Factory.eINSTANCE.createTerminal();
 		this.getFixture().getSyntacticNodes().add(t3);
-		
+
 		assertNotNull(this.getFixture().getTerminals());
 		assertEquals(3, this.getFixture().getTerminals().size());
 		assertTrue(this.getFixture().getTerminals().contains(t1));
@@ -187,91 +197,94 @@ public class GraphTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Graph#getIncomingEdges(java.lang.String) <em>Get Incoming Edges</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Graph#getIncomingEdges(java.lang.String)
+	 * <em>Get Incoming Edges</em>}' operation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Graph#getIncomingEdges(java.lang.String)
 	 */
-	public void testGetIncomingEdges__String() 
-	{
-		NonTerminal nt1= Tiger2Factory.eINSTANCE.createNonTerminal();
+	public void testGetIncomingEdges__String() {
+		NonTerminal nt1 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		nt1.setId("nt1");
 		this.getFixture().getSyntacticNodes().add(nt1);
-		NonTerminal nt2= Tiger2Factory.eINSTANCE.createNonTerminal();
+		NonTerminal nt2 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		nt2.setId("nt2");
 		this.getFixture().getSyntacticNodes().add(nt2);
-		NonTerminal nt3= Tiger2Factory.eINSTANCE.createNonTerminal();
+		NonTerminal nt3 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		nt3.setId("nt3");
 		this.getFixture().getSyntacticNodes().add(nt3);
-		
-		Edge e1= Tiger2Factory.eINSTANCE.createEdge();
+
+		Edge e1 = Tiger2Factory.eINSTANCE.createEdge();
 		e1.setTarget(nt1);
 		e1.setSource(nt2);
 		this.getFixture().getEdges().add(e1);
-		
-		Edge e2= Tiger2Factory.eINSTANCE.createEdge();
+
+		Edge e2 = Tiger2Factory.eINSTANCE.createEdge();
 		e2.setTarget(nt1);
 		e2.setSource(nt3);
 		this.getFixture().getEdges().add(e2);
-		
+
 		assertNotNull(this.getFixture().getIncomingEdges("nt1"));
 		assertTrue(this.getFixture().getIncomingEdges("nt1").contains(e1));
 		assertTrue(this.getFixture().getIncomingEdges("nt1").contains(e2));
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Graph#getOutgoingEdges(java.lang.String) <em>Get Outgoing Edges</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Graph#getOutgoingEdges(java.lang.String)
+	 * <em>Get Outgoing Edges</em>}' operation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Graph#getOutgoingEdges(java.lang.String)
 	 */
-	public void testGetOutgoingEdges__String() 
-	{
-		NonTerminal nt1= Tiger2Factory.eINSTANCE.createNonTerminal();
+	public void testGetOutgoingEdges__String() {
+		NonTerminal nt1 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		nt1.setId("nt1");
 		this.getFixture().getSyntacticNodes().add(nt1);
-		NonTerminal nt2= Tiger2Factory.eINSTANCE.createNonTerminal();
+		NonTerminal nt2 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		nt2.setId("nt2");
 		this.getFixture().getSyntacticNodes().add(nt2);
-		NonTerminal nt3= Tiger2Factory.eINSTANCE.createNonTerminal();
+		NonTerminal nt3 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		nt3.setId("nt3");
 		this.getFixture().getSyntacticNodes().add(nt3);
-		
-		Edge e1= Tiger2Factory.eINSTANCE.createEdge();
+
+		Edge e1 = Tiger2Factory.eINSTANCE.createEdge();
 		e1.setTarget(nt2);
 		e1.setSource(nt1);
 		this.getFixture().getEdges().add(e1);
-		
-		Edge e2= Tiger2Factory.eINSTANCE.createEdge();
+
+		Edge e2 = Tiger2Factory.eINSTANCE.createEdge();
 		e2.setTarget(nt3);
 		e2.setSource(nt1);
 		this.getFixture().getEdges().add(e2);
-		
+
 		assertNotNull(this.getFixture().getOutgoingEdges("nt1"));
 		assertTrue(this.getFixture().getOutgoingEdges("nt1").contains(e1));
 		assertTrue(this.getFixture().getOutgoingEdges("nt1").contains(e2));
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Graph#findNode(java.lang.String) <em>Find Node</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Graph#findNode(java.lang.String)
+	 * <em>Find Node</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Graph#findNode(java.lang.String)
 	 */
-	public void testFindNode__String() 
-	{
-		Terminal t1= Tiger2Factory.eINSTANCE.createTerminal();
+	public void testFindNode__String() {
+		Terminal t1 = Tiger2Factory.eINSTANCE.createTerminal();
 		t1.setId("t1");
 		this.getFixture().getSyntacticNodes().add(t1);
 		assertEquals(this.getFixture().findNode("t1"), t1);
-		
-		NonTerminal nt2= Tiger2Factory.eINSTANCE.createNonTerminal();
+
+		NonTerminal nt2 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		nt2.setId("nt2");
 		this.getFixture().getSyntacticNodes().add(nt2);
 		assertEquals(this.getFixture().findNode("t1"), t1);
 		assertEquals(this.getFixture().findNode("nt2"), nt2);
-		
-		Terminal t3= Tiger2Factory.eINSTANCE.createTerminal();
+
+		Terminal t3 = Tiger2Factory.eINSTANCE.createTerminal();
 		t3.setId("t3");
 		this.getFixture().getSyntacticNodes().add(t3);
 		assertEquals(this.getFixture().findNode("t1"), t1);
@@ -280,25 +293,26 @@ public class GraphTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Graph#findEdge(java.lang.String) <em>Find Edge</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Graph#findEdge(java.lang.String)
+	 * <em>Find Edge</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Graph#findEdge(java.lang.String)
 	 */
-	public void testFindEdge__String() 
-	{
-		Edge edge1= Tiger2Factory.eINSTANCE.createEdge();
+	public void testFindEdge__String() {
+		Edge edge1 = Tiger2Factory.eINSTANCE.createEdge();
 		edge1.setId("e1");
 		this.getFixture().getEdges().add(edge1);
 		assertEquals(this.getFixture().findEdge("e1"), edge1);
-		
-		Edge edge2= Tiger2Factory.eINSTANCE.createEdge();
+
+		Edge edge2 = Tiger2Factory.eINSTANCE.createEdge();
 		edge2.setId("e2");
 		this.getFixture().getEdges().add(edge2);
 		assertEquals(this.getFixture().findEdge("e1"), edge1);
 		assertEquals(this.getFixture().findEdge("e2"), edge2);
-		
-		Edge edge3= Tiger2Factory.eINSTANCE.createEdge();
+
+		Edge edge3 = Tiger2Factory.eINSTANCE.createEdge();
 		edge3.setId("e3");
 		this.getFixture().getEdges().add(edge3);
 		assertEquals(this.getFixture().findEdge("e1"), edge1);
@@ -308,57 +322,59 @@ public class GraphTest extends TestCase {
 
 	/**
 	 * Creates small tree
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Graph#findRoots()
 	 */
 	public void testFindRoots() {
-		NonTerminal root1= Tiger2Factory.eINSTANCE.createNonTerminal();
+		NonTerminal root1 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		root1.setId("root1");
 		getFixture().getSyntacticNodes().add(root1);
-		
-		Terminal t1= Tiger2Factory.eINSTANCE.createTerminal();
+
+		Terminal t1 = Tiger2Factory.eINSTANCE.createTerminal();
 		t1.setId("t1");
 		getFixture().getSyntacticNodes().add(t1);
-		
-		Terminal t2= Tiger2Factory.eINSTANCE.createTerminal();
+
+		Terminal t2 = Tiger2Factory.eINSTANCE.createTerminal();
 		t2.setId("t2");
 		getFixture().getSyntacticNodes().add(t2);
-		
-		NonTerminal root2= Tiger2Factory.eINSTANCE.createNonTerminal();
+
+		NonTerminal root2 = Tiger2Factory.eINSTANCE.createNonTerminal();
 		root2.setId("root2");
 		getFixture().getSyntacticNodes().add(root2);
-		
-		Terminal t3= Tiger2Factory.eINSTANCE.createTerminal();
+
+		Terminal t3 = Tiger2Factory.eINSTANCE.createTerminal();
 		t3.setId("t3");
 		getFixture().getSyntacticNodes().add(t3);
-		
-		Terminal t4= Tiger2Factory.eINSTANCE.createTerminal();
+
+		Terminal t4 = Tiger2Factory.eINSTANCE.createTerminal();
 		t4.setId("t2");
 		getFixture().getSyntacticNodes().add(t4);
-		
+
 		assertTrue(getFixture().findRoots().contains(root1));
 		assertTrue(getFixture().findRoots().contains(root2));
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Graph#findRoot() <em>Find Root</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Graph#findRoot()
+	 * <em>Find Root</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Graph#findRoot()
 	 */
 	public void testFindRoot() {
-		NonTerminal root= Tiger2Factory.eINSTANCE.createNonTerminal();
+		NonTerminal root = Tiger2Factory.eINSTANCE.createNonTerminal();
 		root.setId("root");
 		getFixture().getSyntacticNodes().add(root);
-		
-		Terminal t1= Tiger2Factory.eINSTANCE.createTerminal();
+
+		Terminal t1 = Tiger2Factory.eINSTANCE.createTerminal();
 		t1.setId("t1");
 		getFixture().getSyntacticNodes().add(t1);
-		
-		Terminal t2= Tiger2Factory.eINSTANCE.createTerminal();
+
+		Terminal t2 = Tiger2Factory.eINSTANCE.createTerminal();
 		t2.setId("t2");
 		getFixture().getSyntacticNodes().add(t2);
-		
+
 		assertEquals(root, getFixture().findRoot());
 	}
 
-} //GraphTest
+} // GraphTest

@@ -25,24 +25,24 @@ import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 /**
- * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Feature Value</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A test case for the model object '<em><b>Feature
+ * Value</b></em>'. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class FeatureValueTest extends TestCase {
 
 	/**
-	 * The fixture for this Feature Value test case.
-	 * <!-- begin-user-doc -->
+	 * The fixture for this Feature Value test case. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FeatureValue fixture = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -50,9 +50,9 @@ public class FeatureValueTest extends TestCase {
 	}
 
 	/**
-	 * Constructs a new Feature Value test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Constructs a new Feature Value test case with the given name. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FeatureValueTest(String name) {
@@ -60,9 +60,9 @@ public class FeatureValueTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Feature Value test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the fixture for this Feature Value test case. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void setFixture(FeatureValue fixture) {
@@ -70,9 +70,9 @@ public class FeatureValueTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Feature Value test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the fixture for this Feature Value test case. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FeatureValue getFixture() {
@@ -80,8 +80,8 @@ public class FeatureValueTest extends TestCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
@@ -91,8 +91,8 @@ public class FeatureValueTest extends TestCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
@@ -104,6 +104,6 @@ public class FeatureValueTest extends TestCase {
 	/**
 	 * This test is just an alibib, until some tests were added.
 	 */
-	public void testAlibi()
-	{}
-} //FeatureValueTest
+	public void testAlibi() {
+	}
+} // FeatureValueTest

@@ -24,19 +24,19 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>DEFAULT TYPE</b></em>',
- * and utility methods for working with them.
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration
+ * '<em><b>DEFAULT TYPE</b></em>', and utility methods for working with them.
  * <!-- end-user-doc -->
+ * 
  * @see de.hu_berlin.german.korpling.tiger2.Tiger2Package#getDEFAULT_TYPE()
  * @model
  * @generated
  */
 public enum DEFAULT_TYPE implements Enumerator {
 	/**
-	 * The '<em><b>EDGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>EDGE</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #EDGE_VALUE
 	 * @generated
 	 * @ordered
@@ -44,33 +44,36 @@ public enum DEFAULT_TYPE implements Enumerator {
 	EDGE(0, "EDGE", "edge"),
 
 	/**
-	 * The '<em><b>SECEDGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>SECEDGE</b></em>' literal object. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #SECEDGE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SECEDGE(1, "SECEDGE", "secedge"), /**
-	 * The '<em><b>PRIM</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	SECEDGE(1, "SECEDGE", "secedge"),
+	/**
+	 * The '<em><b>PRIM</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #PRIM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PRIM(2, "PRIM", "prim"), /**
-	 * The '<em><b>LABEL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	PRIM(2, "PRIM", "prim"),
+	/**
+	 * The '<em><b>LABEL</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #LABEL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LABEL(3, "LABEL", "label"), /**
-	 * The '<em><b>SEC</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	LABEL(3, "LABEL", "label"),
+	/**
+	 * The '<em><b>SEC</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #SEC_VALUE
 	 * @generated
 	 * @ordered
@@ -78,13 +81,13 @@ public enum DEFAULT_TYPE implements Enumerator {
 	SEC(4, "SEC", "sec");
 
 	/**
-	 * The '<em><b>EDGE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>EDGE</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>EDGE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #EDGE
 	 * @model literal="edge"
 	 * @generated
@@ -93,13 +96,13 @@ public enum DEFAULT_TYPE implements Enumerator {
 	public static final int EDGE_VALUE = 0;
 
 	/**
-	 * The '<em><b>SECEDGE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>SECEDGE</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>SECEDGE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #SECEDGE
 	 * @model literal="secedge"
 	 * @generated
@@ -108,13 +111,13 @@ public enum DEFAULT_TYPE implements Enumerator {
 	public static final int SECEDGE_VALUE = 1;
 
 	/**
-	 * The '<em><b>PRIM</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>PRIM</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>PRIM</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #PRIM
 	 * @model literal="prim"
 	 * @generated
@@ -123,13 +126,13 @@ public enum DEFAULT_TYPE implements Enumerator {
 	public static final int PRIM_VALUE = 2;
 
 	/**
-	 * The '<em><b>LABEL</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>LABEL</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>LABEL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #LABEL
 	 * @model literal="label"
 	 * @generated
@@ -138,13 +141,13 @@ public enum DEFAULT_TYPE implements Enumerator {
 	public static final int LABEL_VALUE = 3;
 
 	/**
-	 * The '<em><b>SEC</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>SEC</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SEC</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>SEC</b></em>' literal object isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #SEC
 	 * @model literal="sec"
 	 * @generated
@@ -153,32 +156,25 @@ public enum DEFAULT_TYPE implements Enumerator {
 	public static final int SEC_VALUE = 4;
 
 	/**
-	 * An array of all the '<em><b>DEFAULT TYPE</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * An array of all the '<em><b>DEFAULT TYPE</b></em>' enumerators. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final DEFAULT_TYPE[] VALUES_ARRAY =
-		new DEFAULT_TYPE[] {
-			EDGE,
-			SECEDGE,
-			PRIM,
-			LABEL,
-			SEC,
-		};
+	private static final DEFAULT_TYPE[] VALUES_ARRAY = new DEFAULT_TYPE[] { EDGE, SECEDGE, PRIM, LABEL, SEC, };
 
 	/**
-	 * A public read-only list of all the '<em><b>DEFAULT TYPE</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * A public read-only list of all the '<em><b>DEFAULT TYPE</b></em>'
+	 * enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<DEFAULT_TYPE> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>DEFAULT TYPE</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>DEFAULT TYPE</b></em>' literal with the specified
+	 * literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DEFAULT_TYPE get(String literal) {
@@ -192,9 +188,9 @@ public enum DEFAULT_TYPE implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>DEFAULT TYPE</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>DEFAULT TYPE</b></em>' literal with the specified
+	 * name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DEFAULT_TYPE getByName(String name) {
@@ -208,47 +204,52 @@ public enum DEFAULT_TYPE implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>DEFAULT TYPE</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>DEFAULT TYPE</b></em>' literal with the specified
+	 * integer value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DEFAULT_TYPE get(int value) {
 		switch (value) {
-			case EDGE_VALUE: return EDGE;
-			case SECEDGE_VALUE: return SECEDGE;
-			case PRIM_VALUE: return PRIM;
-			case LABEL_VALUE: return LABEL;
-			case SEC_VALUE: return SEC;
+		case EDGE_VALUE:
+			return EDGE;
+		case SECEDGE_VALUE:
+			return SECEDGE;
+		case PRIM_VALUE:
+			return PRIM;
+		case LABEL_VALUE:
+			return LABEL;
+		case SEC_VALUE:
+			return SEC;
 		}
 		return null;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private DEFAULT_TYPE(int value, String name, String literal) {
@@ -258,41 +259,41 @@ public enum DEFAULT_TYPE implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string
+	 * representation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
 		return literal;
 	}
-	
-} //DEFAULT_TYPE
+
+} // DEFAULT_TYPE

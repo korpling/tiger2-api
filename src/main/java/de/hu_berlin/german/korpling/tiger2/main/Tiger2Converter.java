@@ -36,141 +36,144 @@ public class Tiger2Converter {
 	 * Resource set to load and store &lt;tiger2&gt; model.
 	 */
 	private ResourceSet resourceSet = null;
-	
-	public Tiger2Converter()
-	{
-		// create resource set and resource 
-		resourceSet= new ResourceSetImpl();
+
+	public Tiger2Converter() {
+		// create resource set and resource
+		resourceSet = new ResourceSetImpl();
 		// Register XML resource factory
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(TigerResourceFactory.FILE_ENDING_TIGER2, new TigerResourceFactory());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(TigerResourceFactory.FILE_ENDING_TIGER2_2, new TigerResourceFactory());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(TigerResourceFactory.FILE_ENDING_TIGERXML, new TigerResourceFactory());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(TigerResourceFactory.FILE_ENDING_TIGER2,
+				new TigerResourceFactory());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
+				.put(TigerResourceFactory.FILE_ENDING_TIGER2_2, new TigerResourceFactory());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
+				.put(TigerResourceFactory.FILE_ENDING_TIGERXML, new TigerResourceFactory());
 	}
-	
-	
+
 	/**
-	 * Reads the data coming from the <code>inputFile</code> into the &lt;tiger2&gt; model and outputs the data
-	 * to the given <code>outputFile</code>. If the inputFile is a directory, the contained files will be read recursively, and
-	 * the same file structure in output file will be created.
+	 * Reads the data coming from the <code>inputFile</code> into the
+	 * &lt;tiger2&gt; model and outputs the data to the given
+	 * <code>outputFile</code>. If the inputFile is a directory, the contained
+	 * files will be read recursively, and the same file structure in output
+	 * file will be created.
+	 * 
 	 * @param inputFile
-	 * @param outputFile output folder
+	 * @param outputFile
+	 *            output folder
 	 */
-	public void convert(File inputFile, File outputFile, PARAMETERS convertMode)
-	{
-		if (inputFile== null)
+	public void convert(File inputFile, File outputFile, PARAMETERS convertMode) {
+		if (inputFile == null)
 			throw new TigerException("Cannot convert files, because given inputFile is empty.");
-		if (outputFile== null)
+		if (outputFile == null)
 			throw new TigerException("Cannot convert files, because given inputFile is empty.");
 		if (!outputFile.isDirectory())
 			throw new TigerException("Cannot convert files, because given outputFile is not a directory.");
-		
+
 		this.convertRec(inputFile, outputFile, convertMode);
 	}
 
 	/**
 	 * Creates the folders in output recursively to mirror the input folder.
+	 * 
 	 * @param inputFile
 	 * @param outputFile
 	 * @param convertMode
 	 */
-	public void convertRec(File inputFile, File outputFile, PARAMETERS convertMode)
-	{
-		for (File subInputFile: inputFile.listFiles())
-		{
-			if (subInputFile.isDirectory())
-			{//file is a folder
-				File subOutFolder= new File(outputFile.getAbsolutePath()+"/"+ subInputFile.getName());
+	public void convertRec(File inputFile, File outputFile, PARAMETERS convertMode) {
+		for (File subInputFile : inputFile.listFiles()) {
+			if (subInputFile.isDirectory()) {// file is a folder
+				File subOutFolder = new File(outputFile.getAbsolutePath() + "/" + subInputFile.getName());
 				subOutFolder.mkdirs();
 				convertRec(subInputFile, subOutFolder, convertMode);
-			}//file is a folder
-			else
-			{// file is a file
+			} // file is a folder
+			else {// file is a file
 				convertFiles(subInputFile, outputFile, convertMode);
-			}// file is a file
+			} // file is a file
 		}
 	}
-	
+
 	/**
-	 * Reads the data coming from the <code>inputFile</code> into the &lt;tiger2&gt; model and outputs the data
-	 * to the given <code>outputFile</code>. The given file <code>inputFile</code> must be a file  and not a  directory.
+	 * Reads the data coming from the <code>inputFile</code> into the
+	 * &lt;tiger2&gt; model and outputs the data to the given
+	 * <code>outputFile</code>. The given file <code>inputFile</code> must be a
+	 * file and not a directory.
+	 * 
 	 * @param inputFile
-	 * @param outputFile output folder
+	 * @param outputFile
+	 *            output folder
 	 */
-	public void convertFiles(File inputFile, File outputFile, PARAMETERS convertMode)
-	{
-		if (inputFile== null)
+	public void convertFiles(File inputFile, File outputFile, PARAMETERS convertMode) {
+		if (inputFile == null)
 			throw new TigerException("Cannot convert files, because given inputFile is empty.");
-		if (outputFile== null)
+		if (outputFile == null)
 			throw new TigerException("Cannot convert files, because given inputFile is empty.");
 		if (inputFile.isDirectory())
-			throw new TigerException("Cannot convert files, because given inputFile is a directory, please call methos convert(..) instead.");
+			throw new TigerException(
+					"Cannot convert files, because given inputFile is a directory, please call methos convert(..) instead.");
 		if (!outputFile.exists())
 			outputFile.mkdirs();
 		if (!outputFile.isDirectory())
 			throw new TigerException("Cannot convert files, because given outputFile is not a directory.");
-		
-		Corpus corpus= null;
-		//start: read model
-			try
-			{
-				URI inputURI= URI.createFileURI(inputFile.toString());
-				Resource resourceIn = resourceSet.createResource(inputURI);
-				if (resourceIn== null)
-					throw new TigerException("No resource found for file '"+inputFile.getAbsolutePath()+"'.");
-				resourceIn.load(null);
-				if (resourceIn.getContents()== null)
-					throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+inputFile.getAbsolutePath()+"'.");
-				if (resourceIn.getContents().size()== 0)
-					throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+inputFile.getAbsolutePath()+"'.");
-				Object corpObj=resourceIn.getContents().get(0);
-				if (!(corpObj instanceof Corpus))
-					throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+inputFile.getAbsolutePath()+"', beacuse the file does not contain a <tiger2/> conform 'Corpus' object.");
-				corpus= (Corpus) corpObj;
-			}catch (IOException e) {
-				throw new TigerResourceException("Cannot load 'Corpus' object from uri '"+inputFile.getAbsolutePath()+"', beacuse of a nested exception.", e);
-			}
-			
-			try
-			{
-				URI outputURI= null; 
-				if (	(convertMode.equals(PARAMETERS.t_t2)) ||
-						(convertMode.equals(PARAMETERS.t2_t2)))
-				{
-					outputURI= URI.createFileURI(outputFile.getAbsolutePath()+"/"+inputFile.getName()+"."+TigerResourceFactory.FILE_ENDING_TIGER2);
-				}
-				else if (	(convertMode.equals(PARAMETERS.t_t)) ||
-							(convertMode.equals(PARAMETERS.t2_t)))
-				{
-					outputURI= URI.createFileURI(outputFile.getAbsolutePath()+"/"+inputFile.getName()+"."+TigerResourceFactory.FILE_ENDING_TIGERXML);
-				}
-				else throw new TigerException("No matching convertMode was given.");
-				
-				Resource resourceOut = resourceSet.createResource(outputURI);
-				if (resourceOut== null)
-					throw new TigerException("No resource found for file '"+outputFile.getAbsolutePath()+"'.");
-				resourceOut.getContents().add(corpus);
-				resourceOut.save(null);
-			}catch (IOException e) {
-				throw new TigerResourceException("Cannot save 'Corpus' object from uri '"+inputFile.getAbsolutePath()+"', beacuse of a nested exception.", e);
-			}
-		//end: read model
+
+		Corpus corpus = null;
+		// start: read model
+		try {
+			URI inputURI = URI.createFileURI(inputFile.toString());
+			Resource resourceIn = resourceSet.createResource(inputURI);
+			if (resourceIn == null)
+				throw new TigerException("No resource found for file '" + inputFile.getAbsolutePath() + "'.");
+			resourceIn.load(null);
+			if (resourceIn.getContents() == null)
+				throw new TigerResourceException(
+						"Cannot load 'Corpus' object from uri '" + inputFile.getAbsolutePath() + "'.");
+			if (resourceIn.getContents().size() == 0)
+				throw new TigerResourceException(
+						"Cannot load 'Corpus' object from uri '" + inputFile.getAbsolutePath() + "'.");
+			Object corpObj = resourceIn.getContents().get(0);
+			if (!(corpObj instanceof Corpus))
+				throw new TigerResourceException("Cannot load 'Corpus' object from uri '" + inputFile.getAbsolutePath()
+						+ "', beacuse the file does not contain a <tiger2/> conform 'Corpus' object.");
+			corpus = (Corpus) corpObj;
+		} catch (IOException e) {
+			throw new TigerResourceException("Cannot load 'Corpus' object from uri '" + inputFile.getAbsolutePath()
+					+ "', beacuse of a nested exception.", e);
+		}
+
+		try {
+			URI outputURI = null;
+			if ((convertMode.equals(PARAMETERS.t_t2)) || (convertMode.equals(PARAMETERS.t2_t2))) {
+				outputURI = URI.createFileURI(outputFile.getAbsolutePath() + "/" + inputFile.getName() + "."
+						+ TigerResourceFactory.FILE_ENDING_TIGER2);
+			} else if ((convertMode.equals(PARAMETERS.t_t)) || (convertMode.equals(PARAMETERS.t2_t))) {
+				outputURI = URI.createFileURI(outputFile.getAbsolutePath() + "/" + inputFile.getName() + "."
+						+ TigerResourceFactory.FILE_ENDING_TIGERXML);
+			} else
+				throw new TigerException("No matching convertMode was given.");
+
+			Resource resourceOut = resourceSet.createResource(outputURI);
+			if (resourceOut == null)
+				throw new TigerException("No resource found for file '" + outputFile.getAbsolutePath() + "'.");
+			resourceOut.getContents().add(corpus);
+			resourceOut.save(null);
+		} catch (IOException e) {
+			throw new TigerResourceException("Cannot save 'Corpus' object from uri '" + inputFile.getAbsolutePath()
+					+ "', beacuse of a nested exception.", e);
+		}
+		// end: read model
 	}
-	
-	private static String sayHello()
-	{
-		StringBuffer buf= new StringBuffer();
-		
+
+	private static String sayHello() {
+		StringBuffer buf = new StringBuffer();
+
 		buf.append("**********************************************************************************\n");
 		buf.append("***                          Welcome to <tiger2/> api                          ***\n");
 		buf.append("**********************************************************************************\n");
-		
-		return(buf.toString());
+
+		return (buf.toString());
 	}
-	
-	private static String getHelp()
-	{
-		StringBuffer buf= new StringBuffer();
-		
+
+	private static String getHelp() {
+		StringBuffer buf = new StringBuffer();
+
 		buf.append("Synopsis: -i INPUT_FILE -o OUTPUT_FILE [direction]\n");
 		buf.append("\t INPUT_FILE determines an input file or folder\n");
 		buf.append("\t OUTPUT_FOLDER determines the output folder\n");
@@ -179,82 +182,74 @@ public class Tiger2Converter {
 		buf.append("\t -t_t2 transforms <tiger2/> data into tigerXML data\n");
 		buf.append("\t -t_t transforms tigerXML data into tigerXML data\n");
 		buf.append("\t -t2_t2 transforms <tiger2/> data into <tiger2/> data");
-		
-		return(buf.toString());
+
+		return (buf.toString());
 	}
-	
-	private static String sayBye()
-	{
-		StringBuffer buf= new StringBuffer();
-		
+
+	private static String sayBye() {
+		StringBuffer buf = new StringBuffer();
+
 		buf.append("**********************************************************************************\n");
 		buf.append("***                        good bye from <tiger2/> api                         ***\n");
 		buf.append("**********************************************************************************\n");
-		
-		return(buf.toString());
+
+		return (buf.toString());
 	}
-	
+
 	/**
-	 * An enumeration of all parameters , which can be passed to the &lt;tiger2&gt; converter.
+	 * An enumeration of all parameters , which can be passed to the
+	 * &lt;tiger2&gt; converter.
+	 * 
 	 * @author Florian Zipser
 	 *
 	 */
-	enum PARAMETERS {i, o, t2_t, t_t2, t_t, t2_t2};
-	
+	enum PARAMETERS {
+		i, o, t2_t, t_t2, t_t, t2_t2
+	};
+
 	/**
 	 * @param args
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException 
-	{
+	public static void main(String[] args) throws IOException {
 		System.out.println(sayHello());
-		
-		try
-		{
-			if (	(args== null)||
-					(args.length== 0))
+
+		try {
+			if ((args == null) || (args.length == 0))
 				System.out.println(getHelp());
-			
-			File inputFile= null;
-			File outputFolder= null;
-			PARAMETERS convertDirection= null;
-			
-			for (int i = 0; i< args.length; i++)
-			{
-				if (args[i].equalsIgnoreCase("-"+PARAMETERS.o) )
-				{
-					outputFolder= new File(args[i+1]);
-				}
-				else if (args[i].equalsIgnoreCase("-"+PARAMETERS.i) )
-				{
-					inputFile= new File(args[i+1]);
-				}
-				else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t2_t) )
-					convertDirection= PARAMETERS.t2_t;
-				else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t_t2) )
-					convertDirection= PARAMETERS.t_t2;
-				else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t_t) )
-					convertDirection= PARAMETERS.t_t;
-				else if (args[i].equalsIgnoreCase("-"+PARAMETERS.t2_t2) )
-					convertDirection= PARAMETERS.t2_t2;
+
+			File inputFile = null;
+			File outputFolder = null;
+			PARAMETERS convertDirection = null;
+
+			for (int i = 0; i < args.length; i++) {
+				if (args[i].equalsIgnoreCase("-" + PARAMETERS.o)) {
+					outputFolder = new File(args[i + 1]);
+				} else if (args[i].equalsIgnoreCase("-" + PARAMETERS.i)) {
+					inputFile = new File(args[i + 1]);
+				} else if (args[i].equalsIgnoreCase("-" + PARAMETERS.t2_t))
+					convertDirection = PARAMETERS.t2_t;
+				else if (args[i].equalsIgnoreCase("-" + PARAMETERS.t_t2))
+					convertDirection = PARAMETERS.t_t2;
+				else if (args[i].equalsIgnoreCase("-" + PARAMETERS.t_t))
+					convertDirection = PARAMETERS.t_t;
+				else if (args[i].equalsIgnoreCase("-" + PARAMETERS.t2_t2))
+					convertDirection = PARAMETERS.t2_t2;
 			}
-			
-			if (inputFile== null)
+
+			if (inputFile == null)
 				throw new IOException("No file or folder for tiger2 was given");
-			if (outputFolder== null)
+			if (outputFolder == null)
 				throw new IOException("No file or folder for tigerXML was given");
-			if (convertDirection== null)
+			if (convertDirection == null)
 				throw new NullPointerException("No convert direction is given.");
-			
-			Tiger2Converter converter= new Tiger2Converter();
-			if (inputFile.isDirectory())
-			{
+
+			Tiger2Converter converter = new Tiger2Converter();
+			if (inputFile.isDirectory()) {
 				converter.convert(inputFile, outputFolder, convertDirection);
-			}
-			else 
+			} else
 				converter.convertFiles(inputFile, outputFolder, convertDirection);
-		}finally
-		{
+		} finally {
 			System.out.println(sayBye());
 		}
 	}

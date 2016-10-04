@@ -20,18 +20,22 @@ package de.hu_berlin.german.korpling.tiger2;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Annotation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object
+ * '<em><b>Annotation</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getOwner <em>Owner</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getValue <em>Value</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getFeatureRef <em>Feature Ref</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getFeatureValueRef <em>Feature Value Ref</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getName <em>Name</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getOwner
+ * <em>Owner</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getValue
+ * <em>Value</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getFeatureRef
+ * <em>Feature Ref</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getFeatureValueRef
+ * <em>Feature Value Ref</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getName
+ * <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,14 +45,16 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Annotation extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Owner</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link de.hu_berlin.german.korpling.tiger2.AnnotatableElement#getAnnotations <em>Annotations</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Owner</b></em>' reference. It is
+	 * bidirectional and its opposite is
+	 * '{@link de.hu_berlin.german.korpling.tiger2.AnnotatableElement#getAnnotations
+	 * <em>Annotations</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owner</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Owner</em>' reference isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Owner</em>' reference.
 	 * @see #setOwner(AnnotatableElement)
 	 * @see de.hu_berlin.german.korpling.tiger2.Tiger2Package#getAnnotation_Owner()
@@ -59,19 +65,22 @@ public interface Annotation extends EObject {
 	AnnotatableElement getOwner();
 
 	/**
-	 * Sets the value of the '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getOwner <em>Owner</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owner</em>' reference.
+	 * Sets the value of the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getOwner
+	 * <em>Owner</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Owner</em>' reference.
 	 * @see #getOwner()
 	 * @generated
 	 */
 	void setOwner(AnnotatableElement value);
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute.
-	 * This value is a derived value and calls {@link FeatureValue#getValue()} if this reference is set, otherwise
-	 * the internal value is returned if set.
+	 * Returns the value of the '<em><b>Value</b></em>' attribute. This value is
+	 * a derived value and calls {@link FeatureValue#getValue()} if this
+	 * reference is set, otherwise the internal value is returned if set.
+	 * 
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see de.hu_berlin.german.korpling.tiger2.Tiger2Package#getAnnotation_Value()
@@ -81,23 +90,28 @@ public interface Annotation extends EObject {
 	String getValue();
 
 	/**
-	 * Sets the value of the '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getValue <em>Value</em>}' attribute.
-	 * A value can only be set, if this object has no reference to a {@link FeatureValue} object via {@link #getFeatureRef()}.
-	 * If it has one, this method has no effect. 
-	 * @param value the new value of the '<em>Value</em>' attribute.
+	 * Sets the value of the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getValue
+	 * <em>Value</em>}' attribute. A value can only be set, if this object has
+	 * no reference to a {@link FeatureValue} object via
+	 * {@link #getFeatureRef()}. If it has one, this method has no effect.
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Value</em>' attribute.
 	 * @see #getValue()
 	 * @generated
 	 */
 	void setValue(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Feature Ref</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Feature Ref</b></em>' reference. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Feature Ref</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Feature Ref</em>' reference isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Feature Ref</em>' reference.
 	 * @see #setFeatureRef(Feature)
 	 * @see de.hu_berlin.german.korpling.tiger2.Tiger2Package#getAnnotation_FeatureRef()
@@ -107,10 +121,13 @@ public interface Annotation extends EObject {
 	Feature getFeatureRef();
 
 	/**
-	 * Sets the value of the '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getFeatureRef <em>Feature Ref</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature Ref</em>' reference.
+	 * Sets the value of the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getFeatureRef
+	 * <em>Feature Ref</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Feature Ref</em>' reference.
 	 * @see #getFeatureRef()
 	 * @generated
 	 */
@@ -124,6 +141,7 @@ public interface Annotation extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Feature Value Ref</em>' reference.
 	 * @see #setFeatureValueRef(FeatureValue)
 	 * @see de.hu_berlin.german.korpling.tiger2.Tiger2Package#getAnnotation_FeatureValueRef()
@@ -133,18 +151,22 @@ public interface Annotation extends EObject {
 	FeatureValue getFeatureValueRef();
 
 	/**
-	 * Sets the value of the '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getFeatureValueRef <em>Feature Value Ref</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature Value Ref</em>' reference.
+	 * Sets the value of the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getFeatureValueRef
+	 * <em>Feature Value Ref</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Feature Value Ref</em>' reference.
 	 * @see #getFeatureValueRef()
 	 * @generated
 	 */
 	void setFeatureValueRef(FeatureValue value);
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * This value is a derived value and calls {@link Feature#getName()}
+	 * Returns the value of the '<em><b>Name</b></em>' attribute. This value is
+	 * a derived value and calls {@link Feature#getName()}
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see de.hu_berlin.german.korpling.tiger2.Tiger2Package#getAnnotation_Name()

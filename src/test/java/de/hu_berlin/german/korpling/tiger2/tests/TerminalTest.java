@@ -23,16 +23,16 @@ import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
 import junit.textui.TestRunner;
 
 /**
- * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Terminal</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A test case for the model object
+ * '<em><b>Terminal</b></em>'. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TerminalTest extends SyntacticNodeTest {
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -40,9 +40,9 @@ public class TerminalTest extends SyntacticNodeTest {
 	}
 
 	/**
-	 * Constructs a new Terminal test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Constructs a new Terminal test case with the given name. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TerminalTest(String name) {
@@ -50,19 +50,19 @@ public class TerminalTest extends SyntacticNodeTest {
 	}
 
 	/**
-	 * Returns the fixture for this Terminal test case.
-	 * <!-- begin-user-doc -->
+	 * Returns the fixture for this Terminal test case. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected Terminal getFixture() {
-		return (Terminal)fixture;
+		return (Terminal) fixture;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
@@ -72,8 +72,8 @@ public class TerminalTest extends SyntacticNodeTest {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
@@ -81,11 +81,11 @@ public class TerminalTest extends SyntacticNodeTest {
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
-	
+
 	/**
 	 * This test is just an alibi, until some tests were added.
 	 */
-	public void testAlibi()
-	{}
+	public void testAlibi() {
+	}
 
-} //TerminalTest
+} // TerminalTest

@@ -23,9 +23,8 @@ import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
 import org.eclipse.emf.ecore.EClass;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Non Terminal</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Non
+ * Terminal</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
@@ -33,8 +32,8 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class NonTerminalImpl extends SyntacticNodeImpl implements NonTerminal {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NonTerminalImpl() {
@@ -42,8 +41,8 @@ public class NonTerminalImpl extends SyntacticNodeImpl implements NonTerminal {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -51,4 +50,4 @@ public class NonTerminalImpl extends SyntacticNodeImpl implements NonTerminal {
 		return Tiger2Package.Literals.NON_TERMINAL;
 	}
 
-} //NonTerminalImpl
+} // NonTerminalImpl

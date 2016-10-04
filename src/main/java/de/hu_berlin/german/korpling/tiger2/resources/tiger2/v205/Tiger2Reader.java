@@ -46,24 +46,25 @@ import de.hu_berlin.german.korpling.tiger2.exceptions.TigerInternalException;
 import de.hu_berlin.german.korpling.tiger2.exceptions.TigerInvalidModelException;
 
 /**
- * A SAX parser for reading a <tiger2/> xml file and mapping its content to the <tiger2/> model.
+ * A SAX parser for reading a <tiger2/> xml file and mapping its content to the
+ * <tiger2/> model.
+ * 
  * @author Florian Zipser
  *
  */
-public class Tiger2Reader extends DefaultHandler2
-{
-	private static final Logger LOGGER= LoggerFactory.getLogger(Tiger2Reader.class); 
+public class Tiger2Reader extends DefaultHandler2 {
+	private static final Logger LOGGER = LoggerFactory.getLogger(Tiger2Reader.class);
 	/**
 	 * The {@link Corpus} object, which shall be filled.
 	 */
-	private Corpus rootCorpus= null;
+	private Corpus rootCorpus = null;
 
 	/**
 	 * Sets the {@link Corpus} object, which shall be filled.
 	 */
 	public void setRootCorpus(Corpus corpus) {
 		this.rootCorpus = corpus;
-		this.currentCorpus= corpus;
+		this.currentCorpus = corpus;
 	}
 
 	/**
@@ -72,501 +73,482 @@ public class Tiger2Reader extends DefaultHandler2
 	public Corpus getRootCorpus() {
 		return rootCorpus;
 	}
-	
+
 	/**
 	 * The uri, of the file which is currently read.
 	 */
-	private URI inputURI= null;
-	
+	private URI inputURI = null;
+
 	/**
 	 * Sets the uri, of the file which is currently read.
-	 */ 
+	 */
 	public void setInputURI(URI inputURI) {
 		this.inputURI = inputURI;
 	}
 
 	/**
 	 * Returns the uri, of the file which is currently read.
-	 */ 
+	 */
 	public URI getInputURI() {
 		return inputURI;
 	}
-	
-	public  Tiger2Reader()
-	{
+
+	public Tiger2Reader() {
 		this.init();
 	}
-	
+
 	/**
-	 * Initializes this object. Initializing is used when a {@link Tiger2Reader} object is created or in case such an object shall be reset
-	 * for starting a new parsing.
-	 * All internal sets, lists, variables and so on will be set to their initial value. 
+	 * Initializes this object. Initializing is used when a {@link Tiger2Reader}
+	 * object is created or in case such an object shall be reset for starting a
+	 * new parsing. All internal sets, lists, variables and so on will be set to
+	 * their initial value.
 	 */
-	public void init()
-	{
-		this.elementStack= new Stack<String>();
-		this.id2synNode= Collections.synchronizedMap(new HashMap<String, SyntacticNode>());
-		this.notTargetedEdges= Collections.synchronizedMap(new HashMap<Edge, String>());
-		
-		currentSegment= null;
-		currentGraph= null;
-		currentSyntacticNode= null;
+	public void init() {
+		this.elementStack = new Stack<String>();
+		this.id2synNode = Collections.synchronizedMap(new HashMap<String, SyntacticNode>());
+		this.notTargetedEdges = Collections.synchronizedMap(new HashMap<Edge, String>());
+
+		currentSegment = null;
+		currentGraph = null;
+		currentSyntacticNode = null;
 	}
-	
+
 	/**
-	 * Stack, storing the path of read xml elements, starting from root to current element.
+	 * Stack, storing the path of read xml elements, starting from root to
+	 * current element.
 	 */
-	private Stack<String> elementStack= null;
-	
+	private Stack<String> elementStack = null;
+
 	/**
 	 * Stores the current {@link Tiger2Dictionary#ELEMENT_SEGMENT} object
 	 */
-	private Segment currentSegment= null;
-	
+	private Segment currentSegment = null;
+
 	/**
 	 * Stores the current {@link Tiger2Dictionary#ELEMENT_GRAPH} object
 	 */
-	private Graph currentGraph= null;
-	
+	private Graph currentGraph = null;
+
 	/**
 	 * A SAX reader to import meta-data
 	 */
-	private MetaReader metaReader= null;
+	private MetaReader metaReader = null;
 	/**
 	 * A SAX reader to import annotation-data
 	 */
-	private AnnotationReader annotationReader= null;
-	
+	private AnnotationReader annotationReader = null;
+
 	/**
-	 * Stores the current {@link Tiger2Dictionary#ELEMENT_TERMINAL} or {@link Tiger2Dictionary#ELEMENT_NONTERMINAL} object
-	 */	
-	private SyntacticNode currentSyntacticNode= null;
-	
-	/**
-	 * Stores the current {@link Tiger2Dictionary#ELEMENT_CORPUS} or {@link Tiger2Dictionary#ELEMENT_SUB_CORPUS} object
+	 * Stores the current {@link Tiger2Dictionary#ELEMENT_TERMINAL} or
+	 * {@link Tiger2Dictionary#ELEMENT_NONTERMINAL} object
 	 */
-	private Corpus currentCorpus= null;
+	private SyntacticNode currentSyntacticNode = null;
+
 	/**
-	 * A map storing tiger-ids and the created corresponding {@link SyntacticNode} object
+	 * Stores the current {@link Tiger2Dictionary#ELEMENT_CORPUS} or
+	 * {@link Tiger2Dictionary#ELEMENT_SUB_CORPUS} object
 	 */
-	private Map<String, SyntacticNode> id2synNode= null;
-	
+	private Corpus currentCorpus = null;
 	/**
-	 * A map storing the edges, which do not have a target yet. When an edge was read, it is possible, that its target node haven't 
-	 * been read yet. In such cases all the edges have to processed at the end see {@link #endDocument()}
+	 * A map storing tiger-ids and the created corresponding
+	 * {@link SyntacticNode} object
 	 */
-	private Map<Edge, String> notTargetedEdges= null;
-	
+	private Map<String, SyntacticNode> id2synNode = null;
+
+	/**
+	 * A map storing the edges, which do not have a target yet. When an edge was
+	 * read, it is possible, that its target node haven't been read yet. In such
+	 * cases all the edges have to processed at the end see
+	 * {@link #endDocument()}
+	 */
+	private Map<Edge, String> notTargetedEdges = null;
+
 	/**
 	 * Reads the sub-elements of {@link Tiger2Dictionary#ELEMENT_META}
+	 * 
 	 * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
 	 */
-	public void characters(	char[] ch,
-            				int start,
-            				int length) throws SAXException
-    {
-		if (	(this.elementStack!= null)&&
-				(Tiger2Dictionary.ELEMENT_META.equals(this.elementStack.peek())))
-		{//corpus/meta/*
-			if (this.metaReader== null)
+	public void characters(char[] ch, int start, int length) throws SAXException {
+		if ((this.elementStack != null) && (Tiger2Dictionary.ELEMENT_META.equals(this.elementStack.peek()))) {// corpus/meta/*
+			if (this.metaReader == null)
 				throw new TigerInternalException("No reader for meta-data is set.");
 			this.metaReader.characters(ch, start, length);
-		}//corpus/meta/*
-		else if (	(this.elementStack!= null)&&
-				(Tiger2Dictionary.ELEMENT_ANNOTATION.equals(this.elementStack.peek())))
-		{//corpus/annotation/* delegating content to annotation-reader
-			if (this.annotationReader== null)
+		} // corpus/meta/*
+		else if ((this.elementStack != null)
+				&& (Tiger2Dictionary.ELEMENT_ANNOTATION.equals(this.elementStack.peek()))) {// corpus/annotation/*
+																							// delegating
+																							// content
+																							// to
+																							// annotation-reader
+			if (this.annotationReader == null)
 				throw new TigerInternalException("No reader for annotation-data is set.");
 			this.annotationReader.characters(ch, start, length);
-		}//corpus/annotation/* delegating content to annotation-reader
-    }
-	
+		} // corpus/annotation/* delegating content to annotation-reader
+	}
+
 	/**
-	 * determines if an element shall be pushed onto the stack. this shall not happen, when delegating content
-	 * to another reader.
+	 * determines if an element shall be pushed onto the stack. this shall not
+	 * happen, when delegating content to another reader.
 	 */
-	private boolean pushElement= true;
-	
+	private boolean pushElement = true;
+
 	/**
-	 * This counter is only necessary to count the current number of {@link Edge} objects, to give them an artificial id. 
-	 * This is necessary, because of edges are sometimes added to the graph first, when all nodes are read.
+	 * This counter is only necessary to count the current number of
+	 * {@link Edge} objects, to give them an artificial id. This is necessary,
+	 * because of edges are sometimes added to the graph first, when all nodes
+	 * are read.
 	 */
-	private int edgeCounter= 0;
+	private int edgeCounter = 0;
 	/** true, if an edge with no id was found while reading **/
-	boolean edgesWithNoIds= false;
+	boolean edgesWithNoIds = false;
 	/** true, if a terminal with no id was found while reading **/
-	boolean terminalsWithNoIds= false;
+	boolean terminalsWithNoIds = false;
 	/** true, if a non-terminal with no id was found while reading **/
-	boolean nonTerminalsWithNoIds= false;
+	boolean nonTerminalsWithNoIds = false;
+
 	/**
-	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
+	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
+	 *      java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */
 	@Override
-	public void startElement(	String uri,
-            					String localName,
-            					String qName,
-            					Attributes attributes) throws SAXException
-    {
-		
-		
-		if (Tiger2Dictionary.ELEMENT_CORPUS.equals(qName))
-		{
-		}
-		else if (Tiger2Dictionary.ELEMENT_SUB_CORPUS.equals(qName))
-		{
-			Corpus subCorpus= Tiger2Factory.eINSTANCE.createCorpus();
+	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+
+		if (Tiger2Dictionary.ELEMENT_CORPUS.equals(qName)) {
+		} else if (Tiger2Dictionary.ELEMENT_SUB_CORPUS.equals(qName)) {
+			Corpus subCorpus = Tiger2Factory.eINSTANCE.createCorpus();
 			this.currentCorpus.getSubCorpora().add(subCorpus);
-			this.currentCorpus= subCorpus;
-		}
-		else if (Tiger2Dictionary.ELEMENT_META.equals(qName))
-		{//corpus/meta
-			Meta meta= Tiger2Factory.eINSTANCE.createMeta();
-			this.metaReader= new MetaReader();
+			this.currentCorpus = subCorpus;
+		} else if (Tiger2Dictionary.ELEMENT_META.equals(qName)) {// corpus/meta
+			Meta meta = Tiger2Factory.eINSTANCE.createMeta();
+			this.metaReader = new MetaReader();
 			this.metaReader.setInputURI(this.getInputURI());
 			this.metaReader.setMeta(meta);
 			this.currentCorpus.setMeta(meta);
 			elementStack.push(qName);
-			pushElement= false;
-		}//corpus/meta
-		else if (	(this.elementStack!= null)&&
-					(Tiger2Dictionary.ELEMENT_META.equals(this.elementStack.peek())))
-		{//corpus/meta/* delegating content to meta-reader
-			if (this.metaReader== null)
+			pushElement = false;
+		} // corpus/meta
+		else if ((this.elementStack != null) && (Tiger2Dictionary.ELEMENT_META.equals(this.elementStack.peek()))) {// corpus/meta/*
+																													// delegating
+																													// content
+																													// to
+																													// meta-reader
+			if (this.metaReader == null)
 				throw new TigerInternalException("No reader for meta-data is set.");
 			this.metaReader.startElement(uri, localName, qName, attributes);
-		}//corpus/meta/* delegating content to meta-reader
-		else if (Tiger2Dictionary.ELEMENT_ANNOTATION.equals(qName))
-		{//corpus/annotation
-			this.annotationReader= new AnnotationReader();
+		} // corpus/meta/* delegating content to meta-reader
+		else if (Tiger2Dictionary.ELEMENT_ANNOTATION.equals(qName)) {// corpus/annotation
+			this.annotationReader = new AnnotationReader();
 			this.annotationReader.setInputURI(this.getInputURI());
 			this.annotationReader.setCorpus(this.currentCorpus);
 			this.annotationReader.startElement(uri, localName, qName, attributes);
 			elementStack.push(qName);
-			pushElement= false;
-		}//corpus/annotation
-		else if (	(this.elementStack!= null)&&
-					(Tiger2Dictionary.ELEMENT_ANNOTATION.equals(this.elementStack.peek())))
-		{//corpus/annotation/* delegating content to annotation-reader
-			if (this.annotationReader== null)
+			pushElement = false;
+		} // corpus/annotation
+		else if ((this.elementStack != null)
+				&& (Tiger2Dictionary.ELEMENT_ANNOTATION.equals(this.elementStack.peek()))) {// corpus/annotation/*
+																							// delegating
+																							// content
+																							// to
+																							// annotation-reader
+			if (this.annotationReader == null)
 				throw new TigerInternalException("No reader for meta-data is set.");
 			this.annotationReader.startElement(uri, localName, qName, attributes);
-		}//corpus/annotation/* delegating content to annotation-reader
-		else if (Tiger2Dictionary.ELEMENT_SEGMENT.equals(qName))
-		{
-			Segment segment= Tiger2Factory.eINSTANCE.createSegment();
-			this.currentSegment= segment;
-			//start: @xml:id
-				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
-				if (id!= null)
-					segment.setId(id);
-			//end: @xml:id
+		} // corpus/annotation/* delegating content to annotation-reader
+		else if (Tiger2Dictionary.ELEMENT_SEGMENT.equals(qName)) {
+			Segment segment = Tiger2Factory.eINSTANCE.createSegment();
+			this.currentSegment = segment;
+			// start: @xml:id
+			String id = attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
+			if (id != null)
+				segment.setId(id);
+			// end: @xml:id
 			this.currentCorpus.getSegments().add(segment);
-		}
-		else if (Tiger2Dictionary.ELEMENT_GRAPH.equals(qName))
-		{
-			Graph graph= Tiger2Factory.eINSTANCE.createGraph();
-			this.currentGraph= graph;
-			//start: @xml:id
-				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
-				if (id!= null)
-					graph.setId(id);
-			//end: @xml:id
-			if (this.currentSegment== null)
-				throw new TigerInternalException("The variable 'currentSegment' of Tiger2Reader was empty when reding a graph element.");
+		} else if (Tiger2Dictionary.ELEMENT_GRAPH.equals(qName)) {
+			Graph graph = Tiger2Factory.eINSTANCE.createGraph();
+			this.currentGraph = graph;
+			// start: @xml:id
+			String id = attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
+			if (id != null)
+				graph.setId(id);
+			// end: @xml:id
+			if (this.currentSegment == null)
+				throw new TigerInternalException(
+						"The variable 'currentSegment' of Tiger2Reader was empty when reding a graph element.");
 			this.currentSegment.getGraphs().add(graph);
-		}
-		else if (Tiger2Dictionary.ELEMENT_TERMINAL.equals(qName))
-		{
-			Terminal terminal= Tiger2Factory.eINSTANCE.createTerminal();
-			
-			//start: @xml:id
-				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
-				if (id== null)
-				{
-//					LOGGER.warn("One syntactic node (terminal) element has no id.");
-					terminalsWithNoIds= true;
-					id= "synNode_"+ this.currentGraph.getSyntacticNodes().size()+1;
-				}
-				else
-				{
-					if (this.currentGraph.findNode(id)!= null)
-						id= id+"_"+ this.currentGraph.getSyntacticNodes().size()+1;
-				}
-				terminal.setId(id);
-				this.id2synNode.put(id, terminal);
-			//end: @xml:id
-			
-			String type= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_TYPE);
-			if (type!= null)
+		} else if (Tiger2Dictionary.ELEMENT_TERMINAL.equals(qName)) {
+			Terminal terminal = Tiger2Factory.eINSTANCE.createTerminal();
+
+			// start: @xml:id
+			String id = attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
+			if (id == null) {
+				// LOGGER.warn("One syntactic node (terminal) element has no
+				// id.");
+				terminalsWithNoIds = true;
+				id = "synNode_" + this.currentGraph.getSyntacticNodes().size() + 1;
+			} else {
+				if (this.currentGraph.findNode(id) != null)
+					id = id + "_" + this.currentGraph.getSyntacticNodes().size() + 1;
+			}
+			terminal.setId(id);
+			this.id2synNode.put(id, terminal);
+			// end: @xml:id
+
+			String type = attributes.getValue(Tiger2Dictionary.ATTRIBUTE_TYPE);
+			if (type != null)
 				terminal.setType(type);
-			for (int i= 0; i< attributes.getLength(); i++)
-			{
-				String attName= attributes.getLocalName(i);
-				String attValue= attributes.getValue(i);
-				
+			for (int i = 0; i < attributes.getLength(); i++) {
+				String attName = attributes.getLocalName(i);
+				String attValue = attributes.getValue(i);
+
 				if (Tiger2Dictionary.ATTRIBUTE_ID.equals(attributes.getQName(i)))
 					;
-				else if (	(Tiger2Dictionary.ATTRIBUTE_WORD.equals(attName))||
-							(	(Tiger2Dictionary.ATTRIBUTE_WORD.equals(attName))&&
-								(attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2))))
-				{
+				else if ((Tiger2Dictionary.ATTRIBUTE_WORD.equals(attName))
+						|| ((Tiger2Dictionary.ATTRIBUTE_WORD.equals(attName))
+								&& (attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2)))) {
 					terminal.setWord(attValue);
-				}
-				else if (	(Tiger2Dictionary.ATTRIBUTE_CORRESP.equals(attName))&&
-							(attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2)))
-				{// start: //t/@corresp
-					;//TODO implement that
-				}// end: //t/@corresp
-				else if (	(Tiger2Dictionary.ATTRIBUTE_TYPE.equals(attName))&&
-							(attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2)))
-					;//ignore it
-				else
-				{
-					Annotation annotation= this.currentCorpus.createAnnotation(attName, DOMAIN.T, attValue);
-					if (annotation!= null)
+				} else if ((Tiger2Dictionary.ATTRIBUTE_CORRESP.equals(attName))
+						&& (attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2))) {// start:
+																								// //t/@corresp
+					;// TODO implement that
+				} // end: //t/@corresp
+				else if ((Tiger2Dictionary.ATTRIBUTE_TYPE.equals(attName))
+						&& (attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2)))
+					;// ignore it
+				else {
+					Annotation annotation = this.currentCorpus.createAnnotation(attName, DOMAIN.T, attValue);
+					if (annotation != null)
 						terminal.getAnnotations().add(annotation);
 				}
 			}
 			this.currentGraph.getSyntacticNodes().add(terminal);
-			this.currentSyntacticNode= terminal;
-		}
-		else if (Tiger2Dictionary.ELEMENT_NONTERMINAL.equals(qName))
-		{
-			NonTerminal nonTerminal= Tiger2Factory.eINSTANCE.createNonTerminal();
-			
-			//start: @xml:id
-				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
-				if (id== null)
-				{
-//					LOGGER.warn("One syntactic node element (non-terminal) has no id.");
-					nonTerminalsWithNoIds= true;
-					id= "synNode_"+ this.currentGraph.getSyntacticNodes().size()+1;
-				}
-				else
-				{
-					if (this.currentGraph.findNode(id)!= null)
-						id= id+"_"+ this.currentGraph.getSyntacticNodes().size()+1;
-				}
-				nonTerminal.setId(id);
-				this.id2synNode.put(id, nonTerminal);
-			//end: @xml:id
-			
-			String type= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_TYPE);
-			if (type!= null)
+			this.currentSyntacticNode = terminal;
+		} else if (Tiger2Dictionary.ELEMENT_NONTERMINAL.equals(qName)) {
+			NonTerminal nonTerminal = Tiger2Factory.eINSTANCE.createNonTerminal();
+
+			// start: @xml:id
+			String id = attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
+			if (id == null) {
+				// LOGGER.warn("One syntactic node element (non-terminal) has no
+				// id.");
+				nonTerminalsWithNoIds = true;
+				id = "synNode_" + this.currentGraph.getSyntacticNodes().size() + 1;
+			} else {
+				if (this.currentGraph.findNode(id) != null)
+					id = id + "_" + this.currentGraph.getSyntacticNodes().size() + 1;
+			}
+			nonTerminal.setId(id);
+			this.id2synNode.put(id, nonTerminal);
+			// end: @xml:id
+
+			String type = attributes.getValue(Tiger2Dictionary.ATTRIBUTE_TYPE);
+			if (type != null)
 				nonTerminal.setType(type);
-			for (int i= 0; i< attributes.getLength(); i++)
-			{
-				String attName= attributes.getLocalName(i);
-				String attValue= attributes.getValue(i);
+			for (int i = 0; i < attributes.getLength(); i++) {
+				String attName = attributes.getLocalName(i);
+				String attValue = attributes.getValue(i);
 				if (Tiger2Dictionary.ATTRIBUTE_ID.equals(attributes.getQName(i)))
-					;//ignore it
-				else if (	(Tiger2Dictionary.ATTRIBUTE_TYPE.equals(attName))&&
-							(attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2)))
-					;//ignore it
-				else
-				{
-					Annotation annotation= this.currentCorpus.createAnnotation(attName, DOMAIN.NT, type, attValue);
-					if (annotation!= null)
+					;// ignore it
+				else if ((Tiger2Dictionary.ATTRIBUTE_TYPE.equals(attName))
+						&& (attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2)))
+					;// ignore it
+				else {
+					Annotation annotation = this.currentCorpus.createAnnotation(attName, DOMAIN.NT, type, attValue);
+					if (annotation != null)
 						nonTerminal.getAnnotations().add(annotation);
 				}
 			}
 			this.currentGraph.getSyntacticNodes().add(nonTerminal);
-			this.currentSyntacticNode= nonTerminal;
-		}
-		else if (Tiger2Dictionary.ELEMENT_EDGE.equals(qName))
-		{//ELEMENT_EDGE
-			Edge edge= Tiger2Factory.eINSTANCE.createEdge();
-			//start: @xml:id
-				String id= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
-				if (id== null)
-				{
-//					LOGGER.warn("One '"+Tiger2Dictionary.ELEMENT_EDGE+"' element has no id.");
-					edgesWithNoIds= true;
-					id= "edge_"+ edgeCounter;
+			this.currentSyntacticNode = nonTerminal;
+		} else if (Tiger2Dictionary.ELEMENT_EDGE.equals(qName)) {// ELEMENT_EDGE
+			Edge edge = Tiger2Factory.eINSTANCE.createEdge();
+			// start: @xml:id
+			String id = attributes.getValue(Tiger2Dictionary.ATTRIBUTE_ID);
+			if (id == null) {
+				// LOGGER.warn("One '"+Tiger2Dictionary.ELEMENT_EDGE+"' element
+				// has no id.");
+				edgesWithNoIds = true;
+				id = "edge_" + edgeCounter;
+				this.edgeCounter++;
+			} else {
+				if (this.currentGraph.findEdge(id) != null) {
+					id = id + "_" + edgeCounter;
 					this.edgeCounter++;
 				}
-				else
-				{
-					if (this.currentGraph.findEdge(id)!= null)
-					{	
-						id= id+"_"+ edgeCounter;
-						this.edgeCounter++;
-					}
-				}
-				edge.setId(id);
-			//end: @xml:id
-				
-			//start: @type
-				String type= attributes.getValue(Tiger2Dictionary.NAMESPACE_TIGER2, Tiger2Dictionary.ATTRIBUTE_TYPE);
-				if (type== null)
-					type= attributes.getValue(Tiger2Dictionary.ATTRIBUTE_TYPE);
-				if (type != null)
-					edge.setType(type);
-			//end: @type
-				
-			for (int i= 0; i< attributes.getLength(); i++)
-			{
-				String attName= attributes.getLocalName(i);
-				String attValue= attributes.getValue(i);
-				
-				if (Tiger2Dictionary.ATTRIBUTE_ID.equals(attributes.getQName(i)))
-				{
-					;//ignore that
-					
-				}
-				else if (	(Tiger2Dictionary.ATTRIBUTE_TARGET.equals(attName))&&
-							(attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2)))
-				{
-					if (	(attName== null)||
-							(attName.isEmpty()))
-						throw new TigerImplausibleContentException("An edge was found with an empty '"+Tiger2Dictionary.ATTRIBUTE_TARGET+"' value.");
+			}
+			edge.setId(id);
+			// end: @xml:id
+
+			// start: @type
+			String type = attributes.getValue(Tiger2Dictionary.NAMESPACE_TIGER2, Tiger2Dictionary.ATTRIBUTE_TYPE);
+			if (type == null)
+				type = attributes.getValue(Tiger2Dictionary.ATTRIBUTE_TYPE);
+			if (type != null)
+				edge.setType(type);
+			// end: @type
+
+			for (int i = 0; i < attributes.getLength(); i++) {
+				String attName = attributes.getLocalName(i);
+				String attValue = attributes.getValue(i);
+
+				if (Tiger2Dictionary.ATTRIBUTE_ID.equals(attributes.getQName(i))) {
+					;// ignore that
+
+				} else if ((Tiger2Dictionary.ATTRIBUTE_TARGET.equals(attName))
+						&& (attributes.getURI(i).equals(Tiger2Dictionary.NAMESPACE_TIGER2))) {
+					if ((attName == null) || (attName.isEmpty()))
+						throw new TigerImplausibleContentException(
+								"An edge was found with an empty '" + Tiger2Dictionary.ATTRIBUTE_TARGET + "' value.");
 					if (attValue.startsWith("#"))
-						attValue= attValue.replace("#", "");
-					SyntacticNode synNode= id2synNode.get(attValue);
-					if (synNode!= null)
-					{
+						attValue = attValue.replace("#", "");
+					SyntacticNode synNode = id2synNode.get(attValue);
+					if (synNode != null) {
 						edge.setTarget(synNode);
 						currentGraph.getEdges().add(edge);
-					}
-					else
+					} else
 						this.notTargetedEdges.put(edge, attValue);
-				}
-				else if (Tiger2Dictionary.ATTRIBUTE_TYPE.equals(attName))
-					;//ignore it
-				else
-				{
-					Annotation annotation= null;
-					try{
-						annotation= this.currentCorpus.createAnnotation(attName, DOMAIN.EDGE, type, attValue);
-					}catch (TigerInvalidModelException e) {
-						throw new TigerImplausibleContentException("An exception occurs in edge '"+edge.getId()+"' ", e);
+				} else if (Tiger2Dictionary.ATTRIBUTE_TYPE.equals(attName))
+					;// ignore it
+				else {
+					Annotation annotation = null;
+					try {
+						annotation = this.currentCorpus.createAnnotation(attName, DOMAIN.EDGE, type, attValue);
+					} catch (TigerInvalidModelException e) {
+						throw new TigerImplausibleContentException(
+								"An exception occurs in edge '" + edge.getId() + "' ", e);
 					}
-					if (annotation!= null)
+					if (annotation != null)
 						edge.getAnnotations().add(annotation);
 				}
 			}
-//			if (!(this.currentSyntacticNode instanceof NonTerminal))
-//				throw new TigerImplausibleContentException("An edge was found, which is not a child element of an <nt> element.");
+			// if (!(this.currentSyntacticNode instanceof NonTerminal))
+			// throw new TigerImplausibleContentException("An edge was found,
+			// which is not a child element of an <nt> element.");
 			edge.setSource(this.currentSyntacticNode);
-		}//ELEMENT_EDGE
-		if (pushElement)
-		{
+		} // ELEMENT_EDGE
+		if (pushElement) {
 			elementStack.push(qName);
 		}
-    }
-	
-//	/**
-//	 * Creates and returns a {@link Annotation} object, refering the {@link Feature} object matching to <em>annoName</em> 
-//	 * and <em>annoDomain<em> and refering the {@link FeatureValue} object matching to <em>annoValue</em>. Returns null,
-//	 * if  <em>annoName</em> and <em>annoDomain<em> is null.
-//	 * @param annoName 
-//	 * @param domain
-//	 * @param annoValue value to identify a {@link FeatureValue} object, if parameter is not null
-//	 * @return {@link Annotation} object refering a corresponding {@link Feature} and {@link FeatureValue} object
-//	 */
-//	protected Annotation createAnnotation(String annoName, DOMAIN domain, String annoValue)
-//	{
-//		if (	(annoName!= null)&&
-//				(!annoName.isEmpty())&&
-//				(domain!= null))
-//		{
-//			Annotation annotation= Tiger2Factory.eINSTANCE.createAnnotation();
-//			Feature feature= this.currentCorpus.findFeature(annoName, domain);
-//			if (feature== null)
-//				throw new TigerImplausibleContentException("Cannot find a feature corresponding to the annotation in element having the featureName '"+annoName+"' and the domain '"+domain+"'.");
-//			annotation.setFeatureRef(feature);
-//			FeatureValue featureValue= feature.findFeatureValue(annoValue);
-//			annotation.setFeatureValueRef(featureValue);
-//			return(annotation);
-//		}
-//		else return(null);
-//	}
-	
+	}
+
+	// /**
+	// * Creates and returns a {@link Annotation} object, refering the {@link
+	// Feature} object matching to <em>annoName</em>
+	// * and <em>annoDomain<em> and refering the {@link FeatureValue} object
+	// matching to <em>annoValue</em>. Returns null,
+	// * if <em>annoName</em> and <em>annoDomain<em> is null.
+	// * @param annoName
+	// * @param domain
+	// * @param annoValue value to identify a {@link FeatureValue} object, if
+	// parameter is not null
+	// * @return {@link Annotation} object refering a corresponding {@link
+	// Feature} and {@link FeatureValue} object
+	// */
+	// protected Annotation createAnnotation(String annoName, DOMAIN domain,
+	// String annoValue)
+	// {
+	// if ( (annoName!= null)&&
+	// (!annoName.isEmpty())&&
+	// (domain!= null))
+	// {
+	// Annotation annotation= Tiger2Factory.eINSTANCE.createAnnotation();
+	// Feature feature= this.currentCorpus.findFeature(annoName, domain);
+	// if (feature== null)
+	// throw new TigerImplausibleContentException("Cannot find a feature
+	// corresponding to the annotation in element having the featureName
+	// '"+annoName+"' and the domain '"+domain+"'.");
+	// annotation.setFeatureRef(feature);
+	// FeatureValue featureValue= feature.findFeatureValue(annoValue);
+	// annotation.setFeatureValueRef(featureValue);
+	// return(annotation);
+	// }
+	// else return(null);
+	// }
+
 	/**
-	 * If the element {@link Tiger2Dictionary#ELEMENT_CORPUS} or {@link Tiger2Dictionary#ELEMENT_CORPUS} ends, all not yet targeted edges will be targeted and
-	 * stored in the graph by calling {@link #processNotTargetedEdges()}.
+	 * If the element {@link Tiger2Dictionary#ELEMENT_CORPUS} or
+	 * {@link Tiger2Dictionary#ELEMENT_CORPUS} ends, all not yet targeted edges
+	 * will be targeted and stored in the graph by calling
+	 * {@link #processNotTargetedEdges()}.
 	 */
 	@Override
-	public void endElement(String namespaceURI, String localName, String qName) throws SAXException
-	{
-		//determines if an xml element is to pop from stack
-		boolean popElement= true;
-		if (Tiger2Dictionary.ELEMENT_GRAPH.equals(qName))
-		{
+	public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
+		// determines if an xml element is to pop from stack
+		boolean popElement = true;
+		if (Tiger2Dictionary.ELEMENT_GRAPH.equals(qName)) {
 			this.processNotTargetedEdges();
-			this.currentGraph= null;
-		}
-		else if (	(this.elementStack!= null)&&
-					(Tiger2Dictionary.ELEMENT_META.equals(this.elementStack.peek()))) 
-		{//corpus/meta/* delegating content to meta-reader
-			if (Tiger2Dictionary.ELEMENT_META.equals(qName))
-			{//</meta>
-				pushElement= true;
-			}//</meta>
-			else
-			{
-				if (this.metaReader== null)
+			this.currentGraph = null;
+		} else if ((this.elementStack != null) && (Tiger2Dictionary.ELEMENT_META.equals(this.elementStack.peek()))) {// corpus/meta/*
+																														// delegating
+																														// content
+																														// to
+																														// meta-reader
+			if (Tiger2Dictionary.ELEMENT_META.equals(qName)) {// </meta>
+				pushElement = true;
+			} // </meta>
+			else {
+				if (this.metaReader == null)
 					throw new TigerInternalException("No reader for meta-data is set.");
-				popElement= false;
+				popElement = false;
 			}
 			this.metaReader.endElement(namespaceURI, localName, qName);
-		}//corpus/meta/* delegating content to meta-reader
-		else if (	(this.elementStack!= null)&&
-				(Tiger2Dictionary.ELEMENT_ANNOTATION.equals(this.elementStack.peek())))
-		{//corpus/annotation/* delegating content to annotation-reader
-			if (Tiger2Dictionary.ELEMENT_ANNOTATION.equals(qName))
-			{//</meta>
-				pushElement= true;
-			}//</meta>
-			else
-			{
-				if (this.annotationReader== null)
+		} // corpus/meta/* delegating content to meta-reader
+		else if ((this.elementStack != null)
+				&& (Tiger2Dictionary.ELEMENT_ANNOTATION.equals(this.elementStack.peek()))) {// corpus/annotation/*
+																							// delegating
+																							// content
+																							// to
+																							// annotation-reader
+			if (Tiger2Dictionary.ELEMENT_ANNOTATION.equals(qName)) {// </meta>
+				pushElement = true;
+			} // </meta>
+			else {
+				if (this.annotationReader == null)
 					throw new TigerInternalException("No reader for annotation-data is set.");
-				popElement= false;
+				popElement = false;
 			}
 			this.annotationReader.endElement(namespaceURI, localName, qName);
-		}//corpus/annotation/* delegating content to annotation-reader
-		
-		if (popElement)
-		{
+		} // corpus/annotation/* delegating content to annotation-reader
+
+		if (popElement) {
 			elementStack.pop();
 		}
 	}
-	
-	public void endDocument() throws SAXException{
-		if (edgesWithNoIds){
-			LOGGER.warn("One or more edge elements have no id in file '"+ this.inputURI+"'. ");
+
+	public void endDocument() throws SAXException {
+		if (edgesWithNoIds) {
+			LOGGER.warn("One or more edge elements have no id in file '" + this.inputURI + "'. ");
 		}
-		if (nonTerminalsWithNoIds){
-			LOGGER.warn("One or more syntactic node (non-terminal) elements have no id in file '"+ this.inputURI+"'. ");
+		if (nonTerminalsWithNoIds) {
+			LOGGER.warn(
+					"One or more syntactic node (non-terminal) elements have no id in file '" + this.inputURI + "'. ");
 		}
-		if (terminalsWithNoIds){
-			LOGGER.warn("One or more syntactic node (terminal) elements have no id in file '"+ this.inputURI+"'. ");
+		if (terminalsWithNoIds) {
+			LOGGER.warn("One or more syntactic node (terminal) elements have no id in file '" + this.inputURI + "'. ");
 		}
 	}
-	
+
 	/**
-	 * Setting the target of all not targeted edges (see {@link #notTargetedEdges}) and adds them to the current graph 
-	 * (see {@link Tiger2Reader#currentGraph}).
+	 * Setting the target of all not targeted edges (see
+	 * {@link #notTargetedEdges}) and adds them to the current graph (see
+	 * {@link Tiger2Reader#currentGraph}).
 	 */
-	private void processNotTargetedEdges()
-	{
-		if (	(notTargetedEdges!= null) &&
-				(notTargetedEdges.size()>0))
-		{
-			Set<Edge> edges= this.notTargetedEdges.keySet();
-			for (Edge edge: edges)
-			{
-				String targetId= notTargetedEdges.get(edge);
-				if (targetId== null)
-					throw new TigerInternalException("An edge was found in 'NotTargetedEdges', that has no corresponding target node id.");
-				SyntacticNode target= this.id2synNode.get(targetId);
-				if (target== null)
-					throw new TigerImplausibleContentException("The referred target of an edge ( id of target is '"+targetId+"') in the document '"+this.getInputURI()+"' cannot be found. The reason might be, that the node is not contained in document.");
+	private void processNotTargetedEdges() {
+		if ((notTargetedEdges != null) && (notTargetedEdges.size() > 0)) {
+			Set<Edge> edges = this.notTargetedEdges.keySet();
+			for (Edge edge : edges) {
+				String targetId = notTargetedEdges.get(edge);
+				if (targetId == null)
+					throw new TigerInternalException(
+							"An edge was found in 'NotTargetedEdges', that has no corresponding target node id.");
+				SyntacticNode target = this.id2synNode.get(targetId);
+				if (target == null)
+					throw new TigerImplausibleContentException("The referred target of an edge ( id of target is '"
+							+ targetId + "') in the document '" + this.getInputURI()
+							+ "' cannot be found. The reason might be, that the node is not contained in document.");
 				edge.setTarget(target);
 				this.currentGraph.getEdges().add(edge);
 			}
-			notTargetedEdges= Collections.synchronizedMap(new HashMap<Edge, String>());
+			notTargetedEdges = Collections.synchronizedMap(new HashMap<Edge, String>());
 		}
 	}
 }

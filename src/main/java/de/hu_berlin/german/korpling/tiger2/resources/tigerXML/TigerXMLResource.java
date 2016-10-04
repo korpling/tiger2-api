@@ -28,43 +28,38 @@ import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
 import de.hu_berlin.german.korpling.tiger2.exceptions.TigerResourceException;
 import de.hu_berlin.german.korpling.tiger2.resources.util.XMLHelper;
 
-
-public class TigerXMLResource extends ResourceImpl
-{	
+public class TigerXMLResource extends ResourceImpl {
 	/**
 	 * Stores a TigerXML model into the given file.
 	 */
-	public void save(java.util.Map<?,?> options) throws java.io.IOException
-	{
-		TigerXMLWriter writer= new TigerXMLWriter();
+	public void save(java.util.Map<?, ?> options) throws java.io.IOException {
+		TigerXMLWriter writer = new TigerXMLWriter();
 		writer.setOutputURI(this.getURI());
-		writer.setCorpus((Corpus)this.getContents().get(0));
+		writer.setCorpus((Corpus) this.getContents().get(0));
 		writer.save();
 	}
-	
-	
+
 	/**
 	 * Loads a resource into treetagger-model from tab-seperated file.
 	 */
-	public void load(java.util.Map<?,?> options) throws IOException
-	{
-		if (this.getURI()== null)
+	public void load(java.util.Map<?, ?> options) throws IOException {
+		if (this.getURI() == null)
 			throw new TigerResourceException("Cannot load any resource, because no uri is given.");
-		
-		File tigerFile= new File(this.getURI().toFileString());
-		if (!tigerFile.exists()) 
+
+		File tigerFile = new File(this.getURI().toFileString());
+		if (!tigerFile.exists())
 			throw new TigerResourceException("Cannot load resource, because the file does not exists: " + tigerFile);
-		
+
 		if (!tigerFile.canRead())
 			throw new TigerResourceException("Cannot load resource, because the file can not be read: " + tigerFile);
-		
-		Corpus corpus= null;
-		corpus= Tiger2Factory.eINSTANCE.createCorpus();
+
+		Corpus corpus = null;
+		corpus = Tiger2Factory.eINSTANCE.createCorpus();
 		this.getContents().add(corpus);
-		
-        TigerXMLReader tigerXMLReader= new TigerXMLReader();
-        tigerXMLReader.setRootCorpus(corpus);
-        tigerXMLReader.setInputURI(URI.createFileURI(tigerFile.getAbsolutePath()));
-        XMLHelper.readXml(tigerFile, tigerXMLReader);
+
+		TigerXMLReader tigerXMLReader = new TigerXMLReader();
+		tigerXMLReader.setRootCorpus(corpus);
+		tigerXMLReader.setInputURI(URI.createFileURI(tigerFile.getAbsolutePath()));
+		XMLHelper.readXml(tigerFile, tigerXMLReader);
 	}
 }

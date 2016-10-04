@@ -19,8 +19,7 @@ package de.hu_berlin.german.korpling.tiger2.resources.util;
 
 import org.xml.sax.SAXException;
 
-public class EndOfProcessingException extends SAXException 
-{
+public class EndOfProcessingException extends SAXException {
 	/**
 	 * 
 	 */
@@ -29,7 +28,7 @@ public class EndOfProcessingException extends SAXException
 	public EndOfProcessingException() {
 		super();
 	}
-	
+
 	public EndOfProcessingException(String msg) {
 		super(msg);
 	}

@@ -27,30 +27,31 @@ import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 /**
- * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Annotation</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A test case for the model object
+ * '<em><b>Annotation</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are tested:
  * <ul>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getName() <em>Name</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Annotation#getName()
+ * <em>Name</em>}</li>
  * </ul>
  * </p>
+ * 
  * @generated
  */
 public class AnnotationTest extends TestCase {
 
 	/**
-	 * The fixture for this Annotation test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The fixture for this Annotation test case. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Annotation fixture = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -58,9 +59,9 @@ public class AnnotationTest extends TestCase {
 	}
 
 	/**
-	 * Constructs a new Annotation test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Constructs a new Annotation test case with the given name. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AnnotationTest(String name) {
@@ -68,9 +69,9 @@ public class AnnotationTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Annotation test case.
-	 * <!-- begin-user-doc -->
+	 * Sets the fixture for this Annotation test case. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void setFixture(Annotation fixture) {
@@ -78,9 +79,9 @@ public class AnnotationTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Annotation test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the fixture for this Annotation test case. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Annotation getFixture() {
@@ -88,8 +89,8 @@ public class AnnotationTest extends TestCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
@@ -99,8 +100,8 @@ public class AnnotationTest extends TestCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
@@ -110,34 +111,37 @@ public class AnnotationTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getValue() <em>Value</em>}' feature getter.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getValue()
+	 * <em>Value</em>}' feature getter. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Annotation#getValue()
 	 */
-	public void testGetValue() 
-	{
-		String value= "annoVal";
-		FeatureValue featureValue= Tiger2Factory.eINSTANCE.createFeatureValue();
+	public void testGetValue() {
+		String value = "annoVal";
+		FeatureValue featureValue = Tiger2Factory.eINSTANCE.createFeatureValue();
 		featureValue.setValue(value);
-		
+
 		this.getFixture().setFeatureValueRef(featureValue);
 		assertEquals(value, this.getFixture().getValue());
-		
-		value= "annoVal2";
+
+		value = "annoVal2";
 		this.getFixture().setValue(value);
 		assertEquals(featureValue.getValue(), this.getFixture().getValue());
-		
+
 		this.getFixture().setFeatureValueRef(null);
 		this.getFixture().setValue(value);
 		assertEquals(value, this.getFixture().getValue());
-		
+
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Annotation#setValue(java.lang.String) <em>Value</em>}' feature setter.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Annotation#setValue(java.lang.String)
+	 * <em>Value</em>}' feature setter. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Annotation#setValue(java.lang.String)
 	 */
 	public void testSetValue() {
@@ -145,28 +149,32 @@ public class AnnotationTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getName() <em>Name</em>}' feature getter.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Annotation#getName()
+	 * <em>Name</em>}' feature getter. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Annotation#getName()
 	 */
-	public void testGetName() 
-	{
-		String name= "annoName";
-		Feature feature= Tiger2Factory.eINSTANCE.createFeature();
+	public void testGetName() {
+		String name = "annoName";
+		Feature feature = Tiger2Factory.eINSTANCE.createFeature();
 		feature.setName(name);
-		
+
 		this.getFixture().setFeatureRef(feature);
 		assertEquals(name, this.getFixture().getName());
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Annotation#setName(java.lang.String) <em>Name</em>}' feature setter.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Annotation#setName(java.lang.String)
+	 * <em>Name</em>}' feature setter. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Annotation#setName(java.lang.String)
 	 */
 	public void testSetName() {
-		this.testGetName();	}
+		this.testGetName();
+	}
 
-} //AnnotationTest
+} // AnnotationTest

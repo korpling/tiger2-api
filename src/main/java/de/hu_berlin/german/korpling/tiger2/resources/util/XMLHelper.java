@@ -42,60 +42,61 @@ public abstract class XMLHelper {
 	/**
 	 * Reads an xml file.
 	 */
-	public static void readXml(File xmlFile, DefaultHandler2 myReader)
-	{
+	public static void readXml(File xmlFile, DefaultHandler2 myReader) {
 		SAXParser parser;
-        XMLReader xmlReader;
-        
-        
-        SAXParserFactory factory= SAXParserFactory.newInstance();
-        factory.setNamespaceAware(true);
-        try {
-			factory.setFeature("http://xml.org/sax/features/namespace-prefixes",true);
+		XMLReader xmlReader;
+
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		factory.setNamespaceAware(true);
+		try {
+			factory.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
 		} catch (SAXNotRecognizedException e2) {
-			throw new TigerInternalException("Cannot set namespace feature to SAXParserFactory, because of nested exception. ",e2);
+			throw new TigerInternalException(
+					"Cannot set namespace feature to SAXParserFactory, because of nested exception. ", e2);
 		} catch (SAXNotSupportedException e2) {
-			throw new TigerInternalException("Cannot set namespace feature to SAXParserFactory, because of nested exception. ",e2);
+			throw new TigerInternalException(
+					"Cannot set namespace feature to SAXParserFactory, because of nested exception. ", e2);
 		} catch (ParserConfigurationException e2) {
-			throw new TigerInternalException("Cannot set namespace feature to SAXParserFactory, because of nested exception. ",e2);
+			throw new TigerInternalException(
+					"Cannot set namespace feature to SAXParserFactory, because of nested exception. ", e2);
 		}
-        
-        try
-        {
-			parser= factory.newSAXParser();
-	        xmlReader= parser.getXMLReader();
-	        xmlReader.setContentHandler(myReader);
-        } catch (ParserConfigurationException e) {
-        	throw new TigerResourceException("Cannot load <tiger2/> files from resource '"+xmlFile.getAbsolutePath()+"'.", e);
-        }catch (Exception e) {
-	    	throw new TigerResourceException("Cannot load <tiger2/> files from resource '"+xmlFile.getAbsolutePath()+"'.", e);
+
+		try {
+			parser = factory.newSAXParser();
+			xmlReader = parser.getXMLReader();
+			xmlReader.setContentHandler(myReader);
+		} catch (ParserConfigurationException e) {
+			throw new TigerResourceException(
+					"Cannot load <tiger2/> files from resource '" + xmlFile.getAbsolutePath() + "'.", e);
+		} catch (Exception e) {
+			throw new TigerResourceException(
+					"Cannot load <tiger2/> files from resource '" + xmlFile.getAbsolutePath() + "'.", e);
 		}
-        try {
-	        InputStream inputStream= new FileInputStream(xmlFile);
+		try {
+			InputStream inputStream = new FileInputStream(xmlFile);
 			Reader reader = new InputStreamReader(inputStream, "UTF-8");
-			 
+
 			InputSource is = new InputSource(reader);
 			is.setEncoding("UTF-8");
 			try {
 				xmlReader.parse(is);
-			} catch (EndOfProcessingException e) 
-			{}
-	    } catch (IOException e)
-	    {
-	    	throw new TigerResourceException("Cannot load <tiger2/> files from resource '"+xmlFile.getAbsolutePath()+"'.", e);
-	    }catch (SAXException e) 
-        {
-            try
-            {
-				parser= factory.newSAXParser();
-		        xmlReader= parser.getXMLReader();
-		        xmlReader.setContentHandler(myReader);
-		        try {
-		        	xmlReader.parse(xmlFile.getAbsolutePath());
-				} catch (EndOfProcessingException e2) 
-				{}
-            }catch (Exception e1) {
-            	throw new TigerResourceException("Cannot load <tiger2/> files from resource '"+xmlFile.getAbsolutePath()+"'.", e1);
+			} catch (EndOfProcessingException e) {
+			}
+		} catch (IOException e) {
+			throw new TigerResourceException(
+					"Cannot load <tiger2/> files from resource '" + xmlFile.getAbsolutePath() + "'.", e);
+		} catch (SAXException e) {
+			try {
+				parser = factory.newSAXParser();
+				xmlReader = parser.getXMLReader();
+				xmlReader.setContentHandler(myReader);
+				try {
+					xmlReader.parse(xmlFile.getAbsolutePath());
+				} catch (EndOfProcessingException e2) {
+				}
+			} catch (Exception e1) {
+				throw new TigerResourceException(
+						"Cannot load <tiger2/> files from resource '" + xmlFile.getAbsolutePath() + "'.", e1);
 			}
 		}
 	}

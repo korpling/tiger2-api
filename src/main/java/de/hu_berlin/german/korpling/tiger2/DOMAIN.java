@@ -24,19 +24,19 @@ import java.util.List;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>DOMAIN</b></em>',
- * and utility methods for working with them.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the literals of the enumeration
+ * '<em><b>DOMAIN</b></em>', and utility methods for working with them. <!--
+ * end-user-doc -->
+ * 
  * @see de.hu_berlin.german.korpling.tiger2.Tiger2Package#getDOMAIN()
  * @model
  * @generated
  */
 public enum DOMAIN implements Enumerator {
 	/**
-	 * The '<em><b>T</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>T</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #T_VALUE
 	 * @generated
 	 * @ordered
@@ -44,9 +44,9 @@ public enum DOMAIN implements Enumerator {
 	T(0, "T", "t"),
 
 	/**
-	 * The '<em><b>NT</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>NT</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #NT_VALUE
 	 * @generated
 	 * @ordered
@@ -54,9 +54,9 @@ public enum DOMAIN implements Enumerator {
 	NT(1, "NT", "nt"),
 
 	/**
-	 * The '<em><b>EDGE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The '<em><b>EDGE</b></em>' literal object. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #EDGE_VALUE
 	 * @generated
 	 * @ordered
@@ -64,13 +64,13 @@ public enum DOMAIN implements Enumerator {
 	EDGE(2, "EDGE", "edge");
 
 	/**
-	 * The '<em><b>T</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>T</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>T</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>T</b></em>' literal object isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #T
 	 * @model literal="t"
 	 * @generated
@@ -79,13 +79,13 @@ public enum DOMAIN implements Enumerator {
 	public static final int T_VALUE = 0;
 
 	/**
-	 * The '<em><b>NT</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>NT</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NT</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of '<em><b>NT</b></em>' literal object isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #NT
 	 * @model literal="nt"
 	 * @generated
@@ -94,13 +94,13 @@ public enum DOMAIN implements Enumerator {
 	public static final int NT_VALUE = 1;
 
 	/**
-	 * The '<em><b>EDGE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>EDGE</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>EDGE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #EDGE
 	 * @model literal="edge"
 	 * @generated
@@ -109,30 +109,25 @@ public enum DOMAIN implements Enumerator {
 	public static final int EDGE_VALUE = 2;
 
 	/**
-	 * An array of all the '<em><b>DOMAIN</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * An array of all the '<em><b>DOMAIN</b></em>' enumerators. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private static final DOMAIN[] VALUES_ARRAY =
-		new DOMAIN[] {
-			T,
-			NT,
-			EDGE,
-		};
+	private static final DOMAIN[] VALUES_ARRAY = new DOMAIN[] { T, NT, EDGE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>DOMAIN</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<DOMAIN> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>DOMAIN</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>DOMAIN</b></em>' literal with the specified literal
+	 * value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DOMAIN get(String literal) {
@@ -147,8 +142,8 @@ public enum DOMAIN implements Enumerator {
 
 	/**
 	 * Returns the '<em><b>DOMAIN</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DOMAIN getByName(String name) {
@@ -162,45 +157,48 @@ public enum DOMAIN implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>DOMAIN</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the '<em><b>DOMAIN</b></em>' literal with the specified integer
+	 * value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static DOMAIN get(int value) {
 		switch (value) {
-			case T_VALUE: return T;
-			case NT_VALUE: return NT;
-			case EDGE_VALUE: return EDGE;
+		case T_VALUE:
+			return T;
+		case NT_VALUE:
+			return NT;
+		case EDGE_VALUE:
+			return EDGE;
 		}
 		return null;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private DOMAIN(int value, String name, String literal) {
@@ -210,41 +208,41 @@ public enum DOMAIN implements Enumerator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
-	  return value;
+		return value;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
-	  return name;
+		return name;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-	  return literal;
+		return literal;
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string
+	 * representation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
 		return literal;
 	}
-	
-} //DOMAIN
+
+} // DOMAIN

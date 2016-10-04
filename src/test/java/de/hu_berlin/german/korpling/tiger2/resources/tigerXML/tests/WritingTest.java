@@ -20,7 +20,6 @@
  */
 package de.hu_berlin.german.korpling.tiger2.resources.tigerXML.tests;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -51,25 +50,25 @@ import de.hu_berlin.german.korpling.tiger2.samples.Tiger2Sample;
  * @author Florian Zipser
  *
  */
-public class WritingTest extends XMLTestCase{
+public class WritingTest extends XMLTestCase {
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
 		TestRunner.run(WritingTest.class);
 	}
-	
+
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		resourceSet= new ResourceSetImpl();
+		resourceSet = new ResourceSetImpl();
 		// Register XML resource factory
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xml",new TigerResourceFactory());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xml", new TigerResourceFactory());
 	}
 
 	/**
@@ -80,43 +79,42 @@ public class WritingTest extends XMLTestCase{
 	}
 
 	public ResourceSet resourceSet = null;
-	
-	public static final String TEST_FOLDER="./src/test/resources/tigerXML/";
-	public static final String TMP_FOLDER= System.getProperty("java.io.tmpdir")+ "/tigerXML/writer/";
-	
+
+	public static final String TEST_FOLDER = "./src/test/resources/tigerXML/";
+	public static final String TMP_FOLDER = System.getProperty("java.io.tmpdir") + "/tigerXML/writer/";
+
 	/**
-	 * Writes the sample comming from {@link Tiger2Sample#createSample1()} to xml file and compares it to a
-	 * correct one.
+	 * Writes the sample comming from {@link Tiger2Sample#createSample1()} to
+	 * xml file and compares it to a correct one.
 	 * 
 	 * @throws IOException
-	 * @throws SAXException 
+	 * @throws SAXException
 	 */
 	@Test
-	public void testWriteSample1() throws IOException, SAXException
-	{
-		File tmpFile= new File(TMP_FOLDER+ "sampleCorpus1.xml");
-		File expectedFile= new File(TEST_FOLDER+ "sampleCorpus/sampleCorpus1.xml");
-		
-		Corpus sampleCorpus= Tiger2Sample.createSampleCorpus1();
-		
-		//load resource 
+	public void testWriteSample1() throws IOException, SAXException {
+		File tmpFile = new File(TMP_FOLDER + "sampleCorpus1.xml");
+		File expectedFile = new File(TEST_FOLDER + "sampleCorpus/sampleCorpus1.xml");
+
+		Corpus sampleCorpus = Tiger2Sample.createSampleCorpus1();
+
+		// load resource
 		Resource resource = resourceSet.createResource(URI.createFileURI(tmpFile.getAbsolutePath()));
-		
-		if (resource== null)
+
+		if (resource == null)
 			throw new NullPointerException("The resource is null.");
 		resource.getContents().add(sampleCorpus);
 		resource.save(null);
-		
-		InputStream expectedStream= new FileInputStream(expectedFile);
+
+		InputStream expectedStream = new FileInputStream(expectedFile);
 		Reader expectedReader = new InputStreamReader(expectedStream, "UTF-8");
 		InputSource expectedSource = new InputSource(expectedReader);
-		
-		InputStream tmpStream= new FileInputStream(tmpFile);
+
+		InputStream tmpStream = new FileInputStream(tmpFile);
 		Reader tmpReader = new InputStreamReader(tmpStream, "UTF-8");
 		InputSource tmpSource = new InputSource(tmpReader);
-		
+
 		XMLUnit.setIgnoreWhitespace(true);
 		Diff myDiff = new Diff(expectedSource, tmpSource);
-	    assertTrue("test XML matches control skeleton XML " + myDiff, myDiff.similar());
+		assertTrue("test XML matches control skeleton XML " + myDiff, myDiff.similar());
 	}
 }

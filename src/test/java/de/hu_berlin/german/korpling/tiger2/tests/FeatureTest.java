@@ -26,30 +26,31 @@ import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 /**
- * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Feature</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A test case for the model object
+ * '<em><b>Feature</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.Feature#findFeatureValue(java.lang.String) <em>Find Feature Value</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.Feature#findFeatureValue(java.lang.String)
+ * <em>Find Feature Value</em>}</li>
  * </ul>
  * </p>
+ * 
  * @generated
  */
 public class FeatureTest extends TestCase {
 
 	/**
-	 * The fixture for this Feature test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The fixture for this Feature test case. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Feature fixture = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -57,9 +58,9 @@ public class FeatureTest extends TestCase {
 	}
 
 	/**
-	 * Constructs a new Feature test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Constructs a new Feature test case with the given name. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FeatureTest(String name) {
@@ -67,9 +68,9 @@ public class FeatureTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Feature test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the fixture for this Feature test case. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void setFixture(Feature fixture) {
@@ -77,9 +78,9 @@ public class FeatureTest extends TestCase {
 	}
 
 	/**
-	 * Returns the fixture for this Feature test case.
-	 * <!-- begin-user-doc -->
+	 * Returns the fixture for this Feature test case. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Feature getFixture() {
@@ -87,8 +88,8 @@ public class FeatureTest extends TestCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
@@ -98,8 +99,8 @@ public class FeatureTest extends TestCase {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
@@ -109,28 +110,29 @@ public class FeatureTest extends TestCase {
 	}
 
 	/**
-	 * Tests the '{@link de.hu_berlin.german.korpling.tiger2.Feature#findFeatureValue(java.lang.String) <em>Find Feature Value</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Tests the
+	 * '{@link de.hu_berlin.german.korpling.tiger2.Feature#findFeatureValue(java.lang.String)
+	 * <em>Find Feature Value</em>}' operation. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see de.hu_berlin.german.korpling.tiger2.Feature#findFeatureValue(java.lang.String)
 	 */
-	public void testFindFeatureValue__String() 
-	{
-		String value1= "N";
-		
-		FeatureValue featureValue1= Tiger2Factory.eINSTANCE.createFeatureValue();
+	public void testFindFeatureValue__String() {
+		String value1 = "N";
+
+		FeatureValue featureValue1 = Tiger2Factory.eINSTANCE.createFeatureValue();
 		featureValue1.setValue(value1);
-		
+
 		this.getFixture().getFeatureValues().add(featureValue1);
 		assertEquals(featureValue1, this.getFixture().findFeatureValue(value1));
-		
-		String value2= "VVFIN";
-		
-		FeatureValue featureValue2= Tiger2Factory.eINSTANCE.createFeatureValue();
+
+		String value2 = "VVFIN";
+
+		FeatureValue featureValue2 = Tiger2Factory.eINSTANCE.createFeatureValue();
 		featureValue2.setValue(value2);
-		
+
 		this.getFixture().getFeatureValues().add(featureValue2);
 		assertEquals(featureValue2, this.getFixture().findFeatureValue(value2));
 	}
 
-} //FeatureTest
+} // FeatureTest

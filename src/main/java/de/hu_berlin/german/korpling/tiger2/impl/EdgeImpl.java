@@ -40,18 +40,23 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Edge</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Edge</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getSource <em>Source</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getGraph <em>Graph</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getId <em>Id</em>}</li>
- *   <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getType <em>Type</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getAnnotations
+ * <em>Annotations</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getSource
+ * <em>Source</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getTarget
+ * <em>Target</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getGraph
+ * <em>Graph</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getId
+ * <em>Id</em>}</li>
+ * <li>{@link de.hu_berlin.german.korpling.tiger2.impl.EdgeImpl#getType
+ * <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,9 +64,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class EdgeImpl extends EObjectImpl implements Edge {
 	/**
-	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAnnotations()
 	 * @generated
 	 * @ordered
@@ -70,8 +75,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -80,8 +85,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -89,9 +94,9 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	protected SyntacticNode target;
 
 	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getId()
 	 * @generated
 	 * @ordered
@@ -99,9 +104,9 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	protected static final String ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getId()
 	 * @generated
 	 * @ordered
@@ -110,8 +115,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -120,8 +125,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -129,8 +134,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	protected String type = TYPE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EdgeImpl() {
@@ -138,8 +143,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,37 +153,39 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Annotation> getAnnotations() {
 		if (annotations == null) {
-			annotations = new EObjectWithInverseResolvingEList<Annotation>(Annotation.class, this, Tiger2Package.EDGE__ANNOTATIONS, Tiger2Package.ANNOTATION__OWNER);
+			annotations = new EObjectWithInverseResolvingEList<Annotation>(Annotation.class, this,
+					Tiger2Package.EDGE__ANNOTATIONS, Tiger2Package.ANNOTATION__OWNER);
 		}
 		return annotations;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SyntacticNode getSource() {
 		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (SyntacticNode)eResolveProxy(oldSource);
+			InternalEObject oldSource = (InternalEObject) source;
+			source = (SyntacticNode) eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Tiger2Package.EDGE__SOURCE, oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Tiger2Package.EDGE__SOURCE, oldSource,
+							source));
 			}
 		}
 		return source;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SyntacticNode basicGetSource() {
@@ -186,8 +193,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSource(SyntacticNode newSource) {
@@ -198,25 +205,26 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SyntacticNode getTarget() {
 		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (SyntacticNode)eResolveProxy(oldTarget);
+			InternalEObject oldTarget = (InternalEObject) target;
+			target = (SyntacticNode) eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Tiger2Package.EDGE__TARGET, oldTarget, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Tiger2Package.EDGE__TARGET, oldTarget,
+							target));
 			}
 		}
 		return target;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SyntacticNode basicGetTarget() {
@@ -224,8 +232,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTarget(SyntacticNode newTarget) {
@@ -236,49 +244,51 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Graph getGraph() {
-		if (eContainerFeatureID() != Tiger2Package.EDGE__GRAPH) return null;
-		return (Graph)eContainer();
+		if (eContainerFeatureID() != Tiger2Package.EDGE__GRAPH)
+			return null;
+		return (Graph) eContainer();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetGraph(Graph newGraph, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newGraph, Tiger2Package.EDGE__GRAPH, msgs);
+		msgs = eBasicSetContainer((InternalEObject) newGraph, Tiger2Package.EDGE__GRAPH, msgs);
 		return msgs;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setGraph(Graph newGraph) {
-		if (newGraph != eInternalContainer() || (eContainerFeatureID() != Tiger2Package.EDGE__GRAPH && newGraph != null)) {
+		if (newGraph != eInternalContainer()
+				|| (eContainerFeatureID() != Tiger2Package.EDGE__GRAPH && newGraph != null)) {
 			if (EcoreUtil.isAncestor(this, newGraph))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newGraph != null)
-				msgs = ((InternalEObject)newGraph).eInverseAdd(this, Tiger2Package.GRAPH__EDGES, Graph.class, msgs);
+				msgs = ((InternalEObject) newGraph).eInverseAdd(this, Tiger2Package.GRAPH__EDGES, Graph.class, msgs);
 			msgs = basicSetGraph(newGraph, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Tiger2Package.EDGE__GRAPH, newGraph, newGraph));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getId() {
@@ -286,8 +296,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setId(String newId) {
@@ -298,8 +308,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getType() {
@@ -307,8 +317,8 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(String newType) {
@@ -321,193 +331,191 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 	/**
 	 * {@inheritDoc SyntacticNode}}
 	 */
-	public Annotation findAnnotation(String annotationName) 
-	{
-		Annotation retVal= null;
-		if (	(annotationName!= null)&&
-				(!annotationName.isEmpty()))
-		{
-			for (Annotation anno: this.getAnnotations())
-			{
-				if (annotationName.equalsIgnoreCase(anno.getName()))
-				{
-					retVal= anno;
+	public Annotation findAnnotation(String annotationName) {
+		Annotation retVal = null;
+		if ((annotationName != null) && (!annotationName.isEmpty())) {
+			for (Annotation anno : this.getAnnotations()) {
+				if (annotationName.equalsIgnoreCase(anno.getName())) {
+					retVal = anno;
 					break;
 				}
 			}
 		}
-		return(retVal);
+		return (retVal);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case Tiger2Package.EDGE__ANNOTATIONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAnnotations()).basicAdd(otherEnd, msgs);
-			case Tiger2Package.EDGE__GRAPH:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetGraph((Graph)otherEnd, msgs);
+		case Tiger2Package.EDGE__ANNOTATIONS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotations()).basicAdd(otherEnd, msgs);
+		case Tiger2Package.EDGE__GRAPH:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetGraph((Graph) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case Tiger2Package.EDGE__ANNOTATIONS:
-				return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
-			case Tiger2Package.EDGE__GRAPH:
-				return basicSetGraph(null, msgs);
+		case Tiger2Package.EDGE__ANNOTATIONS:
+			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd, msgs);
+		case Tiger2Package.EDGE__GRAPH:
+			return basicSetGraph(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case Tiger2Package.EDGE__GRAPH:
-				return eInternalContainer().eInverseRemove(this, Tiger2Package.GRAPH__EDGES, Graph.class, msgs);
+		case Tiger2Package.EDGE__GRAPH:
+			return eInternalContainer().eInverseRemove(this, Tiger2Package.GRAPH__EDGES, Graph.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case Tiger2Package.EDGE__ANNOTATIONS:
-				return getAnnotations();
-			case Tiger2Package.EDGE__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
-			case Tiger2Package.EDGE__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
-			case Tiger2Package.EDGE__GRAPH:
-				return getGraph();
-			case Tiger2Package.EDGE__ID:
-				return getId();
-			case Tiger2Package.EDGE__TYPE:
-				return getType();
+		case Tiger2Package.EDGE__ANNOTATIONS:
+			return getAnnotations();
+		case Tiger2Package.EDGE__SOURCE:
+			if (resolve)
+				return getSource();
+			return basicGetSource();
+		case Tiger2Package.EDGE__TARGET:
+			if (resolve)
+				return getTarget();
+			return basicGetTarget();
+		case Tiger2Package.EDGE__GRAPH:
+			return getGraph();
+		case Tiger2Package.EDGE__ID:
+			return getId();
+		case Tiger2Package.EDGE__TYPE:
+			return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case Tiger2Package.EDGE__ANNOTATIONS:
-				getAnnotations().clear();
-				getAnnotations().addAll((Collection<? extends Annotation>)newValue);
-				return;
-			case Tiger2Package.EDGE__SOURCE:
-				setSource((SyntacticNode)newValue);
-				return;
-			case Tiger2Package.EDGE__TARGET:
-				setTarget((SyntacticNode)newValue);
-				return;
-			case Tiger2Package.EDGE__GRAPH:
-				setGraph((Graph)newValue);
-				return;
-			case Tiger2Package.EDGE__ID:
-				setId((String)newValue);
-				return;
-			case Tiger2Package.EDGE__TYPE:
-				setType((String)newValue);
-				return;
+		case Tiger2Package.EDGE__ANNOTATIONS:
+			getAnnotations().clear();
+			getAnnotations().addAll((Collection<? extends Annotation>) newValue);
+			return;
+		case Tiger2Package.EDGE__SOURCE:
+			setSource((SyntacticNode) newValue);
+			return;
+		case Tiger2Package.EDGE__TARGET:
+			setTarget((SyntacticNode) newValue);
+			return;
+		case Tiger2Package.EDGE__GRAPH:
+			setGraph((Graph) newValue);
+			return;
+		case Tiger2Package.EDGE__ID:
+			setId((String) newValue);
+			return;
+		case Tiger2Package.EDGE__TYPE:
+			setType((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case Tiger2Package.EDGE__ANNOTATIONS:
-				getAnnotations().clear();
-				return;
-			case Tiger2Package.EDGE__SOURCE:
-				setSource((SyntacticNode)null);
-				return;
-			case Tiger2Package.EDGE__TARGET:
-				setTarget((SyntacticNode)null);
-				return;
-			case Tiger2Package.EDGE__GRAPH:
-				setGraph((Graph)null);
-				return;
-			case Tiger2Package.EDGE__ID:
-				setId(ID_EDEFAULT);
-				return;
-			case Tiger2Package.EDGE__TYPE:
-				setType(TYPE_EDEFAULT);
-				return;
+		case Tiger2Package.EDGE__ANNOTATIONS:
+			getAnnotations().clear();
+			return;
+		case Tiger2Package.EDGE__SOURCE:
+			setSource((SyntacticNode) null);
+			return;
+		case Tiger2Package.EDGE__TARGET:
+			setTarget((SyntacticNode) null);
+			return;
+		case Tiger2Package.EDGE__GRAPH:
+			setGraph((Graph) null);
+			return;
+		case Tiger2Package.EDGE__ID:
+			setId(ID_EDEFAULT);
+			return;
+		case Tiger2Package.EDGE__TYPE:
+			setType(TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case Tiger2Package.EDGE__ANNOTATIONS:
-				return annotations != null && !annotations.isEmpty();
-			case Tiger2Package.EDGE__SOURCE:
-				return source != null;
-			case Tiger2Package.EDGE__TARGET:
-				return target != null;
-			case Tiger2Package.EDGE__GRAPH:
-				return getGraph() != null;
-			case Tiger2Package.EDGE__ID:
-				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case Tiger2Package.EDGE__TYPE:
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+		case Tiger2Package.EDGE__ANNOTATIONS:
+			return annotations != null && !annotations.isEmpty();
+		case Tiger2Package.EDGE__SOURCE:
+			return source != null;
+		case Tiger2Package.EDGE__TARGET:
+			return target != null;
+		case Tiger2Package.EDGE__GRAPH:
+			return getGraph() != null;
+		case Tiger2Package.EDGE__ID:
+			return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+		case Tiger2Package.EDGE__TYPE:
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (id: ");
@@ -518,4 +526,4 @@ public class EdgeImpl extends EObjectImpl implements Edge {
 		return result.toString();
 	}
 
-} //EdgeImpl
+} // EdgeImpl
