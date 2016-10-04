@@ -17,22 +17,19 @@
  */
 package de.hu_berlin.german.korpling.tiger2.impl;
 
-import de.hu_berlin.german.korpling.tiger2.Feature;
-import de.hu_berlin.german.korpling.tiger2.FeatureValue;
-import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
-
 import java.net.URI;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import de.hu_berlin.german.korpling.tiger2.Feature;
+import de.hu_berlin.german.korpling.tiger2.FeatureValue;
+import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature

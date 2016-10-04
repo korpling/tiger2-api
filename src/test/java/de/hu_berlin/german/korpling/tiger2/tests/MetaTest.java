@@ -19,9 +19,7 @@ package de.hu_berlin.german.korpling.tiger2.tests;
 
 import de.hu_berlin.german.korpling.tiger2.Meta;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
-
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 /**

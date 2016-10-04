@@ -18,7 +18,6 @@
 package de.hu_berlin.german.korpling.tiger2.tests;
 
 import de.hu_berlin.german.korpling.tiger2.AnnotatableElement;
-
 import junit.framework.TestCase;
 
 /**

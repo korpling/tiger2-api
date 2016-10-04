@@ -17,8 +17,6 @@
  */
 package de.hu_berlin.german.korpling.tiger2;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Edge</b></em>'. <!-- end-user-doc -->

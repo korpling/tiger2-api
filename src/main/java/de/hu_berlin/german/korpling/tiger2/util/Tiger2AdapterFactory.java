@@ -17,14 +17,24 @@
  */
 package de.hu_berlin.german.korpling.tiger2.util;
 
-import de.hu_berlin.german.korpling.tiger2.*;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
+
+import de.hu_berlin.german.korpling.tiger2.AnnotatableElement;
+import de.hu_berlin.german.korpling.tiger2.Annotation;
+import de.hu_berlin.german.korpling.tiger2.Corpus;
+import de.hu_berlin.german.korpling.tiger2.Edge;
+import de.hu_berlin.german.korpling.tiger2.Feature;
+import de.hu_berlin.german.korpling.tiger2.FeatureValue;
+import de.hu_berlin.german.korpling.tiger2.Graph;
+import de.hu_berlin.german.korpling.tiger2.Meta;
+import de.hu_berlin.german.korpling.tiger2.NonTerminal;
+import de.hu_berlin.german.korpling.tiger2.Segment;
+import de.hu_berlin.german.korpling.tiger2.SyntacticNode;
+import de.hu_berlin.german.korpling.tiger2.Terminal;
+import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides

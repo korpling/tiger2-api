@@ -17,26 +17,21 @@
  */
 package de.hu_berlin.german.korpling.tiger2.tests;
 
-import de.hu_berlin.german.korpling.tiger2.Graph;
-import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
-import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
-
 import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
 import org.eclipse.emf.ecore.util.Diagnostician;
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
+import de.hu_berlin.german.korpling.tiger2.Graph;
+import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
+import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
 
 /**
  * <!-- begin-user-doc --> A sample utility for the '<em><b>tiger2</b></em>'

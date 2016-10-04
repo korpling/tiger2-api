@@ -17,18 +17,29 @@
  */
 package de.hu_berlin.german.korpling.tiger2.impl;
 
-import de.hu_berlin.german.korpling.tiger2.*;
-
 import java.net.URI;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import de.hu_berlin.german.korpling.tiger2.Annotation;
+import de.hu_berlin.german.korpling.tiger2.Corpus;
+import de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE;
+import de.hu_berlin.german.korpling.tiger2.DOMAIN;
+import de.hu_berlin.german.korpling.tiger2.Edge;
+import de.hu_berlin.german.korpling.tiger2.Feature;
+import de.hu_berlin.german.korpling.tiger2.FeatureValue;
+import de.hu_berlin.german.korpling.tiger2.Graph;
+import de.hu_berlin.german.korpling.tiger2.Meta;
+import de.hu_berlin.german.korpling.tiger2.NonTerminal;
+import de.hu_berlin.german.korpling.tiger2.Segment;
+import de.hu_berlin.german.korpling.tiger2.Terminal;
+import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
+import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--

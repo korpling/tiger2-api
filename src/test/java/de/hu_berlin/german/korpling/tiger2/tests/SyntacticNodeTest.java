@@ -23,7 +23,6 @@ import de.hu_berlin.german.korpling.tiger2.Annotation;
 import de.hu_berlin.german.korpling.tiger2.Feature;
 import de.hu_berlin.german.korpling.tiger2.SyntacticNode;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
-
 import junit.framework.TestCase;
 
 /**

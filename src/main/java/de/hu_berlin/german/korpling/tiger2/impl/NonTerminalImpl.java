@@ -17,10 +17,10 @@
  */
 package de.hu_berlin.german.korpling.tiger2.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.hu_berlin.german.korpling.tiger2.NonTerminal;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
-
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Non

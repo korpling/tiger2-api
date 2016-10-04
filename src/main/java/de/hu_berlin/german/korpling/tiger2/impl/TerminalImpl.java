@@ -17,16 +17,14 @@
  */
 package de.hu_berlin.german.korpling.tiger2.impl;
 
-import de.hu_berlin.german.korpling.tiger2.Terminal;
-import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
-
 import java.net.URI;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import de.hu_berlin.german.korpling.tiger2.Terminal;
+import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object

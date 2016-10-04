@@ -19,7 +19,6 @@ package de.hu_berlin.german.korpling.tiger2.tests;
 
 import de.hu_berlin.german.korpling.tiger2.NonTerminal;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
-
 import junit.textui.TestRunner;
 
 /**

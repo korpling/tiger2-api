@@ -22,9 +22,7 @@ import de.hu_berlin.german.korpling.tiger2.Graph;
 import de.hu_berlin.german.korpling.tiger2.NonTerminal;
 import de.hu_berlin.german.korpling.tiger2.Terminal;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
-
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 /**

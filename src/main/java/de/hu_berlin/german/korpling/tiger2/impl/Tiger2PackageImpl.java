@@ -17,6 +17,15 @@
  */
 package de.hu_berlin.german.korpling.tiger2.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import de.hu_berlin.german.korpling.tiger2.AnnotatableElement;
 import de.hu_berlin.german.korpling.tiger2.Annotation;
 import de.hu_berlin.german.korpling.tiger2.Corpus;
@@ -31,16 +40,6 @@ import de.hu_berlin.german.korpling.tiger2.SyntacticNode;
 import de.hu_berlin.german.korpling.tiger2.Terminal;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Package;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--

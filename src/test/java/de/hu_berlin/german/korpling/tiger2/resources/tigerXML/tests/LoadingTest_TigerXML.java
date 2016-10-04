@@ -23,9 +23,6 @@ package de.hu_berlin.german.korpling.tiger2.resources.tigerXML.tests;
 import java.io.File;
 import java.io.IOException;
 
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -38,13 +35,12 @@ import de.hu_berlin.german.korpling.tiger2.Corpus;
 import de.hu_berlin.german.korpling.tiger2.DEFAULT_TYPE;
 import de.hu_berlin.german.korpling.tiger2.DOMAIN;
 import de.hu_berlin.german.korpling.tiger2.Edge;
-import de.hu_berlin.german.korpling.tiger2.Feature;
-import de.hu_berlin.german.korpling.tiger2.FeatureValue;
 import de.hu_berlin.german.korpling.tiger2.Graph;
-import de.hu_berlin.german.korpling.tiger2.Segment;
 import de.hu_berlin.german.korpling.tiger2.SyntacticNode;
 import de.hu_berlin.german.korpling.tiger2.Terminal;
 import de.hu_berlin.german.korpling.tiger2.resources.TigerResourceFactory;
+import junit.framework.TestCase;
+import junit.textui.TestRunner;
 
 /**
  * @author Florian Zipser

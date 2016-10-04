@@ -23,9 +23,7 @@ import de.hu_berlin.german.korpling.tiger2.DOMAIN;
 import de.hu_berlin.german.korpling.tiger2.Feature;
 import de.hu_berlin.german.korpling.tiger2.FeatureValue;
 import de.hu_berlin.german.korpling.tiger2.Tiger2Factory;
-
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 /**

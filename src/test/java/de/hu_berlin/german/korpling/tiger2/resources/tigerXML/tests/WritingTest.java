@@ -27,8 +27,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import junit.textui.TestRunner;
-
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.XMLTestCase;
 import org.custommonkey.xmlunit.XMLUnit;
@@ -45,6 +43,7 @@ import org.xml.sax.SAXException;
 import de.hu_berlin.german.korpling.tiger2.Corpus;
 import de.hu_berlin.german.korpling.tiger2.resources.TigerResourceFactory;
 import de.hu_berlin.german.korpling.tiger2.samples.Tiger2Sample;
+import junit.textui.TestRunner;
 
 /**
  * @author Florian Zipser
