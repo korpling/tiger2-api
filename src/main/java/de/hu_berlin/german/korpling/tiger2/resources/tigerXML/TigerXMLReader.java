@@ -554,14 +554,16 @@ public class TigerXMLReader extends DefaultHandler2 {
 			Set<Edge> edges = this.notTargetedEdges.keySet();
 			for (Edge edge : edges) {
 				String targetId = notTargetedEdges.get(edge);
-				if (targetId == null)
+				if (targetId == null) {
 					throw new TigerInternalException(
 							"An edge was found in 'NotTargetedEdges', that has no corresponding target node id.");
+				}
 				SyntacticNode target = this.id2synNode.get(targetId);
-				if (target == null)
+				if (target == null) {
 					throw new TigerImplausibleContentException("The referred target of an edge ( id of target is '"
 							+ targetId + "') in the document '" + this.getInputURI()
 							+ "' cannot be found. The reason might be, that the node is not contained in document.");
+				}
 				edge.setTarget(target);
 				this.currentGraph.getEdges().add(edge);
 			}
