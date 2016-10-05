@@ -171,6 +171,7 @@ public class TigerXMLReader extends DefaultHandler2 {
 	 * 
 	 * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
 	 */
+	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		if ((this.elementStack != null) && (this.elementStack.size() > 0)) {// only
 																			// if
@@ -223,8 +224,6 @@ public class TigerXMLReader extends DefaultHandler2 {
 	 */
 	private int edgeCounter = 0;
 
-	/** true, if an edge with no id was found while reading **/
-	boolean edgesWithNoIds = false;
 	/** true, if a terminal with no id was found while reading **/
 	boolean terminalsWithNoIds = false;
 	/** true, if a non-terminal with no id was found while reading **/
@@ -457,7 +456,6 @@ public class TigerXMLReader extends DefaultHandler2 {
 		// start: @xml:id
 		String id = attributes.getValue(TigerXMLDictionary.ATTRIBUTE_ID);
 		if (id == null) {
-			edgesWithNoIds = true;
 			id = "edge_" + edgeCounter;
 			this.edgeCounter++;
 		} else {
@@ -535,10 +533,8 @@ public class TigerXMLReader extends DefaultHandler2 {
 		elementStack.pop();
 	}
 
+	@Override
 	public void endDocument() throws SAXException {
-		if (edgesWithNoIds) {
-			LOGGER.warn("One or more edge elements have no id in file '" + this.inputURI + "'. ");
-		}
 		if (nonTerminalsWithNoIds) {
 			LOGGER.warn(
 					"One or more syntactic node (non-terminal) elements have no id in file '" + this.inputURI + "'. ");
@@ -558,14 +554,16 @@ public class TigerXMLReader extends DefaultHandler2 {
 			Set<Edge> edges = this.notTargetedEdges.keySet();
 			for (Edge edge : edges) {
 				String targetId = notTargetedEdges.get(edge);
-				if (targetId == null)
+				if (targetId == null) {
 					throw new TigerInternalException(
 							"An edge was found in 'NotTargetedEdges', that has no corresponding target node id.");
+				}
 				SyntacticNode target = this.id2synNode.get(targetId);
-				if (target == null)
+				if (target == null) {
 					throw new TigerImplausibleContentException("The referred target of an edge ( id of target is '"
 							+ targetId + "') in the document '" + this.getInputURI()
 							+ "' cannot be found. The reason might be, that the node is not contained in document.");
+				}
 				edge.setTarget(target);
 				this.currentGraph.getEdges().add(edge);
 			}
